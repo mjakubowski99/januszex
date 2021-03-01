@@ -1,0 +1,35 @@
+Na początku w pliku public/.htaccess należy sprawdzić linijkę
+
+RewriteBase /
+
+Może się ona różnić w zależności od tego poprzez jaki url otwieramy aplikację.
+Jeśli robimy to przez xamppa, możemy otwierać nasz plik index.php poprzez 
+
+localhost/myapp/public
+
+Wtedy linijka RewriteBase wyglądałaby tak
+
+RewriteBase /localhost/myapp/public
+
+
+
+1. Każdy request jest realizowany poprzez public/index.php
+
+2. W pliku index.php jest tworzona nowa instancja aplikacji
+
+3. W klasie App podany przez nas url jest parsowany
+
+4. Tworzona jest nowa instancja klasy Routes, w klasie Routes definiujemy jakie metody 
+controllera mają być wywoływane po wpisaniu danej frazy. Klasa ta w swoim konstruktorze 
+tworzy instancje klasy Router i wywołuje jej metodę add, która pozwala właśnie na zapisanie
+tych zdefiniowanych routów do tablicy routingu.
+
+5. Gdy routy zostały dodane, są pobierane z instancji klasy Routes
+
+6. Dalej router dopasowuje podaną przez klienta nazwę i sprawdza czy pasuje do którejś
+ze zdefiniowanych w tablicy routingu, przy okazji sprawdza czy metoda HTTP klienta
+zgadza się z tą zdefiniowaną.
+
+7. Jeżeli się zgadza to zostaje wywoływana metoda kontrolera, która wykonuje swoje akcje
+na danych, dokonuje wstępnej obróki, wykonuje akcje na bazie danych itp. i na sam koniec
+wyświetla nam widok, do którego mogą być przekazane jakieś dane.
