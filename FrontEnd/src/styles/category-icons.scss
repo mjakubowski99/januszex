@@ -1,0 +1,63 @@
+
+.category-icon {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background-color: white;
+
+  &:hover,
+  &:focus {
+    background-color:  wheat;
+  };
+
+}
+
+.case-icon {
+  -webkit-mask-image: url("../assets/category-images/case.svg");
+  mask-image: url("../assets/category-images/case.svg");
+}
+
+.cooling-fan-icon {
+  -webkit-mask-image: url("../assets/category-images/coolingFan.svg");
+  mask-image: url("../assets/category-images/coolingFan.svg");
+}
+
+.cpu-processor-icon {
+  -webkit-mask-image: url("../assets/category-images/cpuProcessor.svg");
+  mask-image: url("../assets/category-images/cpuProcessor.svg");
+}
+
+.dvd-icon {
+  -webkit-mask-image: url("../assets/category-images/dvd.svg");
+  mask-image: url("../assets/category-images/dvd.svg");
+}
+
+.graphics-card-icon {
+  -webkit-mask-image: url("../assets/category-images/graphicsCard.svg");
+  mask-image: url("../assets/category-images/graphicsCard.svg");
+}
+
+.hard-drive-icon {
+  -webkit-mask-image: url("../assets/category-images/hardDrive.svg");
+  mask-image: url("../assets/category-images/hardDrive.svg");
+}
+
+.monitor-icon {
+  -webkit-mask-image: url("../assets/category-images/monitor.svg");
+  mask-image: url("../assets/category-images/monitor.svg");
+}
+
+.motherboard-icon {
+  -webkit-mask-image: url("../assets/category-images/motherboard.svg");
+  mask-image: url("../assets/category-images/motherboard.svg");
+}
+
+.psu-icon {
+  -webkit-mask-image: url("../assets/category-images/psu.svg");
+  mask-image: url("../assets/category-images/psu.svg");
+}
+
+.ram-icon {
+  -webkit-mask-image: url("../assets/category-images/ram.svg");
+  mask-image: url("../assets/category-images/ram.svg");
+}

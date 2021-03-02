@@ -1,0 +1,22 @@
+.product-item {
+  width: 400px;
+  border-radius: 90px;
+  background-color: #6c757d;
+  margin: 40px 40px;
+
+  &:hover,
+  &:focus {
+    background-color: #00b2cc;
+  }
+
+}
+
+.product-image {
+  width: 345px;
+  height: 300px;
+  border-radius: 90px;
+}
+
+.product-name {
+  margin: 30px;
+}

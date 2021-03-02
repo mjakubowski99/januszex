@@ -1,0 +1,33 @@
+<div class="header">
+  <div class="p-d-flex p-jc-between p-ai-center p-flex-column p-flex-md-row">
+
+    <div>
+      <a href="#">
+        <i class="logo-icon"></i>
+      </a>
+    </div>
+
+    <div class="search-container">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="p-input-icon-right">
+        <i class="pi pi-search" type="submit"></i>
+        <label for="search-input" hidden></label>
+        <input
+          id="search-input"
+          type="text"
+          pInputText
+          placeholder="Wyszukaj"
+          formControlName="searchValue">
+      </form>
+    </div>
+
+    <div class="p-d-flex">
+      <a href="#">
+        <span class="pi pi-shopping-cart icon"></span>
+      </a>
+      <a href="#">
+        <span class="pi pi-user icon"></span>
+      </a>
+    </div>
+
+  </div>
+</div>
