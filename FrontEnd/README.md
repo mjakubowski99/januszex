@@ -1,5 +1,4 @@
-januszexfront.herokuapp.com
-[HEROKU](https://januszexfront.herokuapp.com)
+[januszexfront](https://januszexfront.herokuapp.com)
 
 # FrontEnd
 
