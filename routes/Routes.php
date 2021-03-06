@@ -17,6 +17,12 @@ class Routes{
 
         $router->add('GET', 'home', 'HomeController', 'index');
         $router->add('POST', 'store', 'HomeController', 'store');
+        
+        $router->add('GET', 'login', 'LoginController', 'index');
+        $router->add('POST', 'login', 'LoginController', 'store');
+
+        $router->add('GET', 'register', 'RegisterController', 'index');
+        $router->add('POST', 'register', 'RegisterController', 'store');
 
         $this->router = $router;
     }

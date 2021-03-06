@@ -1,47 +1,45 @@
 <?php
 
-require_once "ConnectionController.php";
+#Include database connection file
+require_once '../app/validators/RegisterValidator.php';
+require_once '../app/config/DatabaseConnector.php';
 
+class RegisterController extends Controller{
 
-if(isset($_REQUEST['btn_register'])){
-	$email = strip_tags($_REQUEST['txt_email']);
-	$password = strip_tags($_REQUEST['txt_password']);
-	$name = strip_tags($_REQUEST['txt_name']);
-	$surname = strip_tags($_REQUEST['txt_surname']);
-	$city = strip_tags($_REQUEST['txt_city']);
-	$street = strip_tags($_REQUEST['txt_street']);
-	$home_number = strip_tags($_REQUEST['txt_home_number']);
-	$flat_number = strip_tags($_REQUEST['txt_flat_number']);
-	$postoffice_name = strip_tags($_REQUEST['txt_postoffice_name']);
-	$postoffice_code = strip_tags($_REQUEST['txt_postoffice_code']);
-	
-	#Checking if key fields were filled
-	if(empty($name) || empty($surname) || empty($email) || empty($password) || empty($city) || empty($street) ||
-		empty($home_number) || empty($postoffice_name) || empty($postoffice_code)){
-		$errorMsg[] = "Wypełnij wszystkie wymagane pola";
+	public function index(){
+		$this->view('register');
 	}
-	else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){ #Checking the correctness of the email
-		$errorMsg[] = "Wprowadź poprawny adres e-mail";
-	}
-	else if(strlen($password) < 8){ #Checking the password length
-		$errorMsg[] = "Hasło musi zawierać przynajmniej 8 znaków";
-	}
-	else{
+
+	public function store(){
+
+		$validator = new RegisterValidator();
+
+		//Sanitization and validation register data
+		$message = $validator->validate($_POST);
+
+		if( $message !== true ){
+			$this->view('register', [
+				'error_message' => $message
+			]);
+		}
+
 		try{
-			#Prepare and execution SQL statement to check if given email exists in database
-			$select_stmt = $connection->prepare("SELECT email FROM users WHERE email=:uemail");
-			$select_stmt->bindValue(':uemail', $email, PDO::PARAM_STR);
-			$select_stmt->execute();
-			$row = $select_stmt->fetch(PDO::FETCH_ASSOC);
-			
-			if($select_stmt->fetch(PDO::FETCH_ASSOC)){ #If previous statement return someting given email exist in database
-				if($row["email"] == $email){
-				$row = $select_stmt->fetch(PDO::FETCH_ASSOC);
-				$errorMsg[] = "Na podany adres e-mail zostało założone już konto. Spróbuj opcji odzyskiwania hasła";
-				}
-			}
-			else if(!isset($errorMsg)){ #If previous code didn't return any errors
-				$hash_password = password_hash($password, PASSWORD_DEFAULT); #Create hash on given password
+
+			$db_conn = new DatabaseConnector();
+			$connection = $db_conn->getConnection();
+
+			$email = strip_tags($_REQUEST['txt_email']);
+			$password = strip_tags($_REQUEST['txt_password']);
+			$name = strip_tags($_REQUEST['txt_name']);
+			$surname = strip_tags($_REQUEST['txt_surname']);
+			$city = strip_tags($_REQUEST['txt_city']);
+			$street = strip_tags($_REQUEST['txt_street']);
+			$home_number = strip_tags($_REQUEST['txt_home_number']);
+			$flat_number = strip_tags($_REQUEST['txt_flat_number']);
+			$postoffice_name = strip_tags($_REQUEST['txt_postoffice_name']);
+			$postoffice_code = strip_tags($_REQUEST['txt_postoffice_code']);
+				
+			$hash_password = password_hash($password, PASSWORD_DEFAULT); #Create hash on given password
 				
 				#Prepare SQL statement to insert data about the address to database
 				$insert_stmt = $connection->prepare("INSERT INTO address (id, city, street, home_number, flat_number, postoffice_name, postoffice_code)
@@ -69,7 +67,7 @@ if(isset($_REQUEST['btn_register'])){
 					$address_id = $select_address_id->fetch(PDO::FETCH_ASSOC);
 				
 					#Prepare SQL statement to insert data to users table
-					$insert_stmt = $connection->prepare("INSERT INTO users (id, name, surname, email, password, verified, addres_id) 
+					$insert_stmt = $connection->prepare("INSERT INTO users (id, name, surname, email, password, verified, address_id) 
 														VALUES (0, :uname, :usurname, :uemail, :upassword, 0, :uaddress_id)");
 									
 					#Execution of SQL statement						
@@ -78,20 +76,24 @@ if(isset($_REQUEST['btn_register'])){
 													':uemail'=>$email,
 													'upassword'=>$hash_password,
 													'uaddress_id'=>$address_id["id"]))){
-						$registerMsg="Rejestracja powiodła się. Sprawdź podany adres e-mail w celu aktywacji konta";
+						echo "Rejestracja powiodła się. Sprawdź podany adres e-mail w celu aktywacji konta";
 					}
 					else{
-						$errorMsg[] = "Nieoczekiwany błąd. Przejdź do formularza zgłaszania błędów";
+						echo "Nieoczekiwany błąd. Przejdź do formularza zgłaszania błędów";
 					}
 				}
 				else{
-					$errorMsg[] = "Nieoczekiwany błąd. Przejdź do formularza zgłaszania błędów";
+					echo "Nieoczekiwany błąd. Przejdź do formularza zgłaszania błędów";
 				}
-			}
+				
 		}
 		catch(PDOException $e){
-			echo $e->getMessage();
+			die( $e->getMessage() );
 		}
+
+
 	}
+
 }
-?>
+
+
