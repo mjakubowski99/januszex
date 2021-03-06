@@ -1,4 +1,4 @@
-[januszexfront](https://januszexfront.herokuapp.com)
+[januszex frontend heroku](https://januszexfront.herokuapp.com)
 
 # FrontEnd
 
