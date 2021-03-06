@@ -10,12 +10,12 @@ export class HeaderComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor() {
-  }
-
-  ngOnInit(): void {
     this.searchForm = new FormGroup({
       searchValue: new FormControl(null, Validators.required)
     });
+  }
+
+  ngOnInit(): void {
   }
 
   onSubmit(): void {
