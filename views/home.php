@@ -1,11 +1,5 @@
 <?php 
-    echo $data['data'];
-?>
+    if( isset($data['loginMsg']) ) echo $data['loginMsg'];
+    if( isset($data['registerMsg']) ) echo $data['registerMsg'];
 
-
-
-<form method="POST" action="/store">
-    <input name="surname"/>
-    <button type="submit"> Send </button>
-</form>
 

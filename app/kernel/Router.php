@@ -41,10 +41,9 @@ class Router{
                 if( $route['url'] == $url_array[0] ){
                     if( $_SERVER['REQUEST_METHOD'] == $route['method'] )
                         return [ $route['controller'], $route['controller_method'] ];
-                    else 
-                        die("Error! We doesn't support this type of request for this route!");  
                 }
             }
+            die("Error! We doesn't support this type of request for this route!");  
         }
 
     }
