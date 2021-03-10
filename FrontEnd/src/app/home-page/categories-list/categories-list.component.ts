@@ -11,7 +11,7 @@ export class CategoriesListComponent implements OnInit {
     {categoryName: 'Obudowy', iconClass: 'case-icon', routerLink: '#'},
     {categoryName: 'Chłodzenia', iconClass: 'cooling-fan-icon', routerLink: '#'},
     {categoryName: 'Procesory', iconClass: 'cpu-processor-icon', routerLink: '#'},
-    {categoryName: 'Stacje dysków', iconClass: 'dvd-icon', routerLink: '#'},
+    // {categoryName: 'Stacje dysków', iconClass: 'dvd-icon', routerLink: '#'},
     {categoryName: 'Karty graficzne', iconClass: 'graphics-card-icon', routerLink: '#'},
     {categoryName: 'Dyski twarde', iconClass: 'hard-drive-icon', routerLink: '#'},
     {categoryName: 'Monitory', iconClass: 'monitor-icon', routerLink: '#'},

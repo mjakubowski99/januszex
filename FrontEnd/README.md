@@ -1,3 +1,5 @@
+[januszex frontend heroku](https://januszexfront.herokuapp.com)
+
 # FrontEnd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
