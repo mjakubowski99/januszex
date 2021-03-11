@@ -14,12 +14,20 @@ class App{
         $router = $route->get();
 
         //Match client url with defined urls
-        $controller = $router->routeMatch($this->url);
-        require_once '../app/controllers/'.$controller[0].'.php';
+        $params = $router->routeMatch($this->url);
+        $controller = $params[0];
+        $method = $params[1];
+        $args = $params[2];
+
+        require_once '../app/controllers/'.$controller.'.php';
 
         //run suitable controller and his method
-        $controller_class = new $controller[0]();
-        call_user_func( array($controller_class, $controller[1]) );
+        $controller_class = new $controller();
+
+        if( count($args) === 0 )
+            call_user_func( array($controller_class, $method) );
+        else
+            call_user_func_array( array($controller_class, $method), array($args) );
     }
 
     public function parseUrl(){

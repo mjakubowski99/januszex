@@ -37,8 +37,8 @@ class LoginController extends Controller{
 		
 	}
 
-	public function test(){
-		echo 1;
+	public function test($data){
+		var_dump($data);
 	}
 }
 

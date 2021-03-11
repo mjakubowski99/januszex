@@ -23,7 +23,7 @@ class LoginValidator{
         if( empty( $data['password'] ) )
             return "Wypełnij pole hasło";
 
-        $row =  findUserByEmail( $data['email'] );
+        $row =  $this->findUserByEmail( $data['email'] );
         
         if(!$row )
             return "Niepoprawna nazwa uzytkownika lub hasło";
