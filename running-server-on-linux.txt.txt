@@ -1,0 +1,33 @@
+Start apache i mysql:
+
+sudo service apache2 start
+sudo service mysql start 
+
+Sklonowanie repozytorium:
+
+cd /var/www/html
+git clone repository januszex 
+
+Tworzenie po³¹czenia z baz¹ danych:
+
+W pliku .env ustawiamy wartoœci,
+defaultowe dane logowania do bazy
+wygl¹daj¹ tak, jeœli masz stworzonego 
+innego usera np admin to podaj jego
+dane logowania 
+
+DB_USERNAME = root
+DB_PASSWORD = 
+DB_NAME = januszex
+
+Teraz tworzymy tabelê jeœli jej nie mamy:
+
+wchodzimy do:
+
+cd /var/www/html/januszex 
+
+php Create_database_and_tables.php
+
+
+
+
