@@ -1,0 +1,11 @@
+To get console cli to run tests do 
+
+composer install 
+
+cd /vendor/bin
+
+And from here you can run tests
+
+./vendor/bin/phpunit tests/ExampleTest.php 
+
+Running from that way may be quite annoying, well you can global install phpunit 
