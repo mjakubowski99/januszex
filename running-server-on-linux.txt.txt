@@ -1,3 +1,12 @@
+Instalacja Å›rodowiska:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04
+
+Konfiguracja vhostÃ³w:
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-16-04
+
+
 Start apache i mysql:
 
 sudo service apache2 start
@@ -6,13 +15,16 @@ sudo service mysql start
 Sklonowanie repozytorium:
 
 cd /var/www/html
-git clone repository januszex 
+sudo git clone repository januszex 
 
-Tworzenie po³¹czenia z baz¹ danych:
+Nadanie sobie uprawnieÅ„ do edycji plikÃ³w:
+sudo chown -R $USER:$USER /var/www/html/januszex 
 
-W pliku .env ustawiamy wartoœci,
+Tworzenie poÅ‚Ä…czenia z bazÄ… danych:
+
+W pliku .env ustawiamy wartoÅ›ci,
 defaultowe dane logowania do bazy
-wygl¹daj¹ tak, jeœli masz stworzonego 
+wyglÄ…dajÄ… tak, jeÅ›li masz stworzonego 
 innego usera np admin to podaj jego
 dane logowania 
 
@@ -20,7 +32,7 @@ DB_USERNAME = root
 DB_PASSWORD = 
 DB_NAME = januszex
 
-Teraz tworzymy tabelê jeœli jej nie mamy:
+Teraz tworzymy tabelÄ™ jeÅ›li jej nie mamy:
 
 wchodzimy do:
 
