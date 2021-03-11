@@ -1,6 +1,5 @@
 <?php
 
-require_once '../app/validators/RegisterValidator.php';
 require_once '../app/database/Database.php';
 
 class RegisterValidator{
@@ -35,7 +34,7 @@ class RegisterValidator{
 
     public function userExists($email){
         $database = new Database();
-		$query = "SELECT email FROM users WHERE email=:uemail";
+		$query = "SELECT email FROM Users WHERE email=:uemail";
 		$values = [ 'uemail' => $email];
         $row = $database->execute($query, $values);
         if( !$row ){

@@ -1,7 +1,13 @@
 <?php
 
-require_once '../app/kernel/initialize.php';
+try{
+    require_once '../app/kernel/initialize.php';
 
-//Create instance of App
+    //Create instance of App
 
-$app = new App();
+    $app = new App(); 
+}
+catch(Throwable $e){
+    echo $e->getMessage();
+}
+

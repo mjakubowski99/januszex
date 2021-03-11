@@ -2,6 +2,8 @@
 
 #Include database connection file
 require_once '../app/database/Database.php';
+require_once '../app/validators/LoginValidator.php';
+require_once '../app/resource/UserResource.php';
 
 class LoginController extends Controller{
 
@@ -10,40 +12,33 @@ class LoginController extends Controller{
 	}
 
 	public function store(){
+		
 		$database = new Database();
+		$validator = new LoginValidator();
 
-		$password = strip_tags($_REQUEST["password_textbox"]);
-		$email = strip_tags($_REQUEST["email_textbox"]);
+		$password = strip_tags($_REQUEST["password"]);
+		$email = strip_tags($_REQUEST["email"]);
 
-		if(empty($email)){
-			$errorMsg = "Wprowadź adres email";
-		} 
-		else if(empty($password)){
-			$errorMsg = "Wprowadź hasło";
+		//credentials validation
+		$message = $validator->validate([
+			'email' => $email, 
+			'password' => $password,
+		]);
+
+
+		//If logowanie poprawne return User
+		if( $message == "Logowanie poprawne" ){
+			$resource = new UserResource();
+			echo $resource->createHelloMessageForEmail('Witaj', $email);
 		}
 		else{
-			$password = password_hash($password, PASSWORD_DEFAULT);
-			$query = "SELECT * FROM users WHERE email=:uemail";
-
-			
-			$row = $database->execute($query, [
-				'uemail' => $email,
-			]);
-
-			if( !$row ){
-				die("Nie ma takiego użytkownika");
-			}
-			else if( count($row) == 1 ){
-				$loginMsg = "Logowanie poprawne...";
-				$this->view("home", [ 
-					'message' => $loginMsg
-				]); #If password is correct, redirect to home
-			}
-			else{
-				$errorMsg = "Wprowadzono niewłaściwe hasło lub adres email";
-			}
-		}
+			echo json_encode($message);
+		} 
 		
+	}
+
+	public function test(){
+		echo 1;
 	}
 }
 
