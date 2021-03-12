@@ -21,6 +21,7 @@ class RegisterController extends Controller{
 			$this->view('register', [
 				'error_message' => $message
 			]);
+			die();
 		}
 
 		try{
