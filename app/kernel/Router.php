@@ -23,7 +23,10 @@ class Router{
             );
         }
         else{
-            die("You passed invalid HTTP method!");
+            echo json_encode([
+                'message' => "Developer passed invalid HTTP method!"
+            ]);
+            die();
         }
     }
 
@@ -77,7 +80,9 @@ class Router{
 
     public function routeMatch($url_array){
         if( $url_array == NULL ){
-            echo "Welcome page";
+            echo json_encode([
+                'message' => 'Welcome page'
+            ]);
             die();
         }
         else{
@@ -88,8 +93,10 @@ class Router{
                         return [ $route['controller'], $route['controller_method'], $this->params ];
                 }
             }
-            die();
-            die("Error! We doesn't support this type of request for this route!");  
+            
+            echo json_encode([
+                'message' => "Error! We doesn't support this type of request for this route!"
+            ]);
         }
 
     }

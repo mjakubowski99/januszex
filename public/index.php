@@ -8,6 +8,8 @@ try{
     $app = new App(); 
 }
 catch(Throwable $e){
-    echo $e->getMessage();
+    echo json_encode([
+        'message' => $e->getMessage()
+    ]);
 }
 

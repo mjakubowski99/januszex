@@ -1,0 +1,53 @@
+
+1.Jeśli routing nie działa, sprawdź to:
+
+    Na początku w pliku public/.htaccess należy sprawdzić linijkę
+
+    RewriteBase /
+
+    Może się ona różnić w zależności od tego poprzez jaki url otwieramy aplikację.
+    Jeśli robimy to przez xamppa, możemy otwierać nasz plik index.php poprzez 
+
+    localhost/myapp/public
+
+    Wtedy linijka RewriteBase wyglądałaby tak
+
+    RewriteBase /localhost/myapp/public
+
+
+
+2.Problem z bazą danych?
+
+    Jeśli baza danych nie działa sprawdź hasło i user w .env 
+
+    Ja używam na Kalim passów admin, 123 
+    Domyślne hasło na xamppie to root i brak hasła 
+
+    Przykład:
+
+    DB_USERNAME = root
+    DB_PASSWORD = 
+    DB_NAME = januszex
+
+
+3.Tworzenie virtualhosta w xampp:
+
+    Uwaga!!! Slashe mogą być skierowane w różna stronę, trzeba skierować tak już w pliku.
+
+    C:\xampp\apache\conf\extra
+
+    Tutaj odpalamy plik httpd-vhosts 
+
+    1.Propozycja zmien na porcie :80 czyli domyślnym DocumentRoot
+
+        Dodaj do obecnej tam ścieżki kończącej się na htdocs \januszex\public
+
+        Dlaczego tak? Ponieważ cała aplikacja uruchamia się poprzez plik index.php 
+
+    2.Xampp domyślnie odpala się również na porcie :443 możemy to wykorzystać i dodać virtualhosta
+
+            <VirtualHost *:443>
+                DocumentRoot "C:\xampp\htdocs\januszex\public
+            </VirtualHost>
+
+

@@ -33,3 +33,30 @@ zgadza się z tą zdefiniowaną.
 7. Jeżeli się zgadza to zostaje wywoływana metoda kontrolera, która wykonuje swoje akcje
 na danych, dokonuje wstępnej obróki, wykonuje akcje na bazie danych itp. i na sam koniec
 wyświetla nam widok, do którego mogą być przekazane jakieś dane.
+
+
+Uwagi:
+
+    1.Jeśli chcemy uzyskać połączenie z bazą to wymagamy klasy:
+
+        require_once '../app/database/DatabaseConnector.php;
+
+            $db_conn = new DatabaseConnector();
+        
+        Jeśli chcemy uzyskać połącznie:
+
+            $connection = $db_conn->getConnection();
+
+    2.Można też skorzystać z klasy Database, która ma przygotowane metody, które 
+      wykonują zapytania execute i insert
+
+
+
+    2.Każdą informację o błędzie zwracamy poprzez json_encode, przykład
+
+        echo json_encode([
+            'message' => $error_message
+        ]);
+
+        Piszemy api na backendzie, więc powinien być zwracany json, nawet jeśli to błąd, 
+        zeby wszystko było spójne.

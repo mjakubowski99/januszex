@@ -18,7 +18,7 @@ class RegisterController extends Controller{
 		$message = $validator->validate($_POST);
 
 		if( $message !== true ){
-			$this->view('register', [
+			echo json_encode([
 				'error_message' => $message
 			]);
 			die();
@@ -29,16 +29,16 @@ class RegisterController extends Controller{
 			$db_conn = new DatabaseConnector();
 			$connection = $db_conn->getConnection();
 
-			$email = strip_tags($_REQUEST['txt_email']);
-			$password = strip_tags($_REQUEST['txt_password']);
-			$name = strip_tags($_REQUEST['txt_name']);
-			$surname = strip_tags($_REQUEST['txt_surname']);
-			$city = strip_tags($_REQUEST['txt_city']);
-			$street = strip_tags($_REQUEST['txt_street']);
-			$home_number = strip_tags($_REQUEST['txt_home_number']);
-			$flat_number = strip_tags($_REQUEST['txt_flat_number']);
-			$postoffice_name = strip_tags($_REQUEST['txt_postoffice_name']);
-			$postoffice_code = strip_tags($_REQUEST['txt_postoffice_code']);
+			$email = strip_tags($_POST['txt_email']);
+			$password = strip_tags($_POST['txt_password']);
+			$name = strip_tags($_POST['txt_name']);
+			$surname = strip_tags($_POST['txt_surname']);
+			$city = strip_tags($_POST['txt_city']);
+			$street = strip_tags($_POST['txt_street']);
+			$home_number = strip_tags($_POST['txt_home_number']);
+			$flat_number = strip_tags($_POST['txt_flat_number']);
+			$postoffice_name = strip_tags($_POST['txt_postoffice_name']);
+			$postoffice_code = strip_tags($_POST['txt_postoffice_code']);
 				
 			$hash_password = password_hash($password, PASSWORD_DEFAULT); #Create hash on given password
 				
@@ -77,8 +77,8 @@ class RegisterController extends Controller{
 													':uemail'=>$email,
 													'upassword'=>$hash_password,
 													'uaddress_id'=>$address_id["id"]))){
-						echo json_encode( [ 
-							'message' => "Rejestracja powiodła się. Sprawdź podany adres e-mail w celu aktywacji konta" 
+						echo json_encode([ 
+							'message' => "Rejestracja powiodla sie. Sprawdz podany adres e-mail w celu aktywacji konta" 
 						]);
 					}
 					else{

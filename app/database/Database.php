@@ -18,7 +18,10 @@ class Database{
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e){
-            die( $e->getMessage() );
+            echo json_encode([
+                'message' =>  $e->getMessage()
+            ]);
+            die();
 		}
     }
 
@@ -36,7 +39,10 @@ class Database{
             $stmt->execute();
         }
         catch(PDOException $e){
-            die( $e->getMessage() );
+            echo json_encode([
+                'message' =>  $e->getMessage()
+            ]);
+            die();
 		}
     }
 

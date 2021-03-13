@@ -16,8 +16,8 @@ class LoginController extends Controller{
 		$database = new Database();
 		$validator = new LoginValidator();
 
-		$password = strip_tags($_REQUEST["password"]);
-		$email = strip_tags($_REQUEST["email"]);
+		$password = strip_tags($_POST["password"]);
+		$email = strip_tags($_POST["email"]);
 
 		//credentials validation
 		$message = $validator->validate([
@@ -32,14 +32,13 @@ class LoginController extends Controller{
 			echo $resource->createHelloMessageForEmail('Witaj', $email);
 		}
 		else{
-			echo json_encode($message);
+			echo json_encode([
+				'message' => $message
+			]);
 		} 
 		
 	}
-
-	public function test($data){
-		var_dump($data);
-	}
+	
 }
 
 
