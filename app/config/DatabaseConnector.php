@@ -2,8 +2,6 @@
 
 require_once '../app/config/DotEnv.php';
 
-use app\config\DotEnv;
-
 class DatabaseConnector{
 
 	public $connection;

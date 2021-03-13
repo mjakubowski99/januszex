@@ -1,5 +1,8 @@
 {
     "require-dev": {
         "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "firebase/php-jwt": "^5.2"
     }
 }

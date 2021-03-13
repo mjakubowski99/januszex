@@ -4,6 +4,7 @@
 require_once '../app/database/Database.php';
 require_once '../app/validators/LoginValidator.php';
 require_once '../app/resource/UserResource.php';
+require_once '../app/config/JwtManage.php';
 
 class LoginController extends Controller{
 
@@ -12,6 +13,13 @@ class LoginController extends Controller{
 	}
 
 	public function store(){
+		$jwt = new JwtManage();
+		if( $jwt->tokenIsValid() ){
+			echo json_encode([
+				'message' => 'Zalogowany'
+			]);
+			die();
+		}
 		
 		$database = new Database();
 		$validator = new LoginValidator();
@@ -28,8 +36,12 @@ class LoginController extends Controller{
 
 		//If logowanie poprawne return User
 		if( $message == "Logowanie poprawne" ){
-			$resource = new UserResource();
-			echo $resource->createHelloMessageForEmail('Witaj', $email);
+			
+
+			$token = $jwt->createToken($email);
+			echo json_encode([
+				'jwt_token' => $token
+			]);
 		}
 		else{
 			echo json_encode([

@@ -2,8 +2,6 @@
 
 /* class to manage .env */
 
-namespace app\config;
-
 class DotEnv
 {
     /**
