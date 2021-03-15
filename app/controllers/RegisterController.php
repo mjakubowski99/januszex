@@ -29,16 +29,16 @@ class RegisterController extends Controller{
 			$db_conn = new DatabaseConnector();
 			$connection = $db_conn->getConnection();
 
-			$email = strip_tags($_POST['txt_email']);
-			$password = strip_tags($_POST['txt_password']);
-			$name = strip_tags($_POST['txt_name']);
-			$surname = strip_tags($_POST['txt_surname']);
-			$city = strip_tags($_POST['txt_city']);
-			$street = strip_tags($_POST['txt_street']);
-			$home_number = strip_tags($_POST['txt_home_number']);
-			$flat_number = strip_tags($_POST['txt_flat_number']);
-			$postoffice_name = strip_tags($_POST['txt_postoffice_name']);
-			$postoffice_code = strip_tags($_POST['txt_postoffice_code']);
+			$email = strip_tags($_POST['email']);
+			$password = strip_tags($_POST['password']);
+			$name = strip_tags($_POST['name']);
+			$surname = strip_tags($_POST['surname']);
+			$city = strip_tags($_POST['city']);
+			$street = strip_tags($_POST['street']);
+			$home_number = strip_tags($_POST['home_number']);
+			$flat_number = strip_tags($_POST['flat_number']);
+			$postoffice_name = strip_tags($_POST['postoffice_name']);
+			$postoffice_code = strip_tags($_POST['postoffice_code']);
 				
 			$hash_password = password_hash($password, PASSWORD_DEFAULT); #Create hash on given password
 				
