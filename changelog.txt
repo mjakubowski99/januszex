@@ -1,0 +1,8 @@
+//W tym pliku umieszczamy zmiany jakie poczyniliśmy w projekcie 
+
+Sprint 1 - Michał Jakubowski
+
+- stworzenie architektury projektu według wzorca MVC opisanej w pliku issues/READ.txt
+- stworzenie walidacji skryptów logowania i rejestracji znajdujących się pod ściezka app/validators/ plików LoginValidator, RegisterValidator
+- stworzenie i konfiguracja tokenu JWT,plik konfiguracji znajduje się pod app/config/JwtManage.php, sekretny klucz do szyfrowania znajduje się w pliku .env, 
+  został stworzony, też skrypt, który pozwala na wygenerowanie nowego sekretu, który trzeba umieścić w pliku .env zamiast poprzedniego( plik jwt_generator.php )
