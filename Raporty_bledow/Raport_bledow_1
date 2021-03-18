@@ -1,0 +1,10 @@
+Register:
+	1. przy podaniu nr. mieszkania/nr. domu w formie zmiennoprzecinkowej, zamiast nie dopuszczac takiego rozwiazania, formularz zostaje wysłany i otrzymujemy odpowiedz "blad polaczenia z baza". Powinnien byc komunikat o nieprawidlowych danych.
+	2. imie/nazwisko/miasto mozna dodac cyfry
+	3. brak mozliwosci podania samego nr domu
+	4. brak mozliwosci podania nrdomu/mieszkania z literą np. 2a
+	5. mozliwosc podania kodu pocztowego w formie 00000
+	6. proba zalozenia konta na instiejacy adres email: acvdfertodacvdfertodacvdfertodacvdfertodacvdfertodacvdfertod@outlook.com konczy sie odpowiedzia "blad polaczenia".
+	7. przy punkcie 1. i 6. nastepuje zapisanie adresow do bazy danych (tabela Address)
+	8. przy podaniu adresu ktory juz istnieje w bazie danych podczas rejestracji nastepuje przypisanie address_ID adresu juz istniejacego, ale w tabeli Address tworzy się nowy(duplikat), nieużywany adres z nowym ID
+  9. email: '||1#@i.i zostaje uznany za poprawny. Moze zostać to wykorzystane do SQL injection login bypass.
