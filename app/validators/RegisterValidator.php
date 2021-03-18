@@ -48,7 +48,7 @@ class RegisterValidator{
         if( $this->fieldsAreEmpty($data) ) return "Wypełnij wszystkie pola";
         if( !$this->mailValid($data['email']) ) return "Podaj prawidłowy adres email";
         if( !$this->lengthValid($data['password'], 8) ) return "Hasło jest za krótkie";
-        if( !$this->passwordsAreTheSame($data['password'], $data['txt_confirm']) ) return "Hasła się nie zgadzają";
+        if( !$this->passwordsAreTheSame($data['password'], $data['confirm']) ) return "Hasła się nie zgadzają";
         if( $this->lengthValid($data['name'], 30) ) return "Imie jest za długie";
         if( $this->lengthValid($data['surname'], 30) ) return "Nazwisko jest za długie";
         if( $this->lengthValid($data['city'], 30) ) return "Nazwa miasta jest za długa";

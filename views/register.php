@@ -5,39 +5,39 @@
 
 
 <form method="POST" action="/register">
-    <label for="txt_email"> Email </label>
-    <input type="email" name="txt_email"/>
+    <label for="mail"> Email </label>
+    <input type="email" name="email"/>
     <br>
     <br>
-    <label for="txt_password"> Hasło </label>
-    <input type="password" name="txt_password"/>
+    <label for="password"> Hasło </label>
+    <input type="password" name="password"/>
     <br>
-    <label for="txt_confirm"> Potwierdź hasło </label>
-    <input type="password" name="txt_confirm"/>
+    <label for="confirm"> Potwierdź hasło </label>
+    <input type="password" name="confirm"/>
     <br>
-    <label for="txt_name"> Imię </label>
-    <input type="text" name="txt_name"/>
+    <label for="name"> Imię </label>
+    <input type="text" name="name"/>
     <br>
-    <label for="txt_surname"> Nazwisko </label>
-    <input type="text" name="txt_surname"/>
+    <label for="surname"> Nazwisko </label>
+    <input type="text" name="surname"/>
     <br>
-    <label for="txt_city"> Miasto </label>
-    <input type="text" name="txt_city"/>
+    <label for="city"> Miasto </label>
+    <input type="text" name="city"/>
     <br>
-    <label for="txt_street"> Ulica </label>
-    <input type="text" name="txt_street"/>
+    <label for="street"> Ulica </label>
+    <input type="text" name="street"/>
     <br>
-    <label for="txt_home_number"> Numer domu </label>
-    <input type="text" name="txt_home_number"/>
+    <label for="home_number"> Numer domu </label>
+    <input type="text" name="home_number"/>
     <br>
-    <label for="txt_flat_number"> Numer mieszkania </label>
-    <input type="text" name="txt_flat_number"/>
+    <label for="flat_number"> Numer mieszkania </label>
+    <input type="text" name="flat_number"/>
     <br>
-    <label for="txt_postoffice_name"> Poczta </label>
-    <input type="text" name="txt_postoffice_name"/>
+    <label for="postoffice_name"> Poczta </label>
+    <input type="text" name="postoffice_name"/>
     <br>
-    <label for="txt_postoffice_code"> Kod pocztowy </label>
-    <input type="text" name="txt_postoffice_code"/>
+    <label for="postoffice_code"> Kod pocztowy </label>
+    <input type="text" name="postoffice_code"/>
 
     <br>
 

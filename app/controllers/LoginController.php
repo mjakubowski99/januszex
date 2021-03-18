@@ -9,7 +9,15 @@ require_once '../app/config/JwtManage.php';
 class LoginController extends Controller{
 
 	public function index(){
-		$this->view("login");
+		$jwt = new JwtManage();
+		if( $jwt->tokenIsValid() ){
+			echo json_encode([
+				'message' => 'Zalogowany'
+			]);
+		}
+		else{
+			$this->view("login");
+		}
 	}
 
 	public function store(){
@@ -39,14 +47,17 @@ class LoginController extends Controller{
 			
 
 			$token = $jwt->createToken($email);
-			echo json_encode([
-				'jwt_token' => $token
+			$this->view('logged', [
+				'token' => $token,
 			]);
+		/*	echo json_encode([
+				'jwt_token' => $token
+			]); */
 		}
 		else{
-			echo json_encode([
+		/*	echo json_encode([
 				'message' => $message
-			]);
+			]); */
 		} 
 		
 	}

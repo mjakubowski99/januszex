@@ -20,9 +20,9 @@ class JwtManage{
         $serverName = getenv("SERVER_DOMAIN");
         
         $data = [
-            'iat'  => $issuedAt,         // Issued at: time when the token was generated
+            'iat'  => $issuedAt->getTimestamp(),         // Issued at: time when the token was generated
             'iss'  => $serverName,       // Issuer
-            'nbf'  => $issuedAt,         // Not before
+            'nbf'  => $issuedAt->getTimestamp(),         // Not before
             'exp'  => $expire,           // Expire
             'email' => $email,  
         ];
@@ -35,7 +35,9 @@ class JwtManage{
     }
 
     public function tokenIsValid(){
-        if( !$this->tokenExistInHeader() && !$this->ableToExtractToken() )
+        if( !$this->tokenExistInHeader() )
+            return false;
+        if( !$this->ableToExtractToken() )
             return false;
         
         $jwt = $this->matches[1];
@@ -48,8 +50,10 @@ class JwtManage{
 
 
     public function tokenExistInHeader(){
+        if( !isset($_SERVER['HTTP_AUTHORIZATION']) )
+            return false;
+
         if (! preg_match('/Bearer\s(\S+)/', $_SERVER['HTTP_AUTHORIZATION'], $this->matches)) {
-            header('HTTP/1.0 400 Bad Request');
             return false;
         } 
         return true;
@@ -58,7 +62,6 @@ class JwtManage{
     public function ableToExtractToken(){
         if ( !$this->matches[1] ) {
             // No token was able to be extracted from the authorization header
-            header('HTTP/1.0 400 Bad Request');
             return false;
         }
         return true;
@@ -68,9 +71,9 @@ class JwtManage{
         $now = new DateTimeImmutable();
         $serverName = getenv("SERVER_DOMAIN");
 
-        return ( $token->iss !== $serverName || 
-            $token->nbf > $now->getTimestamp() ||
-            $token->exp < $now->getTimestamp() 
+        return ( $token->iss === $serverName &&
+            $token->nbf <= $now->getTimestamp() &&
+            $token->exp >= $now->getTimestamp() 
         );
     }
 
