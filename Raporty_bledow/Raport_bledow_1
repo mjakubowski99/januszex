@@ -7,4 +7,5 @@ Register:
 	6. proba zalozenia konta na instiejacy adres email: acvdfertodacvdfertodacvdfertodacvdfertodacvdfertodacvdfertod@outlook.com konczy sie odpowiedzia "blad polaczenia".
 	7. przy punkcie 1. i 6. nastepuje zapisanie adresow do bazy danych (tabela Address)
 	8. przy podaniu adresu ktory juz istnieje w bazie danych podczas rejestracji nastepuje przypisanie address_ID adresu juz istniejacego, ale w tabeli Address tworzy się nowy(duplikat), nieużywany adres z nowym ID
-  9. email: '||1#@i.i zostaje uznany za poprawny. Moze zostać to wykorzystane do SQL injection login bypass.
+  	9. email: '||1#@i.i zostaje uznany za poprawny. Moze zostać to wykorzystane do SQL injection login bypass.
+	10. proba rejestracji konta na juz istniejacy adres email, pomimo komunikatu "Na podany adres e-mail zostało założone już konto. Spróbuj opcji odzyskiwania hasła!!!!", konczy sie tym, ze do tabeli Users zostaje zapisany nowy użytkownik (duplikat) i w zaleznosci od podanego adresu jest mu przypisywane to samo co wczesniej adress_id lub nowe(gdy zostal podany nowy adres). Do tabeli Address, gdy zostanie podany adres juz istniejacy tworzy sie nowy rekord (duplikat) z nowym ID, natomiast gdy zostanie podany jeszcze nieistniejacy adres w bazie, tworzy sie nowy rekord. 
