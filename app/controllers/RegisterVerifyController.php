@@ -8,7 +8,7 @@ require_once '../app/config/VerifyToken.php';
 class RegisterVerifyController extends Controller{
 
 	public function index(){
-        $token = new VerifyToken();
+		
 	}
 
 	public function store(){
