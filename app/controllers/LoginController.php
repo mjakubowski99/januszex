@@ -47,17 +47,17 @@ class LoginController extends Controller{
 			
 
 			$token = $jwt->createToken($email);
-			$this->view('logged', [
-				'token' => $token,
-			]);
-		/*	echo json_encode([
+		//	$this->view('logged', [
+		//		'token' => $token,
+		//	]);
+			echo json_encode([
 				'jwt_token' => $token
-			]); */
+			]); 
 		}
 		else{
-		/*	echo json_encode([
+			echo json_encode([
 				'message' => $message
-			]); */
+			]); 
 		} 
 		
 	}
