@@ -1,0 +1,8 @@
+.registration-confirmation {
+  width: 50%;
+  margin: 0 auto;
+
+  @media(max-width: 992px) {
+    width: 100%;
+  }
+}

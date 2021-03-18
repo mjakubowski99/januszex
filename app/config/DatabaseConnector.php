@@ -2,8 +2,6 @@
 
 require_once '../app/config/DotEnv.php';
 
-use app\config\DotEnv;
-
 class DatabaseConnector{
 
 	public $connection;
@@ -24,8 +22,11 @@ class DatabaseConnector{
 			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} 
 		catch(PDOEXCEPTION $e){
-			$e->getMessage();
-			die("Database connection error");
+			echo json_encode([
+				'message' => $e->getMessage()
+			]);
+
+			die();
 		}
 	}
 

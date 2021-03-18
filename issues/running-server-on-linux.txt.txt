@@ -1,0 +1,44 @@
+
+Instalacja środowiska:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04
+
+Konfiguracja vhostów:
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-16-04
+
+
+Start apache i mysql:
+
+sudo service apache2 start
+sudo service mysql start 
+
+Sklonowanie repozytorium:
+
+cd /var/www/html
+sudo git clone repository januszex 
+
+Nadanie sobie uprawnień do edycji plików:
+sudo chown -R $USER:$USER /var/www/html/januszex 
+
+Tworzenie połączenia z bazą danych:
+
+W pliku .env ustawiamy wartości,
+defaultowe dane logowania do bazy
+wyglądają tak, jeśli masz stworzonego 
+innego usera np admin to podaj jego
+dane logowania 
+
+DB_USERNAME = root
+DB_PASSWORD = 
+DB_NAME = januszex
+
+Teraz tworzymy tabelę jeśli jej nie mamy:
+
+wchodzimy do:
+
+cd /var/www/html/januszex 
+
+php Create_database_and_tables.php
+
+

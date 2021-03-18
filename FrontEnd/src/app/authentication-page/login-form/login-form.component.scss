@@ -1,0 +1,17 @@
+.login-form {
+  margin: 50px;
+
+  @media(max-width: 767px) {
+    margin: 50px 0;
+  }
+}
+
+a {
+  display: inline-block;
+  margin-top: 10px;
+  color: white;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

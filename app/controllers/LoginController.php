@@ -2,49 +2,66 @@
 
 #Include database connection file
 require_once '../app/database/Database.php';
+require_once '../app/validators/LoginValidator.php';
+require_once '../app/resource/UserResource.php';
+require_once '../app/config/JwtManage.php';
 
 class LoginController extends Controller{
 
 	public function index(){
-		$this->view("login");
+		$jwt = new JwtManage();
+		if( $jwt->tokenIsValid() ){
+			echo json_encode([
+				'message' => 'Zalogowany'
+			]);
+		}
+		else{
+			$this->view("login");
+		}
 	}
 
 	public function store(){
-		$database = new Database();
-
-		$password = strip_tags($_REQUEST["password_textbox"]);
-		$email = strip_tags($_REQUEST["email_textbox"]);
-
-		if(empty($email)){
-			$errorMsg = "Wprowadź adres email";
-		} 
-		else if(empty($password)){
-			$errorMsg = "Wprowadź hasło";
-		}
-		else{
-			$password = password_hash($password, PASSWORD_DEFAULT);
-			$query = "SELECT * FROM users WHERE email=:uemail";
-
-			
-			$row = $database->execute($query, [
-				'uemail' => $email,
+		$jwt = new JwtManage();
+		if( $jwt->tokenIsValid() ){
+			echo json_encode([
+				'message' => 'Zalogowany'
 			]);
-
-			if( !$row ){
-				die("Nie ma takiego użytkownika");
-			}
-			else if( count($row) == 1 ){
-				$loginMsg = "Logowanie poprawne...";
-				$this->view("home", [ 
-					'message' => $loginMsg
-				]); #If password is correct, redirect to home
-			}
-			else{
-				$errorMsg = "Wprowadzono niewłaściwe hasło lub adres email";
-			}
+			die();
 		}
 		
+		$database = new Database();
+		$validator = new LoginValidator();
+
+		$password = strip_tags($_POST["password"]);
+		$email = strip_tags($_POST["email"]);
+
+		//credentials validation
+		$message = $validator->validate([
+			'email' => $email, 
+			'password' => $password,
+		]);
+
+
+		//If logowanie poprawne return User
+		if( $message == "Logowanie poprawne" ){
+			
+
+			$token = $jwt->createToken($email);
+		//	$this->view('logged', [
+		//		'token' => $token,
+		//	]);
+			echo json_encode([
+				'jwt_token' => $token
+			]); 
+		}
+		else{
+			echo json_encode([
+				'message' => $message
+			]); 
+		} 
+		
 	}
+	
 }
 
 

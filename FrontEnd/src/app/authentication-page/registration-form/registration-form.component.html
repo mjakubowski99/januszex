@@ -1,0 +1,121 @@
+<div class="container registration-form">
+  <h3>Zarejestruj się</h3>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="email-sign-up"></label>
+        <input
+          id="email-sign-up"
+          type="email"
+          pInputText
+          placeholder="Adres Email"
+          formControlName="email"
+          class="form-control">
+      </div>
+      <div formGroupName="passwordGroup">
+        <div class="p-field">
+          <label for="password-sign-up"></label>
+          <input
+            id="password-sign-up"
+            type="password"
+            pInputText
+            placeholder="Hasło"
+            formControlName="password"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="repeat-password-sign-up"></label>
+          <input
+            id="repeat-password-sign-up"
+            type="password"
+            pInputText
+            placeholder="Powtórz hasło"
+            formControlName="confirmPassword"
+            class="form-control">
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="name-sign-up"></label>
+        <input
+          id="name-sign-up"
+          type="text"
+          pInputText
+          placeholder="Imię"
+          formControlName="name"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="surname-sign-up"></label>
+        <input
+          id="surname-sign-up"
+          type="text"
+          pInputText
+          placeholder="Nazwisko"
+          formControlName="surname"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="city-sign-up"></label>
+        <input
+          id="city-sign-up"
+          type="text"
+          pInputText
+          placeholder="Miasto"
+          formControlName="city"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="street-sign-up"></label>
+        <input
+          id="street-sign-up"
+          type="text"
+          pInputText
+          placeholder="Ulica"
+          formControlName="street"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="home-number-sign-up"></label>
+        <input
+          id="home-number-sign-up"
+          type="text"
+          pInputText
+          placeholder="Numer domu"
+          formControlName="homeNumber"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="flat-number-sign-up"></label>
+        <input
+          id="flat-number-sign-up"
+          type="text"
+          pInputText
+          placeholder="Numer mieszkania"
+          formControlName="flatNumber"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="post-office-name-sign-up"></label>
+        <input
+          id="post-office-name-sign-up"
+          type="text"
+          pInputText
+          placeholder="Miejscowość poczty"
+          formControlName="postOfficeName"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="post-office-code-sign-up"></label>
+        <input
+          id="post-office-code-sign-up"
+          type="text"
+          pInputText
+          placeholder="Kod pocztowy"
+          formControlName="postOfficeCode"
+          class="form-control">
+      </div>
+      <button pButton type="submit" label="Zarejestruj się"
+              [disabled]="registrationForm.invalid"></button>
+    </div>
+  </form>
+</div>
