@@ -6,7 +6,7 @@ class LoginValidator{
 
     public function findUserByEmail($email){
         $database = new Database();
-		$query = "SELECT email, password FROM Users WHERE email=:uemail";
+		$query = "SELECT email, password FROM users WHERE email=:uemail";
 		$values = [ 'uemail' => $email ] ;
         $row = $database->execute($query, $values);
 

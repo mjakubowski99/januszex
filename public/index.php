@@ -3,6 +3,8 @@
 try{
     require_once '../app/kernel/initialize.php';
 
+    header("Access-Control-Allow-Origin: *");
+
     //Create instance of App
 
     $app = new App(); 

@@ -34,7 +34,7 @@ class RegisterValidator{
 
     public function userExists($email){
         $database = new Database();
-		$query = "SELECT email FROM Users WHERE email=:uemail";
+		$query = "SELECT email FROM users WHERE email=:uemail";
 		$values = [ 'uemail' => $email];
         $row = $database->execute($query, $values);
         if( !$row ){

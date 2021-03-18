@@ -6,3 +6,8 @@ Sprint 1 - Michał Jakubowski
 - stworzenie walidacji skryptów logowania i rejestracji znajdujących się pod ściezka app/validators/ plików LoginValidator, RegisterValidator
 - stworzenie i konfiguracja tokenu JWT,plik konfiguracji znajduje się pod app/config/JwtManage.php, sekretny klucz do szyfrowania znajduje się w pliku .env, 
   został stworzony, też skrypt, który pozwala na wygenerowanie nowego sekretu, który trzeba umieścić w pliku .env zamiast poprzedniego( plik jwt_generator.php )
+
+Sprint 2 - Michał Jakubowski 
+
+- naprawa JWT, dodałem taką funkcjonalność testową, że po zalogowaniu, jeśli jeszcze raz wejdziemy na formularz login to będziemy dostawać w konsoli informację o 
+  tym, że jesteśmy zalogowani, jeśli token jest właściwy 

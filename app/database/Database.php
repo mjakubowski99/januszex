@@ -46,5 +46,9 @@ class Database{
 		}
     }
 
+    public function update($query, $values){
+        $this->insert($query, $values);
+    }
+
 }
 

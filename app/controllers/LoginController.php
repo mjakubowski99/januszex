@@ -45,11 +45,7 @@ class LoginController extends Controller{
 		//If logowanie poprawne return User
 		if( $message == "Logowanie poprawne" ){
 			
-
 			$token = $jwt->createToken($email);
-		//	$this->view('logged', [
-		//		'token' => $token,
-		//	]);
 			echo json_encode([
 				'jwt_token' => $token
 			]); 
@@ -57,7 +53,7 @@ class LoginController extends Controller{
 		else{
 			echo json_encode([
 				'message' => $message
-			]); 
+			]);
 		} 
 		
 	}
