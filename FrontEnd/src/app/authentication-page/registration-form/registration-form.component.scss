@@ -1,0 +1,17 @@
+.registration-form {
+  margin: 50px;
+
+  @media(max-width: 767px) {
+    margin: 50px 0;
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+div.ng-invalid.ng-touched {
+  input {
+    border: 1px solid red;
+  }
+}
