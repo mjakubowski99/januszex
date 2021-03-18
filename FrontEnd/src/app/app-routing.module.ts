@@ -1,19 +1,21 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from './home-page/home-page.component';
-import {AuthorizationPageComponent} from './authorization-page/authorization-page.component';
+import {AuthorizationPageComponent} from './authentication-page/authorization-page.component';
 import {CartComponent} from './cart/cart.component';
-import {RegistrationConfirmEmailFormComponent} from './authorization-page/registration-confirm-email-form/registration-confirm-email-form.component';
-import {RegistrationConfirmationComponent} from './authorization-page/registration-confirmation/registration-confirmation.component';
-import {ResetPasswordEmailFormComponent} from './authorization-page/reset-password-email-form/reset-password-email-form.component';
-import {ResetPasswordConfirmEmailFormComponent} from './authorization-page/reset-password-confirm-email-form/reset-password-confirm-email-form.component';
-import {ResetPasswordNewPasswordFormComponent} from './authorization-page/reset-password-new-password-form/reset-password-new-password-form.component';
-import {ResetPasswordConfirmationComponent} from './authorization-page/reset-password-confirmation/reset-password-confirmation.component';
+import {RegistrationConfirmEmailFormComponent} from './authentication-page/registration-confirm-email-form/registration-confirm-email-form.component';
+import {RegistrationConfirmationComponent} from './authentication-page/registration-confirmation/registration-confirmation.component';
+import {ResetPasswordEmailFormComponent} from './authentication-page/reset-password-email-form/reset-password-email-form.component';
+import {ResetPasswordConfirmEmailFormComponent} from './authentication-page/reset-password-confirm-email-form/reset-password-confirm-email-form.component';
+import {ResetPasswordNewPasswordFormComponent} from './authentication-page/reset-password-new-password-form/reset-password-new-password-form.component';
+import {ResetPasswordConfirmationComponent} from './authentication-page/reset-password-confirmation/reset-password-confirmation.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
+import {ErrorsComponent} from './admin-page/errors/errors.component';
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {
-    path: 'authorization', children: [
+    path: 'authentication', children: [
       {path: '', component: AuthorizationPageComponent},
       {
         path: 'registration', children: [
@@ -29,6 +31,15 @@ const routes: Routes = [
           {path: 'confirmation', component: ResetPasswordConfirmationComponent}
         ]
       }
+    ]
+  },
+  {
+    path: 'admin', component: AdminPageComponent, children: [
+      {path: 'products', component: AdminPageComponent},
+      {path: 'orders', component: AdminPageComponent},
+      {path: 'accounts', component: AdminPageComponent},
+      {path: 'errors', component: ErrorsComponent},
+      {path: '', redirectTo: 'products', pathMatch: 'full'}
     ]
   },
   {path: 'cart', component: CartComponent},

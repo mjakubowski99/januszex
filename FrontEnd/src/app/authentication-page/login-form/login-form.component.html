@@ -1,0 +1,33 @@
+<div class="login-form container">
+  <h3>Zaloguj się</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="email-sign-in"></label>
+        <input
+          id="email-sign-in"
+          type="email"
+          pInputText
+          placeholder="Adres Email"
+          formControlName="email"
+          class="form-control">
+      </div>
+      <div class="p-field">
+        <label for="password-sign-in"></label>
+        <input
+          id="password-sign-in"
+          type="password"
+          pInputText
+          placeholder="Hasło"
+          formControlName="password"
+          class="form-control">
+      </div>
+      <button
+        pButton
+        type="submit"
+        label="Zaloguj się"
+        [disabled]="loginForm.invalid"></button>
+      <a routerLink="resetPassword/emailForm">Nie pamiętasz hasła?</a>
+    </div>
+  </form>
+</div>
