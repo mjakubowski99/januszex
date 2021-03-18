@@ -3,6 +3,8 @@
 #Include database connection file
 require_once '../app/validators/RegisterValidator.php';
 require_once '../app/config/DatabaseConnector.php';
+require_once '../app/config/Mail.php';
+require_once '../app/config/VerifyToken.php';
 
 class RegisterController extends Controller{
 
@@ -43,7 +45,7 @@ class RegisterController extends Controller{
 			$hash_password = password_hash($password, PASSWORD_DEFAULT); #Create hash on given password
 				
 				#Prepare SQL statement to insert data about the address to database
-				$insert_stmt = $connection->prepare("INSERT INTO Address (id, city, street, home_number, flat_number, postoffice_name, postoffice_code)
+				$insert_stmt = $connection->prepare("INSERT INTO address (id, city, street, home_number, flat_number, postoffice_name, postoffice_code)
 													VALUES (0, :ucity, :ustreet, :uhome_number, :uflat_number, :upostoffice_name, :upostoffice_code)");
 													
 				#Execution of SQL statement
@@ -55,7 +57,7 @@ class RegisterController extends Controller{
 											  ':upostoffice_code'=>$postoffice_code))){						  
 				
 					#Prepare and execution SQL statement to insert data into address table in database
-					$select_address_id = $connection->prepare("SELECT id FROM Address WHERE city=:ucity AND street = :ustreet AND home_number=:uhome_number AND flat_number=:uflat_number 
+					$select_address_id = $connection->prepare("SELECT id FROM address WHERE city=:ucity AND street = :ustreet AND home_number=:uhome_number AND flat_number=:uflat_number 
 														   AND postoffice_name=:upostoffice_name AND postoffice_code=:upostoffice_code");
 					$select_address_id->execute(array(':ucity'=>$city,
 													  ':ustreet'=>$street,
@@ -68,7 +70,7 @@ class RegisterController extends Controller{
 					$address_id = $select_address_id->fetch(PDO::FETCH_ASSOC);
 				
 					#Prepare SQL statement to insert data to users table
-					$insert_stmt = $connection->prepare("INSERT INTO Users (id, name, surname, email, password, verified, address_id) 
+					$insert_stmt = $connection->prepare("INSERT INTO users (id, name, surname, email, password, verified, address_id) 
 														VALUES (0, :uname, :usurname, :uemail, :upassword, 0, :uaddress_id)");
 									
 					#Execution of SQL statement						
@@ -77,6 +79,13 @@ class RegisterController extends Controller{
 													':uemail'=>$email,
 													'upassword'=>$hash_password,
 													'uaddress_id'=>$address_id["id"]))){
+
+						$verify = new VerifyToken();
+						$token = $verify->createToken($email);
+						$mail = new Mail();
+						$mail->tryToSendMailTo($email, $token);
+
+						//here we send mail 
 						echo json_encode([ 
 							'message' => "Rejestracja powiodla sie. Sprawdz podany adres e-mail w celu aktywacji konta" 
 						]);

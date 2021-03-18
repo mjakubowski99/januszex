@@ -4,8 +4,9 @@
 	$username = "root";
 	$password = "";
 	$db_name = "januszex";
-	$table_name1 = "Address";
-	$table_name2 = "Users";
+	$table_name1 = "address";
+	$table_name2 = "users";
+	$table_name3 = "verify_tokens";
 	
 # Create connection and database if not exists, or use if exists
 
@@ -39,6 +40,17 @@
 			PRIMARY KEY (ID)
 			);";
 		$pdo->exec($sql_statement2);
+
+
+		$sql_statement3 = "CREATE table IF NOT EXISTS $table_name3(
+			ID BIGINT NOT NULL AUTO_INCREMENT,
+			token varchar(60) NOT NULL,
+			user_id bigint NOT NULL,
+			expire DATETIME NOT NULL,
+			PRIMARY KEY (ID),
+			FOREIGN KEY (user_id) REFERENCES Users(ID)
+			);"; 
+		$pdo->exec($sql_statement3);
 	} catch(PDOException $e){
 		echo $e->getMessage();
 	}

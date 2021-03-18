@@ -21,7 +21,7 @@ class RegisterValidator{
     }
 
     public function postalCodeValid($postal_code){
-        return preg_match('/^[0-9]{2}-?[0-9]{3}$/Du', $postal_code);
+        return preg_match('/^([0-9]{2})(-[0-9]{3})?$/i', $postal_code);
     }
 
     public function fieldsAreEmpty($data){
@@ -34,7 +34,7 @@ class RegisterValidator{
 
     public function userExists($email){
         $database = new Database();
-		$query = "SELECT email FROM Users WHERE email=:uemail";
+		$query = "SELECT email FROM users WHERE email=:uemail";
 		$values = [ 'uemail' => $email];
         $row = $database->execute($query, $values);
         if( !$row ){

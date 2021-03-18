@@ -25,6 +25,7 @@ class Routes{
         $router->add('POST', 'register', 'RegisterController', 'store');
 
         $router->add('GET', 'test/{test}', 'LoginController', 'test');
+        $router->add('GET', 'registerVerify', 'RegisterVerifyController', 'index');
 
         $this->router = $router;
     }
