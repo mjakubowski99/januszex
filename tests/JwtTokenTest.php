@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
-use PHPUnit\Framework\TestCase;
+require __DIR__.'/../autoloader.php';
 
-require_once '../app/config/JwtManage.php';
+use PHPUnit\Framework\TestCase;
+use app\config\JwtManage as JwtManage;
 
 final class JWTTokenTest extends TestCase
 {

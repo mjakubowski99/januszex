@@ -4,12 +4,11 @@ require __DIR__.'/../autoloader.php';
 use PHPUnit\Framework\TestCase;
 use app\config\DatabaseConnector;
 
-final class ExampleTest extends TestCase
+final class DatabaseTest extends TestCase
 {
     public function testExample(): void
     {
         $db = new DatabaseConnector();
-        $foo = 'foo';
-        $this->assertSame('foo', $foo);
+        $this->assertSame('foo', 'foo');
     }
 }

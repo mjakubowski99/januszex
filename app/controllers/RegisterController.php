@@ -1,10 +1,14 @@
 <?php
 
+namespace app\controllers;
+
 #Include database connection file
-require_once '../app/validators/RegisterValidator.php';
-require_once '../app/config/DatabaseConnector.php';
-require_once '../app/config/Mail.php';
-require_once '../app/config/VerifyToken.php';
+use app\validators\RegisterValidator;
+use app\config\DatabaseConnector;
+use app\config\Mail;
+use app\config\VerifyToken;
+use PDO;
+
 
 class RegisterController extends Controller{
 

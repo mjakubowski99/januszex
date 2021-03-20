@@ -1,9 +1,10 @@
 <?php
 
-#Include database connection file
-require_once '../app/database/Database.php';
-require_once '../app/config/Mail.php';
-require_once '../app/config/VerifyToken.php';
+namespace app\controllers;
+
+use app\database\Database;
+use app\config\Mail;
+use app\config\VerifyToken;
 
 class RegisterVerifyController extends Controller{
 

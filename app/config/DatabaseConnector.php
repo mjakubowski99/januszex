@@ -1,13 +1,16 @@
 <?php
 
-require_once '../app/config/DotEnv.php';
+namespace app\config;
+
+use app\config\DotEnv;
+use PDO;
 
 class DatabaseConnector{
 
 	public $connection;
 
 	public function __construct(){
-		( new DotEnv('../.env') )->load(); //loading dotenv variables
+		( new DotEnv(__DIR__.'/../../.env') )->load(); //loading dotenv variables
 		//You can do getenv("ENV_NAME") to get variable from file .env
 
 		#Making connection to database

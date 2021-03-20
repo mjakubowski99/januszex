@@ -1,10 +1,12 @@
 <?php
 
+namespace app\controllers;
 #Include database connection file
-require_once '../app/database/Database.php';
-require_once '../app/validators/LoginValidator.php';
-require_once '../app/resource/UserResource.php';
-require_once '../app/config/JwtManage.php';
+
+use app\validators\LoginValidator;
+use app\database\Database;
+use app\resource\UserResource;
+use app\config\JwtManage;
 
 class LoginController extends Controller{
 
@@ -17,7 +19,7 @@ class LoginController extends Controller{
 		}
 		else{
 			$this->view("login");
-		}
+		} 
 	}
 
 	public function store(){
@@ -29,8 +31,8 @@ class LoginController extends Controller{
 			die();
 		}
 		
-		$database = new Database();
 		$validator = new LoginValidator();
+		$database = new Database();
 
 		$password = strip_tags($_POST["password"]);
 		$email = strip_tags($_POST["email"]);
@@ -46,6 +48,7 @@ class LoginController extends Controller{
 		if( $message == "Logowanie poprawne" ){
 			
 			$token = $jwt->createToken($email);
+
 			echo json_encode([
 				'jwt_token' => $token
 			]); 
@@ -56,6 +59,10 @@ class LoginController extends Controller{
 			]);
 		} 
 		
+	}
+
+	public function test($data){
+		var_dump($data);
 	}
 	
 }

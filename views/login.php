@@ -13,9 +13,10 @@
 
 <script>
     let token = localStorage.getItem('token');
+    console.log(token);
     if( token !== null ){
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://127.0.0.1:443/login", true);
+        xhr.open("GET", "http://127.0.0.1/login", true);
         xhr.setRequestHeader('Authorization', `Bearer ${token}`);
 
         xhr.onreadystatechange = function() {

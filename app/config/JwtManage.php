@@ -1,16 +1,19 @@
 <?php 
 
-use Firebase\JWT\JWT;
+namespace app\config;
 
-require_once('../vendor/autoload.php');
-require_once '../app/config/DotEnv.php';
+use Firebase\JWT\JWT;
+use app\config\DotEnv;
+use DateTimeImmutable;
+
+require_once(__DIR__.'/../../vendor/autoload.php');
 
 class JwtManage{
 
     private $matches;
 
     public function __construct(){
-        ( new DotEnv('../.env') )->load();
+        ( new DotEnv(__DIR__.'/../../.env') )->load();
     }
 
     public function createToken($email){

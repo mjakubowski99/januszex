@@ -1,13 +1,16 @@
 <?php
-require_once '../app/config/DatabaseConnector.php'
 
-    class DatabaseCreator{
+require_once __DIR__.'../autoloader.php';
+use app\config\DatabaseConnector;
+
+
+class DatabaseCreator{
         public $db_conn;
         public $connection;
 
-        public function __construct() {
-            $this->$db_conn = new DatabaseConnector();
-            $this->connection = $db_conn->getConnection();
+        public function __construct(){
+            $this->db_conn = new DatabaseConnector();
+            $this->connection = $this->db_conn->getConnection();
         }
         
         public function createUsersTable(){
@@ -254,6 +257,28 @@ require_once '../app/config/DatabaseConnector.php'
             }
         }
 
+        public function createVerifyTokens(){
+            try{
+                $sql_statement = "CREATE table IF NOT EXISTS verify_tokens(
+                                  ID BIGINT NOT NULL AUTO_INCREMENT,
+                                  token varchar(100) NOT NULL,
+                                  user_id bigint NOT NULL,
+                                  expire DATETIME NOT NULL,
+                                  PRIMARY KEY (ID),
+                                  FOREIGN KEY (user_id) REFERENCES Users(ID)
+                                 );"; 
+                $this->connection->exec($sql_statement);
+            } catch(PDOException $e){
+                echo json_encode([
+                    'message' => $e->getMessage()
+                ]);
+    
+                die();
+            }
+        }
+
+
+
         public function createAllTables(){
             $this->createAddressTable();
             $this->createAdministratorsTable();
@@ -266,7 +291,9 @@ require_once '../app/config/DatabaseConnector.php'
             $this->createCartsTable();
             $this->createFittingSetsTable();
             $this->createRecommendedSetsTable();
+            $this->createVerifyTokens();
         }
-    }
+}
 
-?>
+    $creator = new DatabaseCreator();
+    $creator->createAllTables();

@@ -1,6 +1,6 @@
 <?php 
 
-use app\config\DotEnv;
+namespace app\controllers;
 
 class HomeController extends Controller{
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace app\resource;
+
 class UserResource{
 
     public function createHelloMessageForEmail($message, $email){

@@ -1,11 +1,13 @@
 <?php
 
+namespace app\database;
+use PDO;
+
 class Database{
 
     public function execute($query, $values = []){
-        require_once '../app/config/DatabaseConnector.php';
 
-        $db_conn = new DatabaseConnector();
+        $db_conn = new \app\config\DatabaseConnector();
         $connection = $db_conn->getConnection();
 
         try{
@@ -26,9 +28,8 @@ class Database{
     }
 
     public function insert($query, $values = []){
-        require_once '../app/config/DatabaseConnector.php';
 
-        $db_conn = new DatabaseConnector();
+        $db_conn = new \app\config\DatabaseConnector();
         $connection = $db_conn->getConnection();
 
         try{

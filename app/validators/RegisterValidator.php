@@ -1,6 +1,8 @@
 <?php
 
-require_once '../app/database/Database.php';
+namespace app\validators;
+
+use app\database\Database;
 
 class RegisterValidator{
 

@@ -1,7 +1,10 @@
 <?php 
 
-require_once '../app/database/Database.php';
-require_once '../app/resource/UserTokenResource.php';
+namespace app\config;
+
+use app\database\Database;
+use app\resource\UserTokenResource;
+use DateTimeImmutable;
 
 
 class VerifyToken{
@@ -24,7 +27,7 @@ class VerifyToken{
 
         if( $token_id !== null ){
 
-            $token = bin2hex(random_bytes(58));
+            $token = bin2hex(random_bytes(50));
             $expire = ( new DateTimeImmutable() )->modify('+1 hours');
 
             $query = "UPDATE verify_tokens
@@ -47,7 +50,7 @@ class VerifyToken{
 
     public function createToken($email){
 
-        $token = bin2hex(random_bytes(58));
+        $token = bin2hex(random_bytes(50));
         $expire = ( new DateTimeImmutable() )->modify('+1 hours');
         $user_id = $this->resource->getUserIdForEmail($email);
 

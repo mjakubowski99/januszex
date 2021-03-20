@@ -1,5 +1,7 @@
 <?php
 
+namespace app\resource;
+
 class UserTokenResource{
 
     private $database;

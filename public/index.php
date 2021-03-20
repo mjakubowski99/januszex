@@ -2,8 +2,10 @@
 
 try{
     require_once '../app/kernel/initialize.php';
+    require_once '../autoloader.php';
 
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: *");
 
     //Create instance of App
 

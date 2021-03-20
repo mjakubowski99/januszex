@@ -19,7 +19,7 @@ class App{
         $method = $params[1];
         $args = $params[2];
 
-        require_once '../app/controllers/'.$controller.'.php';
+        $controller = "\\app\\controllers\\".$controller;
 
         //run suitable controller and his method
         $controller_class = new $controller();
