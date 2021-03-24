@@ -1,0 +1,2 @@
+registerVerify => method: POST, you must send token data named token
+resendVerification => method: POST, you must send email data named email

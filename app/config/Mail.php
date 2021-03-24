@@ -31,7 +31,7 @@ class Mail{
             $this->mailer->send();
         }
         catch (\Exception $e) {
-             echo "Message could not be sent. Mailer Error: {$this->mailer->ErrorInfo}";
+             echo \json_encode([ 'message' => "Message could not be sent. Mailer Error: {$this->mailer->ErrorInfo}"]);
              die();
         }
     }
@@ -47,7 +47,6 @@ class Mail{
         $this->mailer->SMTPAuth = true;                               //set SMTP authorization 
         $this->mailer->Username = getenv('SMTP_MAILTRAP_USER');       //user account from mail will be send
         $this->mailer->Password = getenv('SMTP_MAILTRAP_PASSWORD');   //user account password 
-
         $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; //enable tls mail encryption
     }
 
@@ -60,10 +59,17 @@ class Mail{
 
 
     public function setMessageBody($message){
-        $this->mailer->isHTML(true);                                         //Set email format to HTML
-        $this->mailer->Subject = 'Kod weryfikacyjny';                        //mail subject 
+        $this->mailer->isHTML(true);                                  //Set email format to HTML
+        $this->mailer->Subject = 'Kod weryfikacyjny';                 //mail subject 
         $this->mailer->Body = "Kod: ".$message;
         $this->mailer->AltBody = "Kod".$message;
+    }
+
+    public function setBody($subject, $message){
+        $this->mailer->isHTML(true);                              //Set email format to HTML
+        $this->mailer->Subject = $subject;                        //mail subject 
+        $this->mailer->Body = $message;
+        $this->mailer->AltBody = $message;
     }
 
 

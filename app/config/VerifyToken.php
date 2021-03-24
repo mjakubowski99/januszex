@@ -76,6 +76,13 @@ class VerifyToken{
         return ( $expire_time > $now->getTimestamp() );
     }
 
+    public function removeUsedToken($id){
+        $query = "DELETE FROM verify_tokens WHERE id=:id";
+        $this->database->delete($query, [
+            'id' => $id
+        ]);
+    }
+
     public function verifyUserForToken($token){
         $row = $this->resource->getTokenRow($token);
         if( $row === null )
@@ -93,9 +100,26 @@ class VerifyToken{
             ];
 
             $this->database->update($query, $values);
+            $this->removeUsedToken($user_id);
+            
             return true;
         }
         else
             return false;
     }
+
+    public function userVerified($email){
+        $query = "SELECT id FROM users WHERE email=:uemail AND verified=:verified";
+		$values = [ 
+            'uemail' => $email,
+            'verified' => true
+        ] ;
+
+        $row = $this->database->execute($query, $values);
+
+        if( $row )
+            return true;
+        return false;
+    }
+
 }
