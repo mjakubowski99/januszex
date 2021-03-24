@@ -63,7 +63,7 @@ class VerifyToken{
             'expire' => $expire->format('Y-m-d H:i:s')
         ];
 
-        $this->database->insert("INSERT INTO verify_tokens (id, token, user_id, expire) 
+        $this->database->insert("REPLACE INTO verify_tokens (id, token, user_id, expire) 
 								 VALUES (0, :token, :user_id, :expire)", $values);
 
         return $token;

@@ -25,8 +25,6 @@ class RegisterVerifyController extends Controller{
 			die();
 		}
 
-		echo Auth::user();
-
 		$this->view('registerVerify');
 	}
 
@@ -37,7 +35,7 @@ class RegisterVerifyController extends Controller{
 		}
 
 		$token = $this->sanitizator->sanitize( $_POST['token'] ); //sanitize input data
-
+		var_dump( $_POST['token'] );
 		if( !$this->validator->validate($token) ){                //token data validation 
 			echo \json_encode([ 'message' => 'Error']);
 			die();
