@@ -17,6 +17,10 @@ class RegisterController extends Controller{
 	}
 
 	public function store(){
+		if( Auth::isLogged() ){
+			echo \json_encode([ 'message' => 'Jestes juz zalogowany']);
+			die();
+		}
 
 		$validator = new RegisterValidator();
 

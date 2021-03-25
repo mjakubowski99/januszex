@@ -23,11 +23,8 @@ class LoginController extends Controller{
 	}
 
 	public function store(){
-		$jwt = new JwtManage();
-		if( $jwt->tokenIsValid() ){
-			echo json_encode([
-				'message' => 'Zalogowany'
-			]);
+		if( Auth::isLogged() ){
+			echo \json_encode([ 'message' => 'Jestes juz zalogowany']);
 			die();
 		}
 		
@@ -45,14 +42,11 @@ class LoginController extends Controller{
 
 
 		//If logowanie poprawne return User
-		if( $message == "Logowanie poprawne" ){
-			
+		if( $message == "Logowanie poprawne" ){	
 			$token = $jwt->createToken($email);
-
-			$this->view('logged', [ 'token' => $token ]);
-			/*echo json_encode([
+			echo json_encode([
 				'jwt_token' => $token
-			]); */
+			]);
 		}
 		else{
 			echo json_encode([

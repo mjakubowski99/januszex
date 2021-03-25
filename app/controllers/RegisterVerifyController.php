@@ -30,12 +30,11 @@ class RegisterVerifyController extends Controller{
 
 	public function store(){
 		if( !Auth::isLogged() ){
-			echo \json_encode([ 'message' => 'Error']);
+			echo \json_encode([ 'message' => 'Zaloguj sie']);
 			die();
 		}
 
 		$token = $this->sanitizator->sanitize( $_POST['token'] ); //sanitize input data
-		var_dump( $_POST['token'] );
 		if( !$this->validator->validate($token) ){                //token data validation 
 			echo \json_encode([ 'message' => 'Error']);
 			die();

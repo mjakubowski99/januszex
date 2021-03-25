@@ -77,7 +77,7 @@ class VerifyToken{
     }
 
     public function removeUsedToken($id){
-        $query = "DELETE FROM verify_tokens WHERE id=:id";
+        $query = "DELETE FROM verify_tokens WHERE user_id=:id";
         $this->database->delete($query, [
             'id' => $id
         ]);

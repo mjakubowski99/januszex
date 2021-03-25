@@ -31,7 +31,8 @@ class Routes{
         $router->add('GET', 'resendVerification', 'ResendVerificationController', 'index');
         $router->add('POST', 'resendVerification', 'ResendVerificationController', 'store');
 
-        $router->add('GET', 'test', 'TestController', 'index');
+        $router->add('GET', 'resendTest', 'TestController', 'index');
+        $router->add('GET', 'registerTest', 'TestController', 'index2');
         $this->router = $router;
     }
 

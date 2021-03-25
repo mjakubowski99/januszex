@@ -5,11 +5,13 @@ namespace app\controllers;
 class HomeController extends Controller{
 
     public function index(){
-        //$this->view('home', ['data' => 'data']);
-        //$user = $this->model('User');
+        if( !Auth::isLogged() ){
+			echo \json_encode([ 'message' => 'Zaloguj sie']);
+			die();
+        }
+        else{
+            echo \json_encode([ 'message' => 'Valid' ]);
+        }
     }
     
-    public function store(){
-        
-    }
 }
