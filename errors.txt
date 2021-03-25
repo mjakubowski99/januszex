@@ -1,1 +1,14 @@
 // W tym pliku umieszczamy błędy, które zostały przez was znalezione
+
+januszex/creator/DatabaseCreator.php:
+	1. Poprawiona literówka 268 linijka z Users na users 
+
+Register:
+	1. Podanie imienia ze znakami takimi jak ą, ć, ę, ł, ń, ó, ś, ź, ż, skutkuje pojawieniem się komunikatu "Nie mozesz podawac innych znakow niz litery w imieniu"
+	2. Podanie imienia ze znakami takimi jak ą, ć, ę, ł, ń, ó, ś, ź, ż, skutkuje pojawieniem się komunikatu "Nie mozesz podawac innych znakow niz litery w nazwisku"
+	3. Podanie miasta bez podawania ulicy (sytuacja, jeżeli ktoś zamiawa z jakiejś wsi), skutkuje pojawieniem się komunikatu "Wypelnij wszystkie pola"
+	4. Podanie miasta ze spacją/myślikiem, skutkuje pojawieniem się komunikatu "Nie mozesz podawac innych znakow niz litery w nazwie miasta"
+	5. Podanie Nazwiska ze spacją/myślnikiem, skutkuje pojawieniem się komunikatu "Nie mozesz podawac innych znakow niz litery w nazwisku"
+	6. Podanie Imienia ze spacją/myślnikiem, skutkuje pojawieniem się komunikatu "Nie mozesz podawac innych znakow niz litery w imieniu"		
+	7. Podanie nr. domu '1ab', skutkuje pojawieniem się komunikatu "Podales numer domu w zlym formacie"
+	8. Podanie nr. mieszkania '1ab', skutkuje pojawieniem się komunikatu "Podales numer mieszkania w zlym formacie"	
