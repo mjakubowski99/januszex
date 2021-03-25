@@ -31,6 +31,7 @@ class LoginController extends Controller{
 		
 		$validator = new LoginValidator();
 		$database = new Database();
+		$jwt = new JwtManage();
 
 		$password = strip_tags($_POST["password"]);
 		$email = strip_tags($_POST["email"]);
@@ -45,6 +46,9 @@ class LoginController extends Controller{
 		//If logowanie poprawne return User
 		if( $message == "Logowanie poprawne" ){	
 			$token = $jwt->createToken($email);
+			var_dump($token);
+
+			//$this->view('logged', [ 'jwt_token' => $token ]);
 			echo json_encode([
 				'jwt_token' => $token
 			]);

@@ -4,8 +4,8 @@
 
   <body>
         <script>
-            let token = <?php echo json_encode($data['token']); ?>;
-            localStorage.setItem('token', token);
+            let token = <?php echo json_encode($data['jwt_token']); ?>;
+            localStorage.setItem('jwt_token', token);
         </script>
   </body>
 </html>

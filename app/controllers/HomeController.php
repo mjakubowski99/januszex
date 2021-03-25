@@ -1,6 +1,7 @@
 <?php 
 
 namespace app\controllers;
+use app\facades\Auth;
 
 class HomeController extends Controller{
 
