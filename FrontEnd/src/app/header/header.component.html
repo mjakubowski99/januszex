@@ -24,6 +24,9 @@
       <a routerLink="admin" *ngIf="true">
         <span class="pi pi-user-plus icon"></span>
       </a>
+      <a (click)="onLogout()" *ngIf="isAuthenticated">
+        <span class="pi pi-sign-out icon"></span>
+      </a>
       <a routerLink="cart">
         <span class="pi pi-shopping-cart icon"></span>
       </a>
@@ -31,6 +34,5 @@
         <span class="pi pi-user icon"></span>
       </a>
     </div>
-
   </div>
 </div>

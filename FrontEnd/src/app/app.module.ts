@@ -6,7 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 
 import {HeaderComponent} from './header/header.component';
@@ -29,6 +29,7 @@ import {ResetPasswordNewPasswordFormComponent} from './authentication-page/reset
 import {ResetPasswordConfirmationComponent} from './authentication-page/reset-password-confirmation/reset-password-confirmation.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {ErrorsComponent} from './admin-page/errors/errors.component';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -61,7 +62,13 @@ import {ErrorsComponent} from './admin-page/errors/errors.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
