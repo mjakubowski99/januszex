@@ -7,6 +7,7 @@ use app\validators\RegisterValidator;
 use app\config\DatabaseConnector;
 use app\config\Mail;
 use app\config\VerifyToken;
+use app\facades\Auth;
 use PDO;
 
 

@@ -1,6 +1,6 @@
 <script>
 
-let token = localStorage.getItem('token');
+let token = localStorage.getItem('jwt_token');
     if( token !== null ){
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "http://127.0.0.1/resendVerification", true);
