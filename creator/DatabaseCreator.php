@@ -265,7 +265,7 @@ class DatabaseCreator{
                                   user_id bigint NOT NULL,
                                   expire DATETIME NOT NULL,
                                   PRIMARY KEY (ID),
-                                  FOREIGN KEY (user_id) REFERENCES Users(ID)
+                                  FOREIGN KEY (user_id) REFERENCES users(ID)
                                  );"; 
                 $this->connection->exec($sql_statement);
             } catch(PDOException $e){
