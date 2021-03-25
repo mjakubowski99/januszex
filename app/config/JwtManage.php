@@ -37,6 +37,22 @@ class JwtManage{
         );
     }
 
+    public function getEmailForToken(){
+        if( !$this->tokenExistInHeader() )
+            return null;;
+        if( !$this->ableToExtractToken() )
+            return null;
+
+        $jwt = $this->matches[1];
+        $secret = getenv("JWT_SECRET");
+        $token = JWT::decode($jwt, $secret, ['HS512']);
+
+        if( $this->tokenHasValidSignatureAndNotExpired($token) )
+           return $token->email;
+        else
+           return null;
+    }
+
     public function tokenIsValid(){
         if( !$this->tokenExistInHeader() )
             return false;

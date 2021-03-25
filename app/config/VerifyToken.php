@@ -63,7 +63,7 @@ class VerifyToken{
             'expire' => $expire->format('Y-m-d H:i:s')
         ];
 
-        $this->database->insert("INSERT INTO verify_tokens (id, token, user_id, expire) 
+        $this->database->insert("REPLACE INTO verify_tokens (id, token, user_id, expire) 
 								 VALUES (0, :token, :user_id, :expire)", $values);
 
         return $token;
@@ -74,6 +74,13 @@ class VerifyToken{
         $expire_time = strtotime($expire_time);
 
         return ( $expire_time > $now->getTimestamp() );
+    }
+
+    public function removeUsedToken($id){
+        $query = "DELETE FROM verify_tokens WHERE user_id=:id";
+        $this->database->delete($query, [
+            'id' => $id
+        ]);
     }
 
     public function verifyUserForToken($token){
@@ -93,9 +100,26 @@ class VerifyToken{
             ];
 
             $this->database->update($query, $values);
+            $this->removeUsedToken($user_id);
+            
             return true;
         }
         else
             return false;
     }
+
+    public function userVerified($email){
+        $query = "SELECT id FROM users WHERE email=:uemail AND verified=:verified";
+		$values = [ 
+            'uemail' => $email,
+            'verified' => true
+        ] ;
+
+        $row = $this->database->execute($query, $values);
+
+        if( $row )
+            return true;
+        return false;
+    }
+
 }

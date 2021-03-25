@@ -3,6 +3,8 @@ require __DIR__.'/../autoloader.php';
 
 use PHPUnit\Framework\TestCase;
 use app\config\JwtManage as JwtManage;
+use Firebase\JWT\JWT;
+use app\config\DotEnv;
 
 final class JWTTokenTest extends TestCase
 {
@@ -40,6 +42,30 @@ final class JWTTokenTest extends TestCase
         $jwt->tokenExistInHeader();
 
         $this->assertSame( $jwt->ableToExtractToken(), true);
+    }
+
+    public function testTokenHasValidSignatureAndNotExpired(){
+        $jwt = new JwtManage();
+        ( new DotEnv(__DIR__.'/../.env') )->load();
+
+        $token = $jwt->createToken('user@example.com');
+        $secret = getenv("JWT_SECRET");
+        $token = JWT::decode($token, $secret, ['HS512']);
+
+        $this->assertTrue( $jwt->tokenHasValidSignatureAndNotExpired($token) );
+    }
+
+    public function testTokenExpired(){
+        $jwt = new JwtManage();
+        ( new DotEnv(__DIR__.'/../.env') )->load();
+
+        $token = $jwt->createToken('user@example.com');
+        $secret = getenv("JWT_SECRET");
+        $token = JWT::decode($token, $secret, ['HS512']);
+
+        $now = ( new \DateTimeImmutable() )->modify('+3 hours'); //check how much time is to expire for token
+
+        $this->assertTrue( $token->exp < $now->getTimestamp() );
     }
 
 

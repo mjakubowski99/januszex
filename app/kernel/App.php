@@ -30,6 +30,10 @@ class App{
             call_user_func_array( array($controller_class, $method), array($args) );
     }
 
+    public function isStorage($link){
+        return $link === 'storage';
+    }
+
     public function parseUrl(){
         if( isset($_GET['url']) ){
             return explode( '/', filter_var( rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL ) );

@@ -1,4 +1,6 @@
-Options -MultiViews
+Options -MultiViews -Indexes
+
+
 RewriteEngine On
 
 RewriteBase /

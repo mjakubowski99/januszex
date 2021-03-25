@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'../autoloader.php';
+require_once __DIR__.'/../autoloader.php';
 use app\config\DatabaseConnector;
 
 
@@ -43,8 +43,8 @@ class DatabaseCreator{
                                 ID BIGINT NOT NULL AUTO_INCREMENT,
                                 city varchar(50) NOT NULL,
                                 street varchar(50) NOT NULL,
-                                home_number int NOT NULL,
-                                flat_number int,
+                                home_number varchar(5) NOT NULL,
+                                flat_number varchar(5),
                                 postoffice_name varchar(50) NOT NULL,
                                 postoffice_code varchar(6) NOT NULL,
                                 PRIMARY KEY (ID)
@@ -297,3 +297,5 @@ class DatabaseCreator{
 
     $creator = new DatabaseCreator();
     $creator->createAllTables();
+    //$creator->createAddressTable();
+    //$creator->createUsersTable();
