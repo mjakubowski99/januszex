@@ -7,6 +7,7 @@ use app\validators\LoginValidator;
 use app\database\Database;
 use app\resource\UserResource;
 use app\config\JwtManage;
+use app\facades\Auth;
 
 class LoginController extends Controller{
 
