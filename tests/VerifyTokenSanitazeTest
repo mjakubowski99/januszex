@@ -1,0 +1,44 @@
+<?php declare(strict_types=1);
+
+require __DIR__.'/../autoloader.php';
+
+use PHPUnit\Framework\TestCase;
+use app\filters\VerifyTokenSanitize;
+
+class VerifyTokenSanitizeTest extends TestCase
+{
+	protected function setUp(): void
+    {
+        $sanitize = new VerifyTokenSanitize();
+    }
+    
+    public function testescapeSpecialChars()
+    {
+    	$sanitize = new VerifyTokenSanitize();
+    	
+    	
+    	$this->assertEquals($sanitize->escapeSpecialChars("Is Peter <smart> & funny?"),"Is Peter &lt;smart&gt; &amp; funny?");
+    	$this->assertEquals($sanitize->escapeSpecialChars("<script>alert('TROUBLE HERE');</script>"),"&lt;script&gt;alert(&#039;TROUBLE HERE&#039;);&lt;/script&gt;");
+    	
+    	$this->assertnotEquals($sanitize->escapeSpecialChars("Is Peter <smart> & funny?"),"Is Peter <smart> & funny?");
+    	$this->assertnotEquals($sanitize->escapeSpecialChars("<script>alert('TROUBLE HERE');</script>"),"<script>alert('TROUBLE HERE');</script>");
+    	    	   	
+    }
+    
+    
+    
+    public function testsanitize()
+    {
+    	$sanitize = new VerifyTokenSanitize();
+    	
+    	$this->assertEquals($sanitize->sanitize("Is Peter <smart> & funny?"),"Is Peter &lt;smart&gt; &amp; funny?");
+    	$this->assertEquals($sanitize->sanitize("<script>alert('TROUBLE HERE');</script>"),"&lt;script&gt;alert(&#039;TROUBLE HERE&#039;);&lt;/script&gt;");
+    	
+    	$this->assertnotEquals($sanitize->sanitize("Is Peter <smart> & funny?"),"Is Peter <smart> & funny?");
+    	$this->assertnotEquals($sanitize->sanitize("<script>alert('TROUBLE HERE');</script>"),"<script>alert('TROUBLE HERE');</script>");
+    	
+    	
+    }
+    
+    
+}
