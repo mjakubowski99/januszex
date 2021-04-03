@@ -2,9 +2,7 @@
 
 namespace app\validators;
 
-use app\database\Database;
-
-class RegisterValidator{
+class RegisterValidator extends Validator{
 
     public function mailValid($email){
         return filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -43,15 +41,14 @@ class RegisterValidator{
     }
 
     public function userExists($email){
-        $database = new Database();
 		$query = "SELECT email FROM users WHERE email=:uemail";
 		$values = [ 'uemail' => $email];
-        $row = $database->execute($query, $values);
+        $row = $this->database->execute($query, $values);
         if( !$row ){
             return false;
         }
 
-		return ( count( $database->execute($query, $values) ) > 0 );
+		return ( count( $this->database->execute($query, $values) ) > 0 );
 	}
 
     public function validate($data){

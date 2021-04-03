@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class User extends Model{
+class Adress extends Model{
 
     public function get(){
 
