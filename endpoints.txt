@@ -1,2 +1,35 @@
-registerVerify => method: POST, you must send token data named token and also JWT token, email will be get from jwt tokn 
-resendVerification => method: POST, you must by logged( jwt token ) you send post data, email will be get from token 
+registerVerify => method: POST, you must send token data named token and also JWT token
+    Send:
+        input named token
+    Response:
+         if you not send token: 401 code
+         if your token is not valid: { 'message': 'Some error message' }
+         if your token is valid: { 'message': 'Some success message' }
+         if some database error occur: { 'message': 'Some database error' }
+
+resendVerification => method: POST, you must by logged( jwt token ) you send post data, email will be get from token
+    Send:
+        Only token is sended here from which email will be get
+    Response:
+        If you not provide token: 401 code
+        If your user for this email was verified or email wasn't delivered or database error: { 'message': 'Some error message' }
+        If everything was successful: { 'message': 'Some success message' }
+
+changePassword => method: POST, you must add token to request
+    Send:
+        inputs named actual-password, new-password, repeat-new-password
+    Response:
+        if you not send token: 401 code
+        if data is not valid json: { 'message': 'Some messsage' }
+        if data is valid: { 'message': 'Some success message' }
+
+
+resetPassword => method: POST, you CAN'T be logged( don't send token )
+    Send:
+        input named email
+    Response:
+        -If you send valid token: { 'message': 'You cannot be logged to change password' }
+        -If email you provide doesn't exist for any user: { 'message': 'This user not exist' }
+        -If email exist and successful sended and updated in database: { 'message': 'Success' }
+        -If email exist but somehow wasn't seneded properly or update you will get message about database
+        error: { 'message': 'Some error message' }

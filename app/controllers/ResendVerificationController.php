@@ -6,6 +6,7 @@ use app\config\Mail;
 use app\config\VerifyToken;
 use app\filters\VerifyTokenSanitize;
 use app\facades\Auth;
+use app\facades\ResponseStatus;
 
 class ResendVerificationController extends Controller{
 
@@ -24,10 +25,8 @@ class ResendVerificationController extends Controller{
     public function store(){
 		$email = Auth::email();
 
-		if( $email === null ){
-			echo \json_encode(['message' => 'Zaloguj sie']);
-			die();
-		}
+		if( $email === null )
+			ResponseStatus::code(404 );
 
 		if( !$this->verify->userVerified($email) ){
 			$token = $this->verify->createToken($email);

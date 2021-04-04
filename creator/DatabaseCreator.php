@@ -107,6 +107,7 @@ class DatabaseCreator{
                                 address_id BIGINT NOT NULL, #FK
                                 order_date datetime NOT NULL,
                                 order_id BIGINT NOT NULL,
+                                status ENUM('Nieoplacone', 'Oplacone', 'Anulowane','Oczekujace na wyslanie', 'Zrealizowane'),
                                 quantity int NOT NULL,
                                 PRIMARY KEY (ID),
                                 CONSTRAINT FK_UserOrder FOREIGN KEY (user_id)
