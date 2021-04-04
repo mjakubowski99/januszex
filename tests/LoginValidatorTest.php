@@ -11,9 +11,7 @@ class LoginValidatorTest extends TestCase
     {
         $login = new LoginValidator();
     }
-    
-    
-    
+
     public function testfindUserByEmail()
     {
     	$login = new LoginValidator();

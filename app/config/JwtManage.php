@@ -5,6 +5,7 @@ namespace app\config;
 use Firebase\JWT\JWT;
 use app\config\DotEnv;
 use DateTimeImmutable;
+use app\database\Database;
 
 require_once(__DIR__.'/../../vendor/autoload.php');
 
@@ -53,6 +54,17 @@ class JwtManage{
            return null;
     }
 
+    public function tokenOnBlacklist($token){
+        $database = new Database();
+        $query = "SELECT id FROM jwt_blacklist WHERE token=:token";
+        $values = ['token' => $token];
+
+        $row = $database->execute($query, $values);
+        if( !$row )
+            return false;
+        return true;
+    }
+
     public function tokenIsValid(){
         if( !$this->tokenExistInHeader() )
             return false;
@@ -60,6 +72,9 @@ class JwtManage{
             return false;
         
         $jwt = $this->matches[1];
+        //if( $this->tokenOnBlacklist($jwt) )
+        //    return false;
+
         $secret = getenv("JWT_SECRET");
         $token = JWT::decode($jwt, $secret, ['HS512']); //some token was extracted
 

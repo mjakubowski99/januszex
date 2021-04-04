@@ -2,17 +2,13 @@
 
 namespace app\validators;
 
-use app\database\Database;
-
-class LoginValidator{
+class LoginValidator extends Validator{
 
     public function findUserByEmail($email){
-        $database = new Database();
 		$query = "SELECT email, password FROM users WHERE email=:uemail";
-		$values = [ 'uemail' => $email ] ;
-        $row = $database->execute($query, $values);
+		$values = [ 'uemail' => $email ];
 
-		return $row;
+		return $this->database->execute($query, $values);
     }
     
     public function checkPasswordValid($password, $hash){

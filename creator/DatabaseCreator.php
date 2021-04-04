@@ -277,8 +277,6 @@ class DatabaseCreator{
             }
         }
 
-
-
         public function createAllTables(){
             $this->createAddressTable();
             $this->createAdministratorsTable();

@@ -33,6 +33,12 @@ class Routes{
 
         $router->add('GET', 'resendTest', 'TestController', 'index');
         $router->add('GET', 'registerTest', 'TestController', 'index2');
+
+        $router->add('GET', 'changePassword', 'ChangePasswordController', 'index');
+        $router->add('POST', 'changePassword', 'ChangePasswordController', 'store');
+
+        $router->add('GET', 'resetPassword', 'ResetPasswordController', 'index');
+        $router->add('POST', 'resetPassword', 'ResetPasswordController', 'store');
         $this->router = $router;
     }
 
