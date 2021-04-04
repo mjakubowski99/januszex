@@ -18,4 +18,17 @@ class Validator
     public function getMessage(){
         return $this->message;
     }
+
+    public function lengthValid($string, $length): bool{
+        return strlen($string) > $length;
+    }
+
+    public function fieldsAreEmpty($data): bool{
+        foreach( $data as $key => $value ){
+            if( $key !== 'flat_number' && empty($value) )
+                return true;
+        }
+        return false;
+    }
+
 }

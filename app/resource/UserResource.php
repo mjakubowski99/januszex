@@ -4,13 +4,7 @@ namespace app\resource;
 
 use app\database\Database;
 
-class UserResource{
-
-    protected $database;
-
-    public function __construct(){
-        $this->database = new Database();
-    }
+class UserResource extends Resource{
 
     public function createHelloMessageForEmail($message, $email){
         $data = [

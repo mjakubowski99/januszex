@@ -40,7 +40,7 @@ abstract class Model{
         return $queryPart;
     }
 
-    public static function composeUpdateQuery($values, $where): string{
+    protected static function composeUpdateQuery($values, $where): string{
         $query = "UPDATE ".static::$tableName." SET ".static::composeQueryPart($values);
 
         if( count($where) === 0 )
@@ -60,5 +60,14 @@ abstract class Model{
 
         $query = static::composeUpdateQuery($values, $where);
         static::$database->update($query, $bindings);
+    }
+
+    public static function all(){
+        static::tryToSetDatabase();
+
+        $query = "SELECT * FROM :table";
+        $values = [ 'table' => static::$tableName ];
+        static::$database->execute($query, $values);
+        return static::$database->execute($query, $values);
     }
 }

@@ -16,6 +16,7 @@ class ResendVerificationController extends Controller{
     }
 
     public function index(){
+        //Auth::simulate('user@example.com');
 		if( Auth::isLogged())
         	$this->view('resendVerification');
 		else
@@ -23,6 +24,8 @@ class ResendVerificationController extends Controller{
     }
 
     public function store(){
+        //Auth::simulate('user@example.com');
+
 		$email = Auth::email();
 
 		if( $email === null )

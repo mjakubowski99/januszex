@@ -33,3 +33,29 @@ resetPassword => method: POST, you CAN'T be logged( don't send token )
         -If email exist and successful sended and updated in database: { 'message': 'Success' }
         -If email exist but somehow wasn't seneded properly or update you will get message about database
         error: { 'message': 'Some error message' }
+
+userOrders => method: GET, you must send token
+    Response:
+        -if you not send token: 401 code
+        -if user doesn't have orders: { 'message': 'Some error message' }
+        -if user have orders: [
+            { order1 info },
+            { order2 info },
+        ]
+        -If database error you will get message { 'message': 'Some error message' }
+
+userAddress => method: GET, you must send token
+    Response:
+        -if you not send token: 401 code
+        -if user doesn't have address: { 'message': 'Some error message' }
+        -if user have address: { some address data }
+        -If database error you will get message { 'message': 'Some error message' }
+
+changeAddress => method: POST, you must send token
+    Send:
+        inputs named city, street, home_number, flat_number, postoffice_name, postoffice_code
+    Response:
+        -if you not send token: 401 code
+        -if data not valid: { 'message': 'Some validation error message' }
+        -if data valid { 'message': 'Success' }
+        -If database error you will get message { 'message': 'Some error message' }

@@ -2,9 +2,7 @@
 
 namespace app\resource;
 
-class UserTokenResource{
-
-    private $database;
+class UserTokenResource extends Resource{
 
     public function setDatabase($database){
         $this->database = $database;

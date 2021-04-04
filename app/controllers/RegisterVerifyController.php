@@ -21,6 +21,8 @@ class RegisterVerifyController extends Controller{
 	}
 
 	public function index(){
+	    //Auth::simulate('user@example.com');
+
 		if( !Auth::isLogged() ){
 		    ResponseStatus::code(401);
 		}
@@ -29,6 +31,8 @@ class RegisterVerifyController extends Controller{
 	}
 
 	public function store(){
+	    //Auth::simulate('user@example.com');
+
 		if( !Auth::isLogged() ){
             ResponseStatus::code(401);
 		}
