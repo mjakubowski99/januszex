@@ -39,6 +39,14 @@ class Routes{
 
         $router->add('GET', 'resetPassword', 'ResetPasswordController', 'index');
         $router->add('POST', 'resetPassword', 'ResetPasswordController', 'store');
+
+        $router->add('GET', 'userOrders', 'OrderController', 'index');
+
+        $router->add('GET', 'userAddress', 'AddressController', 'index');
+
+        $router->add('GET', 'changeAddress', 'AddressController', 'test');
+        $router->add('POST', 'changeAddress', 'AddressController', 'store');
+
         $this->router = $router;
     }
 

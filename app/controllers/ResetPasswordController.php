@@ -42,8 +42,8 @@ class ResetPasswordController extends Controller
             $message = 'Twoje nowe haslo to: '.$password.' mozesz je zmienic w panelu konta klienta';
 
             $password = password_hash($password, PASSWORD_DEFAULT);
-            User::update( ['password' => $password], ['email' => $email] );
 
+            User::update( ['password' => $password], ['email' => $email] );
             $mailer->tryToSendMailTo($email, $message);
         }
         else

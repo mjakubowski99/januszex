@@ -27,6 +27,33 @@ class Database{
 		}
     }
 
+    public function executeMany($query, $values = []){
+
+        $db_conn = new \app\config\DatabaseConnector();
+        $connection = $db_conn->getConnection();
+
+        try{
+            $stmt = $connection->prepare($query);
+            foreach($values as $key => $value){
+                $stmt->bindValue($key, $value, PDO::PARAM_STR);
+            }
+            $stmt->execute();
+
+            $rows = [];
+            while( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+                array_push($rows, $row);
+            }
+
+            return $rows;
+        }
+        catch(PDOException $e){
+            echo json_encode([
+                'message' =>  $e->getMessage()
+            ]);
+            die();
+        }
+    }
+
     public function insert($query, $values = []){
 
         $db_conn = new \app\config\DatabaseConnector();

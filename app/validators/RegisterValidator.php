@@ -16,10 +16,6 @@ class RegisterValidator extends Validator{
         return ctype_digit($word);
     }
 
-    public function lengthValid($string, $length){
-        return strlen($string) > $length;
-    }
-
     public function passwordsAreTheSame($pass, $confirm){
         return $pass === $confirm;
     }
@@ -30,14 +26,6 @@ class RegisterValidator extends Validator{
 
     public function postalCodeValid($postal_code){
         return preg_match('/^([0-9]{2})(-[0-9]{3})?$/i', $postal_code);
-    }
-
-    public function fieldsAreEmpty($data){
-        foreach( $data as $key => $value ){
-            if( $key !== 'flat_number' && empty($value) )
-                return true;
-        }
-        return false;
     }
 
     public function userExists($email){

@@ -8,6 +8,7 @@ use app\config\VerifyToken;
 use app\validators\VerifyTokenValidator;
 use app\filters\VerifyTokenSanitize;
 use app\facades\Auth;
+use app\facades\ResponseStatus;
 
 class RegisterVerifyController extends Controller{
 
@@ -20,18 +21,20 @@ class RegisterVerifyController extends Controller{
 	}
 
 	public function index(){
+	    //Auth::simulate('user@example.com');
+
 		if( !Auth::isLogged() ){
-			echo \json_encode([ 'message' => 'Zaloguj sie']);
-			die();
+		    ResponseStatus::code(401);
 		}
 
 		$this->view('registerVerify');
 	}
 
 	public function store(){
+	    //Auth::simulate('user@example.com');
+
 		if( !Auth::isLogged() ){
-			echo \json_encode([ 'message' => 'Zaloguj sie']);
-			die();
+            ResponseStatus::code(401);
 		}
 
 		$token = $this->sanitizator->sanitize( $_POST['token'] ); //sanitize input data
