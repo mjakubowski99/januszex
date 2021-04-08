@@ -1,0 +1,102 @@
+<div class="p-d-flex p-jc-between">
+  <div *ngIf="!!currentAddressData">
+    <h1>Aktualny dane adresowe</h1>
+    <h4>Imię: {{currentAddressData.name}}</h4>
+    <h4>Nazwisko: {{currentAddressData.surname}}</h4>
+    <h4>Miasto: {{currentAddressData.city}}</h4>
+    <h4>Ulica: {{currentAddressData.street}}</h4>
+    <h4>Numer domu: {{currentAddressData.homeNumber}}</h4>
+    <h4>Numer mieszkania: {{currentAddressData.flatNumber}}</h4>
+    <h4>Miejscowość poczty: {{currentAddressData.postOfficeName}}</h4>
+    <h4>Kod pocztowy: {{currentAddressData.postOfficeCode}}</h4>
+  </div>
+  <div>
+    <h1>Ustaw nowe dane adresowe</h1>
+    <form [formGroup]="newAddressDataForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="name"></label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            placeholder="Imię"
+            formControlName="name"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="surname"></label>
+          <input
+            id="surname"
+            type="text"
+            pInputText
+            placeholder="Nazwisko"
+            formControlName="surname"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="city"></label>
+          <input
+            id="city"
+            type="text"
+            pInputText
+            placeholder="Miasto"
+            formControlName="city"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="street"></label>
+          <input
+            id="street"
+            type="text"
+            pInputText
+            placeholder="Ulica"
+            formControlName="street"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="home-number"></label>
+          <input
+            id="home-number"
+            type="text"
+            pInputText
+            placeholder="Numer domu"
+            formControlName="homeNumber"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="flat-number"></label>
+          <input
+            id="flat-number"
+            type="text"
+            pInputText
+            placeholder="Numer mieszkania"
+            formControlName="flatNumber"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="post-office-name"></label>
+          <input
+            id="post-office-name"
+            type="text"
+            pInputText
+            placeholder="Miejscowość poczty"
+            formControlName="postOfficeName"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="post-office-code"></label>
+          <input
+            id="post-office-code"
+            type="text"
+            pInputText
+            placeholder="Kod pocztowy"
+            formControlName="postOfficeCode"
+            class="form-control">
+        </div>
+        <button pButton type="submit" label="Zmień"
+                [disabled]="newAddressDataForm.invalid"></button>
+      </div>
+    </form>
+  </div>
+</div>

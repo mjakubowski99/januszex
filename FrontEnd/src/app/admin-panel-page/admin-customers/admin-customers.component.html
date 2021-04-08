@@ -1,0 +1,34 @@
+<div>
+  <div *ngIf="customers.length <= 0">
+    <h1>Nie ma klientów</h1>
+  </div>
+  <div class="card" *ngIf="customers.length > 0">
+    <h1>Klienci</h1>
+    <p-table [value]="customers">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">Numer klienta
+            <p-sortIcon field="id"></p-sortIcon>
+          </th>
+          <th pSortableColumn="name">Imię
+            <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th pSortableColumn="surname">Nazwisko
+            <p-sortIcon field="surname"></p-sortIcon>
+          </th>
+          <th pSortableColumn="email">Email
+            <p-sortIcon field="email"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-customers>
+        <tr routerLink="/home">
+          <td>{{customers.id}}</td>
+          <td>{{customers.name}}</td>
+          <td>{{customers.surname}}</td>
+          <td>{{customers.email}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
