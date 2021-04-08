@@ -11,6 +11,11 @@
           placeholder="Adres Email"
           formControlName="email"
           class="form-control">
+        <div ngxErrors="email">
+          <div ngxError="email">
+            Wpisz poprawny adres email!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="password-sign-in"></label>
@@ -21,6 +26,11 @@
           placeholder="Hasło"
           formControlName="password"
           class="form-control">
+        <div ngxErrors="password">
+          <div ngxError="minlength">
+            Wpisz hasło 8 znakowe!
+          </div>
+        </div>
       </div>
       <button
         pButton

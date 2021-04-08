@@ -2,31 +2,31 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../services/authentication.service';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
+import {BaseComponent} from '../shared/components/base.component';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent extends BaseComponent implements OnInit {
   searchForm: FormGroup;
   isAuthenticated = false;
-  private userSub: Subscription;
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
+    super();
     this.searchForm = new FormGroup({
       searchValue: new FormControl(null, Validators.required)
     });
   }
 
   ngOnInit(): void {
-    this.userSub = this.authenticationService.user.subscribe(user => {
+    this.authenticationService.user$.pipe(takeUntil(this.unsubscriber))
+      .subscribe(user => {
       this.isAuthenticated = !!user;
     });
-  }
-
-  ngOnDestroy(): void {
-    this.userSub.unsubscribe();
   }
 
   onSubmit(): void {

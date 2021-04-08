@@ -21,18 +21,25 @@
     </div>
 
     <div class="p-d-flex">
-      <a routerLink="admin" *ngIf="true">
+      <a routerLink="admin" routerLinkActive="active" *ngIf="true">
         <span class="pi pi-user-plus icon"></span>
       </a>
-      <a (click)="onLogout()" *ngIf="isAuthenticated">
-        <span class="pi pi-sign-out icon"></span>
-      </a>
-      <a routerLink="cart">
+      <a routerLink="cart" routerLinkActive="active">
         <span class="pi pi-shopping-cart icon"></span>
       </a>
-      <a routerLink="authentication">
-        <span class="pi pi-user icon"></span>
-      </a>
+      <ng-container *ngIf="isAuthenticated">
+        <a routerLink="account" routerLinkActive="active">
+          <span class="pi pi-user icon"></span>
+        </a>
+        <a (click)="onLogout()">
+          <span class="pi pi-sign-out icon"></span>
+        </a>
+      </ng-container>
+      <ng-container *ngIf="!isAuthenticated">
+        <a routerLink="authentication" routerLinkActive="active">
+          <span class="pi pi-user icon"></span>
+        </a>
+      </ng-container>
     </div>
   </div>
 </div>

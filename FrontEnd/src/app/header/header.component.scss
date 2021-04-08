@@ -17,9 +17,8 @@
 
   background-color: var(--text-color);
 
-  &:hover,
-  &:focus {
-    background-color: wheat;
+  &:hover{
+    background-color: #6393CB;
   }
 }
 
@@ -33,9 +32,8 @@ a {
   cursor: pointer;
   color: var(--text-color);
 
-  &:hover,
-  &:focus {
-    color: wheat;
+  &:hover{
+    color: #6393CB;
   }
 }
 
@@ -66,3 +64,8 @@ form {
     cursor: pointer;
   }
 }
+
+.active{
+  color: #0e9bff;
+}
+

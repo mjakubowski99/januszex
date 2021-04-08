@@ -1,0 +1,28 @@
+<div>
+  <div *ngIf="orders.length <= 0">
+    <h1>Nie ma zamówień</h1>
+  </div>
+  <div class="card" *ngIf="orders.length > 0">
+    <h1>Zamówienia</h1>
+    <p-table [value]="orders">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="orderId">Numer zamówienia<p-sortIcon field="orderId"></p-sortIcon></th>
+          <th pSortableColumn="customerId">Numer klienta<p-sortIcon field="customerId"></p-sortIcon></th>
+          <th pSortableColumn="date">Data<p-sortIcon field="date"></p-sortIcon></th>
+          <th pSortableColumn="price">Kwota<p-sortIcon field="price"></p-sortIcon></th>
+          <th pSortableColumn="status">Status<p-sortIcon field="status"></p-sortIcon></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-orders>
+        <tr routerLink="/home">
+          <td>{{orders.orderId}}</td>
+          <td>{{orders.customerId}}</td>
+          <td>{{orders.date | date:'medium'}}</td>
+          <td>{{orders.price | currency: 'PLN'}}</td>
+          <td>{{orders.status}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
