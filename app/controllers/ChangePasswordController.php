@@ -33,7 +33,7 @@ class ChangePasswordController extends Controller{
         $validator = new ChangePasswordValidator();
 
         if( $validator->validate($_POST) ){
-            $email = 'user@example.com';
+            $email = Auth::email();
             $password = password_hash( $_POST['new-password'], PASSWORD_DEFAULT);
 
             User::update( ['password' => $password], ['email' => $email] );
