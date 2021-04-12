@@ -105,6 +105,7 @@ class DatabaseCreator{
                                 user_id BIGINT NOT NULL, #FK
                                 address_id BIGINT NOT NULL, #FK
                                 order_date datetime NOT NULL,
+                                full_amount float NOT NULL,
                                 status ENUM('Nieoplacone', 'W trakcie', 'Dostarczone'),
                                 PRIMARY KEY (ID),
                                 CONSTRAINT FK_UserOrder FOREIGN KEY (user_id)
@@ -197,12 +198,14 @@ class DatabaseCreator{
         try{
             $sql_statement = "CREATE table IF NOT EXISTS products(
                                 ID BIGINT NOT NULL AUTO_INCREMENT,
-                                name varchar(45) NOT NULL,
+                                product_name varchar(45) NOT NULL,
                                 description varchar(200) NOT NULL,
                                 price double NOT NULL,
+                                quantity int NOT NULL,
                                 photo_path varchar(100) NOT NULL,
                                 average_raiting smallint NOT NULL,
-                                specification varchar(100) NOT NULL,
+                                category varchar(100) NOT NULL,
+                                subcategory varchar(100) NULL,
                                 PRIMARY KEY (ID)
                                 );";
             $this->connection->exec($sql_statement);
