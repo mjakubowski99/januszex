@@ -14,3 +14,9 @@ Create database
 php creator/DatabaseCreator.php
 ```
 
+Fill database with example data
+
+```
+php creator/SampleDatabase.php
+```
+
