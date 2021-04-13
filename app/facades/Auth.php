@@ -11,7 +11,7 @@ class Auth{
         return $jwt->tokenIsValid();
     }
 
-    public static function email(): string{
+    public static function email(){
         $jwt = new JwtManage();
 
         return $jwt->getEmailForToken();
@@ -20,5 +20,9 @@ class Auth{
     public static function simulate($email){
         $jwt = new JwtManage();
         $_SERVER['HTTP_AUTHORIZATION'] = "Bearer ".$jwt->createToken($email);
+    }
+
+    public static function unsimulate(){
+        $_SERVER['HTTP_AUTHORIZATION'] = "";
     }
 }

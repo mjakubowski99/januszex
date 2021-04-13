@@ -74,11 +74,11 @@ class Database{
 		}
     }
 
-    public function update($query, $values){  //this method name is for compatibility, we can do delete and update with insert method as well
+    public function update($query, $values = []){  //this method name is for compatibility, we can do delete and update with insert method as well
         $this->insert($query, $values);
     }
 
-    public function delete($query, $values){
+    public function delete($query, $values = []){
         $this->insert($query, $values);
     }
 

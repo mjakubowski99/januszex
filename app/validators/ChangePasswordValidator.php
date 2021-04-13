@@ -9,10 +9,6 @@ use app\resource\UserResource;
 class ChangePasswordValidator extends Validator
 {
 
-    public function lengthValid($string, $length){
-        return strlen($string) > $length;
-    }
-
     public function validate($data): bool{
         $email = Auth::email();
         $password = $data['actual-password'];

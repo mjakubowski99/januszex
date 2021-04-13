@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48dc034e-0b6a-471b-87c8-c50f75bb61cf" name="Default Changelist" comment="" />
+    <list default="true" id="48dc034e-0b6a-471b-87c8-c50f75bb61cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/creator/RefreshDatabase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/database/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/facades/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/facades/Auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/validators/ChangePasswordValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/validators/ChangePasswordValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/creator/DatabaseCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/creator/DatabaseCreator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/creator/SampleDatabaseData.php" beforeDir="false" afterPath="$PROJECT_DIR$/creator/SampleDatabaseData.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/AddressChangeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AddressChangeTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/DatabaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DatabaseTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/SanitizeTest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/UserResourceTest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/VerifyTokenSanitazeTest" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,9 +91,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\januszex\tests" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -93,11 +111,23 @@
       <workItem from="1617463707548" duration="23092000" />
       <workItem from="1617488765633" duration="16000" />
       <workItem from="1617531717460" duration="25018000" />
+      <workItem from="1618329592554" duration="11389000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
