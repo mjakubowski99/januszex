@@ -47,6 +47,26 @@ class Routes{
         $router->add('GET', 'changeAddress', 'AddressController', 'test');
         $router->add('POST', 'changeAddress', 'AddressController', 'store');
 
+        $router->add('GET', 'admin/customers', 'AdminController', 'getAccountList');
+        $router->add('POST', 'admin/customers', 'AdminController', 'postAccountList');
+
+        $router->add('GET', 'admin/errors', 'AdminController', 'getErrorList');
+        $router->add('POST', 'admin/errors', 'AdminController', 'postErrorList');
+
+        $router->add('GET', 'admin/orderdetails', 'AdminController', 'getOrderDetails');
+        $router->add('POST', 'admin/orderdetails', 'AdminController', 'postOrderDetails');
+
+        $router->add('GET', 'admin/orders', 'AdminController', 'getOrdersList');
+        $router->add('POST', 'admin/orders', 'AdminController', 'postOrdersList');
+
+        $router->add('GET', 'admin/products', 'AdminController', 'getProductOperation');
+        $router->add('POST', 'admin/products', 'AdminController', 'postProductOperation');
+
+        //$router->add('POST', 'admin/deleteCustomer', 'AdminController', 'postDeleteCustomer');
+
+        $router->add('GET', 'products', 'ProductController', 'getProductsList');
+        $router->add('POST', 'products', 'ProductController', 'postProductsList');
+
         $this->router = $router;
     }
 
