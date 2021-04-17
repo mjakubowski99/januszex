@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48dc034e-0b6a-471b-87c8-c50f75bb61cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/creator/RefreshDatabase.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/database/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/database/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/facades/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/facades/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/validators/ChangePasswordValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/validators/ChangePasswordValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/creator/DatabaseCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/creator/DatabaseCreator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/creator/SampleDatabaseData.php" beforeDir="false" afterPath="$PROJECT_DIR$/creator/SampleDatabaseData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/AddressChangeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AddressChangeTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DatabaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DatabaseTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SanitizeTest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/UserResourceTest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/VerifyTokenSanitazeTest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AdminController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +101,8 @@
       <workItem from="1617463707548" duration="23092000" />
       <workItem from="1617488765633" duration="16000" />
       <workItem from="1617531717460" duration="25018000" />
-      <workItem from="1618329592554" duration="11389000" />
+      <workItem from="1618329592554" duration="12100000" />
+      <workItem from="1618652599249" duration="1390000" />
     </task>
     <servers />
   </component>
@@ -128,6 +119,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

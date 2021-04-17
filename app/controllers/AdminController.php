@@ -35,25 +35,68 @@ class AdminController extends Controller{
         $this->view("adminOrderDetails", 1);
     }
 
+    private function getAddressQuery(){
+        return "
+            select 
+            users.name, 
+            users.surname, 
+            address.street,
+            address.home_number, 
+            address.flat_number, 
+            address.postoffice_code, 
+            address.city
+            from orders
+            INNER JOIN address
+            ON orders.address_id = address.ID
+            INNER JOIN users
+            ON orders.user_id = users.ID 
+            WHERE orders.ID = :order_id
+        ";
+    }
+
+    public function getProductsQuery(){
+        return "
+            select 
+            orders_parts.product_id,
+            products.product_name,
+            orders_parts.quantity, 
+            products.price
+            FROM orders
+            INNER JOIN  orders_parts
+            ON orders.ID = orders_parts.order_id
+            INNER JOIN products
+            ON orders_parts.product_id = products.ID
+            WHERE orders.ID = :order_id
+        ";
+    }
+
     public function postOrderDetails(){
         $database = new Database();
         $orderID = strip_tags($_POST["orderId"]);
         $values = [':order_id' => $orderID];
 
-        $sql = "SELECT orders.ID, orders.order_date, orders.user_id, orders.status, users.name, users.surname, address.street, address.home_number, address.flat_number, address.postoffice_code, address.city, orders_parts.product_id, products.product_name, orders_parts.quantity, products.price, orders.full_amount
+        $sql = "SELECT 
+                orders.ID, 
+                orders.order_date,
+                orders.user_id, 
+                orders.status,
+                orders.full_amount
                 FROM orders
-                INNER JOIN users 
-                ON orders.user_id = users.ID
-                INNER JOIN address
-                ON users.address_id = address.ID
                 INNER JOIN  orders_parts
                 ON orders.ID = orders_parts.order_id
                 INNER JOIN products
                 ON orders_parts.product_id = products.ID
-                WHERE orders.ID = :order_id";
-        $result = $database->executeMany($sql, $values);
+                WHERE orders.ID = :order_id
+                GROUP BY orders.ID";
 
-        echo json_encode($result);
+        $order = $database->executeMany($sql, $values)[0]; //to get first row
+        $address = $database->executeMany( $this->getAddressQuery(), $values );
+        $products = $database->executeMany( $this->getProductsQuery(), $values );
+
+        $order['address'] = $address;
+        $order['products'] = $products;
+
+        echo json_encode($order);
     }
 
     public function getOrdersList(){
