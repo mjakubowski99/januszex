@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AdminService} from '../../services/admin.service';
 
 @Component({
   selector: 'app-admin-orders',
@@ -6,41 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-orders.component.scss']
 })
 export class AdminOrdersComponent implements OnInit {
-  orders: any;
-  constructor() {
-    this.orders = [
-      {
-        orderId: 4,
-        customerId: 4,
-        date: new Date(12321),
-        price: 123.1,
-        status: 'xxxxxxx',
-      },
-      {
-        orderId: 1,
-        customerId: 4,
-        date: new Date(12421412214),
-        price: 11123.1,
-        status: 'Zrealizowane',
-      },
-      {
-        orderId: 2,
-        customerId: 4,
-        date: new Date(),
-        price: 999.1,
-        status: 'Anulowane',
-      },
-      {
-        orderId: 3,
-        customerId: 4,
-        date: new Date(),
-        price: 12414.1,
-        status: 'Weryfikacja płatności',
-      },
-    ];
+  orders: any = [];
+
+  constructor(private adminService: AdminService) {
   }
 
   ngOnInit(): void {
+    this.adminService.getOrders().subscribe((response: any[]) => {
+      this.orders = response.map(resOrders => ({
+        orderId: +resOrders.ID,
+        customerId: +resOrders.user_id,
+        date: new Date(resOrders.order_date),
+        price: resOrders.full_amount,
+        status: resOrders.status
+      }));
+    });
   }
 
 }

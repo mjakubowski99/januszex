@@ -15,7 +15,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-orders>
-        <tr routerLink="/home">
+        <tr routerLink="{{orders.orderId}}" class="order-item">
           <td>{{orders.orderId}}</td>
           <td>{{orders.customerId}}</td>
           <td>{{orders.date | date:'medium'}}</td>

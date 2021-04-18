@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {CustomMessageService} from './custom-message.service';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {ChangePasswordFormData} from '../models/change-password-form-data';
 import {Converter} from './converter';
 import {environment} from '../../environments/environment';

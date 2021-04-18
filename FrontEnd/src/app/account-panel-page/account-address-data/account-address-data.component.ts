@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AddressFormData} from '../../models/address-form-data';
 import {AccountService} from '../../services/account.service';
 import {AddressData} from '../../models/address-data';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-account-address-data',
@@ -13,7 +14,7 @@ export class AccountAddressDataComponent implements OnInit {
   newAddressDataForm: FormGroup;
   currentAddressData: AddressData;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -52,18 +53,17 @@ export class AccountAddressDataComponent implements OnInit {
   }
 
   private getAddress(): void {
-    this.accountService.getAddressData().subscribe(resData => {
-        this.currentAddressData = {
-          name: resData.name,
-          surname: resData.surname,
-          city: resData.city,
-          street: resData.street,
-          homeNumber: resData.home_number,
-          flatNumber: resData.flat_number,
-          postOfficeName: resData.postoffice_name,
-          postOfficeCode: resData.postoffice_code
-        };
-      }
-    );
+    const resData = this.route.snapshot.data.accountGetAddressData;
+
+    this.currentAddressData = {
+      name: resData.name,
+      surname: resData.surname,
+      city: resData.city,
+      street: resData.street,
+      homeNumber: resData.home_number,
+      flatNumber: resData.flat_number,
+      postOfficeName: resData.postoffice_name,
+      postOfficeCode: resData.postoffice_code
+    };
   }
 }
