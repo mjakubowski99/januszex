@@ -10,7 +10,6 @@ import {mergeMap, tap} from 'rxjs/operators';
 import jwtDecode from 'jwt-decode';
 import {Router} from '@angular/router';
 import {CustomMessageService} from './custom-message.service';
-import {FormControl} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -43,18 +42,6 @@ export class AuthenticationService {
           return of(resData);
         }
       })
-      // tap(resData => {
-      //   if (resData.message === 'Rejestracja powiodla sie. Sprawdz podany adres e-mail w celu aktywacji konta') {
-      //     const loginFormData: LoginFormData = {
-      //       email: registrationFormData.email,
-      //       password: registrationFormData.password
-      //     };
-      //     this.login(loginFormData).subscribe(response => {
-      //       console.log(response);
-      //       this.router.navigate(['/authentication/registration/confirmEmail']);
-      //     });
-      //   }
-      // })
     );
   }
 
@@ -71,6 +58,8 @@ export class AuthenticationService {
         const decodedToken = jwtDecode<any>(token);
         console.log(decodedToken);
         this.handleAuthentication(decodedToken.email, token, new Date(decodedToken.exp * 1000));
+
+        this.router.navigate(['/home']);
       })
     );
   }

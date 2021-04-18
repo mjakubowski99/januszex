@@ -1,50 +1,63 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
+
 import {AppComponent} from './app.component';
-import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
-
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-
 
 import {HeaderComponent} from './header/header.component';
 
-import {HomePageComponent} from './home-page/home-page.component';
-import {CategoriesListComponent} from './home-page/categories-list/categories-list.component';
-import {RecommendedProductsListComponent} from './home-page/recommended-products-list/recommended-products-list.component';
-import {RecommendedProductItemComponent} from './home-page/recommended-products-list/recommended-product-item/recommended-product-item.component';
-
-import {AuthorizationPageComponent} from './authentication-page/authorization-page.component';
-
-import {CartComponent} from './cart/cart.component';
-import {LoginFormComponent} from './authentication-page/login-form/login-form.component';
-import {RegistrationFormComponent} from './authentication-page/registration-form/registration-form.component';
-import {RegistrationConfirmEmailFormComponent} from './authentication-page/registration-confirm-email-form/registration-confirm-email-form.component';
-import {RegistrationConfirmationComponent} from './authentication-page/registration-confirmation/registration-confirmation.component';
-import {ResetPasswordEmailFormComponent} from './authentication-page/reset-password-email-form/reset-password-email-form.component';
-import {ResetPasswordConfirmationComponent} from './authentication-page/reset-password-confirmation/reset-password-confirmation.component';
-import {AdminPanelPageComponent} from './admin-panel-page/admin-panel-page.component';
-import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {AccountPanelPageComponent} from './account-panel-page/account-panel-page.component';
 import {AccountPanelNaviagtionBarComponent} from './account-panel-page/account-panel-naviagtion-bar/account-panel-naviagtion-bar.component';
 import {AccountOrdersListComponent} from './account-panel-page/account-orders-list/account-orders-list.component';
 import {AccountOrderDetailsComponent} from './account-panel-page/account-order-details/account-order-details.component';
 import {AccountChangePasswordFormComponent} from './account-panel-page/account-change-password-form/account-change-password-form.component';
 import {AccountAddressDataComponent} from './account-panel-page/account-address-data/account-address-data.component';
-import {TableModule} from 'primeng/table';
+
+import {AdminPanelNaviagtionBarComponent} from './admin-panel-page/admin-panel-naviagtion-bar/admin-panel-naviagtion-bar.component';
+import {AdminProductsComponent} from './admin-panel-page/admin-products/admin-products.component';
+import {AdminOrdersComponent} from './admin-panel-page/admin-orders/admin-orders.component';
+import {AdminCustomersComponent} from './admin-panel-page/admin-customers/admin-customers.component';
+import {AdminErrorsComponent} from './admin-panel-page/admin-errors/admin-errors.component';
+import {AdminPanelPageComponent} from './admin-panel-page/admin-panel-page.component';
+
+import {AuthenticationPageComponent} from './authentication-page/authentication-page.component';
+import {LoginFormComponent} from './authentication-page/login-form/login-form.component';
+import {RegistrationFormComponent} from './authentication-page/registration-form/registration-form.component';
+import {RegistrationConfirmEmailFormComponent} from './authentication-page/registration-confirm-email-form/registration-confirm-email-form.component';
+import {RegistrationConfirmationComponent} from './authentication-page/registration-confirmation/registration-confirmation.component';
+import {ResetPasswordEmailFormComponent} from './authentication-page/reset-password-email-form/reset-password-email-form.component';
+import {ResetPasswordConfirmationComponent} from './authentication-page/reset-password-confirmation/reset-password-confirmation.component';
+
+import {HomePageComponent} from './home-page/home-page.component';
+import {CategoriesListComponent} from './home-page/categories-list/categories-list.component';
+import {RecommendedProductsListComponent} from './home-page/recommended-products-list/recommended-products-list.component';
+import {RecommendedProductItemComponent} from './home-page/recommended-products-list/recommended-product-item/recommended-product-item.component';
+
+import {CartComponent} from './cart/cart.component';
+
+import {AuthInterceptor} from './interceptors/auth.interceptor';
+import {CustomMessageService} from './services/custom-message.service';
+
 import {NgxErrorsModule} from '@hackages/ngxerrors';
+
+import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {TableModule} from 'primeng/table';
 import {MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CustomMessageService} from './services/custom-message.service';
-import { AdminPanelNaviagtionBarComponent } from './admin-panel-page/admin-panel-naviagtion-bar/admin-panel-naviagtion-bar.component';
-import { AdminProductsComponent } from './admin-panel-page/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './admin-panel-page/admin-orders/admin-orders.component';
-import { AdminCustomersComponent } from './admin-panel-page/admin-customers/admin-customers.component';
-import { AdminErrorsComponent } from './admin-panel-page/admin-errors/admin-errors.component';
+import {DropdownModule} from 'primeng/dropdown';
+
+import { AdminProductsListComponent } from './admin-panel-page/admin-products/admin-products-list/admin-products-list.component';
+import { AdminProductsEditComponent } from './admin-panel-page/admin-products/admin-products-edit/admin-products-edit.component';
+import { AdminProductsAddComponent } from './admin-panel-page/admin-products/admin-products-add/admin-products-add.component';
+import {MenubarModule} from 'primeng/menubar';
+import {DataViewModule} from 'primeng/dataview';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import { AdminOrderDetailsComponent } from './admin-panel-page/admin-order-details/admin-order-details.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +67,7 @@ import { AdminErrorsComponent } from './admin-panel-page/admin-errors/admin-erro
     CategoriesListComponent,
     RecommendedProductsListComponent,
     RecommendedProductItemComponent,
-    AuthorizationPageComponent,
+    AuthenticationPageComponent,
     CartComponent,
     LoginFormComponent,
     RegistrationFormComponent,
@@ -73,7 +86,11 @@ import { AdminErrorsComponent } from './admin-panel-page/admin-errors/admin-erro
     AdminProductsComponent,
     AdminOrdersComponent,
     AdminCustomersComponent,
-    AdminErrorsComponent
+    AdminErrorsComponent,
+    AdminProductsListComponent,
+    AdminProductsEditComponent,
+    AdminProductsAddComponent,
+    AdminOrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +104,10 @@ import { AdminErrorsComponent } from './admin-panel-page/admin-errors/admin-erro
     TableModule,
     NgxErrorsModule,
     ToastModule,
+    DropdownModule,
+    MenubarModule,
+    DataViewModule,
+    InputTextareaModule
   ],
   providers: [
     {

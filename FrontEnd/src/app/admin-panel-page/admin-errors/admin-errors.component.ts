@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AdminService} from '../../services/admin.service';
 
 @Component({
   selector: 'app-admin-errors',
@@ -7,28 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminErrorsComponent implements OnInit {
 
-  errors: any;
-  constructor() {
-    this.errors = [
-      {
-        errorId: 3,
-        userId: 3,
-        errorMessage: 'Nic nie działa kurła!!!!'
-      },
-      {
-        errorId: 1,
-        userId: null,
-        errorMessage: 'Przecioż tu nic nie ma!! kurłaaaa Pioter idziem na ryby!!!!'
-      },
-      {
-        errorId: 2,
-        userId: null,
-        errorMessage: 'Tylko ten formularz dzała poprawnie kurłaaa!!!!'
-      },
-    ];
+  errors: any[] = [];
+
+  constructor(private adminService: AdminService) {
   }
 
   ngOnInit(): void {
+    console.log(this.errors);
+    this.adminService.getErrors().subscribe((response: any[]) => {
+      this.errors = response.map(resErrors => ({
+        errorId: +resErrors.ID,
+        userId: +resErrors.user_id,
+        errorMessage: resErrors.error_message
+      }));
+    });
   }
-
 }
