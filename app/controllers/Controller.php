@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\facades\Json;
+
 class Controller{ 
     
     public function view($view, $data = []){

@@ -7,13 +7,14 @@ use app\models\Address;
 use app\facades\ResponseStatus;
 use app\facades\Filters;
 use app\validators\AddressValidator;
+use app\facades\Json;
 
 
 class AddressController extends Controller
 {
 
     public function index(){
-        //Auth::simulate('user@example.com');
+        //Auth::simulate('user10@example.com');
 
         if( !Auth::isLogged() )
             ResponseStatus::code(401);
@@ -21,13 +22,13 @@ class AddressController extends Controller
 
         $address = Address::getAuthUserAddress();
         if( $address !== null )
-            echo json_encode($address);
+            Json::response($address);
         else
-            echo json_encode(['message' => 'Ten uzytkownik nie ma przypisanego adresu']);
+            echo Json::response(['message' => 'Ten uzytkownik nie ma przypisanego adresu']);
     }
 
     public function test(){
-        //Auth::simulate('user@example.com');
+        //Auth::simulate('user10@example.com');
 
         if( !Auth::isLogged() )
             ResponseStatus::code(401);
@@ -36,7 +37,7 @@ class AddressController extends Controller
     }
 
     public function store(){
-        //Auth::simulate('user@example.com');
+        //Auth::simulate('user10@example.com');
 
         if( !Auth::isLogged() )
             ResponseStatus::code(401);
@@ -56,10 +57,10 @@ class AddressController extends Controller
             ], [
                 'id' => Address::getAuthUserAddressId()
             ]);
-            echo json_encode(['message' => 'Success']);
+            echo Json::response(['message' => 'Success']);
         }
         else {
-            echo json_encode(['message' => $message]);
+            echo Json::response(['message' => $message]);
         }
 
     }

@@ -10,13 +10,17 @@ use app\facades\ResponseStatus;
 
 class ResendVerificationController extends Controller{
 
+    protected $sanitizator;
+
+    protected $verify;
+
     public function __construct(){
         $this->sanitizator = new VerifyTokenSanitize();
         $this->verify = new VerifyToken();
     }
 
     public function index(){
-        //Auth::simulate('user@example.com');
+        //Auth::simulate('user10@example.com');
 		if( Auth::isLogged())
         	$this->view('resendVerification');
 		else
@@ -24,7 +28,7 @@ class ResendVerificationController extends Controller{
     }
 
     public function store(){
-        //Auth::simulate('user@example.com');
+        //Auth::simulate('user10@example.com');
 
 		$email = Auth::email();
 
