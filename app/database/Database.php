@@ -11,7 +11,7 @@ class Database{
         $connection = $db_conn->getConnection();
 
         try{
-            $stmt = $connection->prepare($query);
+            $stmt = $connection->prepare( $query );
             foreach($values as $key => $value){
                 $stmt->bindValue($key, $value, PDO::PARAM_STR);
             }

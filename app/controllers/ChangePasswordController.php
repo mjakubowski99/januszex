@@ -12,7 +12,7 @@ use app\facades\Simulate;
 class ChangePasswordController extends Controller{
 
     public function index(){
-        //Auth::simulate('user@example.com');
+        //Auth::simulate('user10@example.com');
 
         if( Auth::isLogged() ){
             $this->view('changePassword');
@@ -24,7 +24,7 @@ class ChangePasswordController extends Controller{
     }
 
     public function store(){
-        //Auth::simulate('user@example.com');
+        //Auth::simulate('user10@example.com');
 
         if( !Auth::isLogged() )
             ResponseStatus::code(401, 'My message');

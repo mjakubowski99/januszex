@@ -12,7 +12,7 @@ use app\facades\Auth;
 class LoginController extends Controller{
 
 	public function index(){
-		$jwt = new JwtManage();
+		$jwt = new JwtManage('user');
 		if( $jwt->tokenIsValid() ){
 			echo json_encode([
 				'message' => 'Zalogowany'
@@ -31,7 +31,7 @@ class LoginController extends Controller{
 		
 		$validator = new LoginValidator();
 		$database = new Database();
-		$jwt = new JwtManage();
+		$jwt = new JwtManage('user');
 
 		$password = strip_tags($_POST["password"]);
 		$email = strip_tags($_POST["email"]);
