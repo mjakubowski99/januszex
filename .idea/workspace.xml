@@ -2,31 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48dc034e-0b6a-471b-87c8-c50f75bb61cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/AdminLoginController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/facades/AdminAuth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/facades/Json.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/Product.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/validators/AdminLoginValidator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/genAdminSecret.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makeHash.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/adminLogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/JwtManage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/JwtManage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/AddressController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AddressController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ChangePasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ChangePasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ResendVerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ResendVerificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/database/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/database/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/facades/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/facades/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/Routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/AddressChangeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AddressChangeTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/JwtTokenTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/JwtTokenTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/OrdersTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/OrdersTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
