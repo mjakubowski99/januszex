@@ -65,9 +65,19 @@ abstract class Model{
     public static function all(){
         static::tryToSetDatabase();
 
-        $query = "SELECT * FROM :table";
-        $values = [ 'table' => static::$tableName ];
-        static::$database->execute($query, $values);
+        $query = "SELECT * FROM ".static::$tableName;
+        $values = [];
+
+        return static::$database->execute($query, $values);
+    }
+
+    public static function get($id){
+        static::tryToSetDatabase();
+        $query = "SELECT * FROM ".static::$tableName." WHERE id=:id";
+        $values = [
+            'id' => $id
+        ];
+
         return static::$database->execute($query, $values);
     }
 }

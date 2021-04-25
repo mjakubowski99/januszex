@@ -18,7 +18,7 @@ class ResetPasswordController extends Controller
     public function index(){
         //Auth::simulate('user@example.com');
 
-        $jwt = new JwtManage();
+        $jwt = new JwtManage('user');
         $jwt->tokenIsValid();
 
         $this->view('resetPassword');

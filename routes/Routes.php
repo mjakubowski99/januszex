@@ -67,6 +67,13 @@ class Routes{
         $router->add('GET', 'products', 'ProductController', 'getProductsList');
         $router->add('POST', 'products', 'ProductController', 'postProductsList');
 
+
+
+        $router->add('GET', 'products/{id}', 'ProductController', 'show');
+
+        $router->add('GET', 'admin/login', 'AdminLoginController', 'index');
+        $router->add('POST', 'admin/login', 'AdminLoginController', 'store');
+
         $this->router = $router;
     }
 

@@ -50,7 +50,7 @@ final class AddressChangeTest extends TestCase
         $refresh = new RefreshDatabase();
         $refresh->refresh();
 
-        $jwt = new JwtManage();
+        $jwt = new JwtManage('user');
         $db = new Database();
         $row = $db->execute("SELECT email FROM users LIMIT 1");
 

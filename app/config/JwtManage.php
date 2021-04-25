@@ -13,12 +13,22 @@ class JwtManage{
 
     private $matches;
 
-    public function __construct(){
+    private $role;
+
+    public function __construct($role){
         ( new DotEnv(__DIR__.'/../../.env') )->load();
+        $this->role = $role;
+    }
+
+    private function getSecret(){
+        if( $this->role === 'admin' )
+            return getenv("JWT_ADMIN_SECRET");
+        if( $this->role === 'user' )
+            return getenv("JWT_SECRET");
     }
 
     public function createToken($email){
-        $secret = getenv("JWT_SECRET");
+        $secret = $this->getSecret();
         $issuedAt = new DateTimeImmutable();
         $expire = $issuedAt->modify('+2 hours')->getTimestamp();
         $serverName = getenv("SERVER_DOMAIN");
@@ -28,6 +38,7 @@ class JwtManage{
             'iss'  => $serverName,       // Issuer
             'nbf'  => $issuedAt->getTimestamp(),         // Not before
             'exp'  => $expire,           // Expire
+            'role' => $this->role,
             'email' => $email,  
         ];
 
@@ -45,7 +56,7 @@ class JwtManage{
             return null;
 
         $jwt = $this->matches[1];
-        $secret = getenv("JWT_SECRET");
+        $secret = $this->getSecret();
         $token = JWT::decode($jwt, $secret, ['HS512']);
 
         if( $this->tokenHasValidSignatureAndNotExpired($token) )
@@ -75,7 +86,7 @@ class JwtManage{
         //if( $this->tokenOnBlacklist($jwt) )
         //    return false;
 
-        $secret = getenv("JWT_SECRET");
+        $secret = $this->getSecret();
         $token = JWT::decode($jwt, $secret, ['HS512']); //some token was extracted
 
         return $this->tokenHasValidSignatureAndNotExpired($token);
