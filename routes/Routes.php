@@ -30,6 +30,10 @@ class Routes{
         $this->adminRoutes($router);
         $this->productRoutes($router);
 
+        $router->add('GET', 'init/order', 'PaymentController', 'index');
+        $router->add('POST', 'payu/create/order', 'PaymentController', 'create');
+        //$router->add('GET', 'retrieve/order', 'PaymentController', 'retrieve');
+
         $this->router = $router;
     }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb0ffd0b5dc42e3bb050abeb425933ab",
+    "content-hash": "9544aae6e0b52272a5ac0eb0a2f5418f",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -274,6 +274,57 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.8.1"
             },
             "time": "2021-03-21T16:25:00+00:00"
+        },
+        {
+            "name": "openpayu/openpayu",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PayU-EMEA/openpayu_php.git",
+                "reference": "6e2777802ab5588fc79652868657b107ef2fd4f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PayU-EMEA/openpayu_php/zipball/6e2777802ab5588fc79652868657b107ef2fd4f2",
+                "reference": "6e2777802ab5588fc79652868657b107ef2fd4f2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-hash": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.3"
+            },
+            "type": "library",
+            "extra": [
+                {
+                    "engine": "PHP SDK"
+                }
+            ],
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "OpenPayU",
+                    "homepage": "http://developers.payu.com"
+                }
+            ],
+            "description": "OpenPayU PHP Library",
+            "support": {
+                "issues": "https://github.com/PayU/openpayu_php/issues",
+                "source": "https://github.com/PayU-EMEA/openpayu_php/tree/v2.3.0"
+            },
+            "time": "2021-04-07T06:23:51+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

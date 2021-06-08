@@ -80,4 +80,12 @@ abstract class Model{
 
         return static::$database->execute($query, $values);
     }
+
+    public static function ids()
+    {
+        static::tryToSetDatabase();
+        $query = "SELECT id FROM " . static::$tableName;
+
+        return static::$database->executeMany($query, []);
+    }
 }

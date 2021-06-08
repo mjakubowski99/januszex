@@ -5,6 +5,7 @@
     "require": {
         "firebase/php-jwt": "^5.2",
         "phpmailer/phpmailer": "^6.3",
-        "guzzlehttp/guzzle": "7.0"
+        "guzzlehttp/guzzle": "7.0",
+        "openpayu/openpayu" : "^2.3"
     }
 }

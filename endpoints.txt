@@ -59,3 +59,25 @@ changeAddress => method: POST, you must send token
         -if data not valid: { 'message': 'Some validation error message' }
         -if data valid { 'message': 'Success' }
         -If database error you will get message { 'message': 'Some error message' }
+
+payu/create/order => method: POST, you must send token
+    Send array:
+        products: [
+            {"id": 1, "quantity": 3},
+            {"id": 2, "quantity": 4},
+        ]
+    Api will get your email address from token
+
+    Response:
+        -if data validation fails:
+            [
+                "status" => "error",
+                "message" =>  "Some error message"
+            ]
+        -if order failed to create for some reason, it could be extId already exists, or some other reason
+         which not allow you to create payu order
+
+         Example error:
+            [
+                {"message":"ERROR_ORDER_NOT_UNIQUE - Order with given extOrderId already exists"}
+            ]
