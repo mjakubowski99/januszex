@@ -111,62 +111,11 @@ class SampleDatabaseData{
         }
     }
 
-    public function fillOrdersTable(){
-        try{
-            $sql_statement = "INSERT INTO orders (ID, user_id, address_id, order_date, full_amount, status) VALUES
-                             (1, 1, 1, '2021-04-08', 5396, 'W trakcie'),
-                             (2, 2, 2, '2021-04-08', 999, 'Dostarczone'),
-                             (3, 3, 3, '2021-04-08', 399, 'Nieoplacone'),
-                             (4, 4, 4, '2021-04-08', 2999, 'W trakcie'),
-                             (5, 5, 5, '2021-04-08', 2399, 'W trakcie'),
-                             (6, 6, 6, '2021-04-08', 299, 'W trakcie'),
-                             (7, 7, 7, '2021-04-08', 8997, 'Dostarczone'),
-                             (8, 8, 8, '2021-04-08', 99, 'W trakcie'),
-                             (9, 9, 9, '2021-04-08', 2399, 'W trakcie'),
-                             (10, 10, 10, '2021-04-08', 99, 'Nieoplacone');";
-            
-            $this->connection->exec($sql_statement);
-        } catch(PDOException $e){
-            echo json_encode([
-                'message' => $e->getMessage()
-            ]);
-
-            die();
-        }
-    }
-
-    public function fillOrdersPartsTable(){
-        try{
-            $sql_statement = "INSERT INTO orders_parts(ID, product_id, order_id, quantity) VALUES
-                             (1, 1, 1, 1),
-                             (2, 2, 2, 1),
-                             (3, 3, 3, 1),
-                             (4, 4, 4, 1),
-                             (5, 5, 5, 1),
-                             (6, 6, 6, 1),
-                             (7, 7, 7, 3),
-                             (8, 8, 8, 1),
-                             (9, 9, 9, 1),
-                             (10, 10, 10, 1),
-                             (11, 2, 1, 3);";
-            
-            $this->connection->exec($sql_statement);
-        } catch(PDOException $e){
-            echo json_encode([
-                'message' => $e->getMessage()
-            ]);
-
-            die();
-        }
-    }
-
     public function fillAllTables(){
         $this->fillAddressTable();
         $this->fillUserTable();
         $this->fillErrorsTable();
         $this->fillProductTable();
-        $this->fillOrdersTable();
-        $this->fillOrdersPartsTable();
 
     }
 }

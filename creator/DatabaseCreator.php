@@ -103,9 +103,11 @@ class DatabaseCreator{
         try{
             $sql_statement = "CREATE table IF NOT EXISTS orders(
                                 ID BIGINT NOT NULL AUTO_INCREMENT,
+                                payu_ext_order_id varchar(255) NOT NULL,
+                                payu_order_id varchar(255) NOT NULL,
                                 user_id BIGINT NOT NULL, #FK
                                 address_id BIGINT NOT NULL, #FK
-                                order_date datetime NOT NULL,
+                                order_date datetime,
                                 full_amount float NOT NULL,
                                 status ENUM('Nieoplacone', 'W trakcie', 'Dostarczone'),
                                 PRIMARY KEY (ID),

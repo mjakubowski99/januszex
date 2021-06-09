@@ -32,7 +32,8 @@ class Routes{
 
         $router->add('GET', 'init/order', 'PaymentController', 'index');
         $router->add('POST', 'payu/create/order', 'PaymentController', 'create');
-        //$router->add('GET', 'retrieve/order', 'PaymentController', 'retrieve');
+        $router->add('POST', 'order/notify', 'PaymentController', 'notify');
+        $router->add('GET', 'order/retrieve', 'OrderController', 'retrieve');
 
         $this->router = $router;
     }

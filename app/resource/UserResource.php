@@ -28,4 +28,15 @@ class UserResource extends Resource{
         else
             return null;
     }
+
+    public function getUserByEmail($email){
+        $query = "SELECT id, address_id FROM users WHERE email=:email";
+        $values = ['email' => $email];
+
+
+        $row = $this->database->execute($query,$values);
+        if( !$row )
+            return null;
+        return $row;
+    }
 }

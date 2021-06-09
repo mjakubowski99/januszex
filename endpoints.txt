@@ -81,3 +81,5 @@ payu/create/order => method: POST, you must send token
             [
                 {"message":"ERROR_ORDER_NOT_UNIQUE - Order with given extOrderId already exists"}
             ]
+
+order/retrieve => method GET you must send order_id in query params

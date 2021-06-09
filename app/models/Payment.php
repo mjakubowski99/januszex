@@ -5,14 +5,19 @@ namespace app\models;
 
 
 use app\config\DotEnv;
+use app\resource\ProductResource;
 use OpenPayU_Configuration;
 use OpenPayU_Order;
 
 class Payment
 {
 
+    public static $lastOrder;
+
     public static function create($products, $email){
         ( new DotEnv(__DIR__.'/../../.env') )->load();
+
+        $productResource = new ProductResource();
 
         $order['continueUrl'] = getenv('PAYU_CONTINUE_URL'); //customer will be redirected to this page after successfull payment
         $order['notifyUrl'] = getenv('PAYU_NOTIFY_URL');
@@ -27,11 +32,13 @@ class Payment
         $i = 0;
         $amount = 0;
         foreach($products as $product){
-            $order['products'][$i]['name'] = $product['id'];
-            $order['products'][$i]['unitPrice'] = 100;
+            $price = $productResource->getProductPriceById($product['id']);
+
+            $order['products'][$i]['name'] = $product['id']; //id is assigned as a name
+            $order['products'][$i]['unitPrice'] = $price;
             $order['products'][$i]['quantity'] = $product['quantity'];
 
-            $amount += (100 * intval($product['quantity']) );
+            $amount += (100 * $price * intval($product['quantity']) );
             $i++;
         }
 
@@ -39,6 +46,8 @@ class Payment
 
         //optional section buyer
         $order['buyer']['email'] = $email;
+
+        self::$lastOrder = $order;
 
         return OpenPayU_Order::create($order);
     }

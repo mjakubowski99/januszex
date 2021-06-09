@@ -39,4 +39,15 @@ class OrdersResource extends Resource
         return $rows;
     }
 
+    public function getOrderByPayuId($payuOrderId){
+        $query = "SELECT id FROM order WHERE payu_order_id=:payu_order_id";
+
+        $values = ['payu_order_id' => $payuOrderId];
+        $row = $this->database->execute($query, $values);
+
+        if( !$row )
+            return null;
+        return $row['id'];
+    }
+
 }
