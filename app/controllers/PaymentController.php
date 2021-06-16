@@ -22,7 +22,6 @@ class PaymentController extends Controller
     }
 
     public function create(){
-        Auth::simulate("Jan.Kowalski@wp.pl");
         if( !Auth::isLogged() )
             ResponseStatus::code(401);
 
