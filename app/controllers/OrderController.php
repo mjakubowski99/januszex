@@ -41,7 +41,6 @@ class OrderController extends Controller
     }
 
     public function lastOrder(){
-        Auth::simulate('Jan.Kowalski@wp.pl');
         if( !Auth::isLogged() ){
             ResponseStatus::code(403);
         }
@@ -92,6 +91,10 @@ class OrderController extends Controller
 
 
     public function showDetails(){
+        if( !Auth::isLogged() ){
+            ResponseStatus::code(403);
+        }
+
         $database = new Database();
         $orderID = strip_tags($_POST["orderId"]);
 
