@@ -35,7 +35,7 @@ class PaymentController extends Controller
             Order::create( Payment::$lastOrder, $response->getResponse()->orderId );
 
             Json::response([
-                "status" => "error",
+                "status" => "success",
                 "message" =>  $response->getResponse()->redirectUri
             ]);
         }
