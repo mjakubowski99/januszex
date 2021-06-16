@@ -34,7 +34,10 @@ class PaymentController extends Controller
             $response = Payment::create($data->products, $email);
             Order::create( Payment::$lastOrder, $response->getResponse()->orderId );
 
-            header('Location:'.$response->getResponse()->redirectUri);
+            Json::response([
+                "status" => "error",
+                "message" =>  $response->getResponse()->redirectUri
+            ]);
         }
         else{
             Json::response([
