@@ -22,7 +22,7 @@ class OrdersResource extends Resource
             return null;
 
 
-        $query = "SELECT orders_parts.order_id, orders.order_date, 
+        $query = "SELECT orders.id, orders_parts.order_id, orders.order_date, 
                   SUM( products.price * orders_parts.quantity) as price, orders.status
                   FROM orders_parts
                   LEFT JOIN orders ON orders_parts.order_id = orders.id

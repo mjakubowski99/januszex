@@ -34,6 +34,8 @@ class Routes{
         $router->add('POST', 'payu/create/order', 'PaymentController', 'create');
         $router->add('POST', 'order/notify', 'PaymentController', 'notify');
         $router->add('GET', 'order/retrieve', 'OrderController', 'retrieve');
+        $router->add('GET', 'last_order/retrieve', 'OrderController', 'lastOrder');
+        $router->add('POST', 'account/orderdetails', 'OrderController', 'showDetails');
 
         $this->router = $router;
     }
