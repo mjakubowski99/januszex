@@ -7,6 +7,12 @@ try{
     require_once '../vendor/autoload.php';
     require_once '../app/config/PayuConfig.php';
 
+    if( isset( getallheaders()['Content-Type'] )
+        && getallheaders()['Content-Type'] === 'application/json'
+    ){
+        $json = json_decode( file_get_contents('php://input') );
+    }
+
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
 

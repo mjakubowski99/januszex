@@ -27,10 +27,11 @@ class PaymentController extends Controller
             ResponseStatus::code(401);
 
         $validator = new PaymentValidator();
+        $data = Json::receive();
 
-        if( $validator->validate($_POST) ){
+        if( $validator->validate($data) ){
             $email = Auth::email();
-            $response = Payment::create($_POST['products'], $email);
+            $response = Payment::create($data->products, $email);
             Order::create( Payment::$lastOrder, $response->getResponse()->orderId );
 
             header('Location:'.$response->getResponse()->redirectUri);

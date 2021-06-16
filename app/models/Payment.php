@@ -32,13 +32,13 @@ class Payment
         $i = 0;
         $amount = 0;
         foreach($products as $product){
-            $price = $productResource->getProductPriceById($product['id']);
+            $price = $productResource->getProductPriceById($product->id);
 
-            $order['products'][$i]['name'] = $product['id']; //id is assigned as a name
+            $order['products'][$i]['name'] = $product->id; //id is assigned as a name
             $order['products'][$i]['unitPrice'] = $price;
-            $order['products'][$i]['quantity'] = $product['quantity'];
+            $order['products'][$i]['quantity'] = $product->quantity;
 
-            $amount += (100 * $price * intval($product['quantity']) );
+            $amount += (100 * $price * intval($product->quantity) );
             $i++;
         }
 
