@@ -19,7 +19,7 @@ class App{
         $method = $params[1];
         $args = $params[2];
 
-        require_once '../app/controllers/'.$controller.'.php';
+        $controller = "\\app\\controllers\\".$controller;
 
         //run suitable controller and his method
         $controller_class = new $controller();
@@ -28,6 +28,10 @@ class App{
             call_user_func( array($controller_class, $method) );
         else
             call_user_func_array( array($controller_class, $method), array($args) );
+    }
+
+    public function isStorage($link){
+        return $link === 'storage';
     }
 
     public function parseUrl(){

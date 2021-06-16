@@ -97,6 +97,8 @@ class Router{
             echo json_encode([
                 'message' => "Error! We doesn't support this type of request for this route!"
             ]);
+
+            die();
         }
 
     }

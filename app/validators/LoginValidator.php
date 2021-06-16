@@ -1,16 +1,14 @@
 <?php
 
-require_once '../app/database/Database.php';
+namespace app\validators;
 
-class LoginValidator{
+class LoginValidator extends Validator{
 
     public function findUserByEmail($email){
-        $database = new Database();
-		$query = "SELECT email, password FROM Users WHERE email=:uemail";
-		$values = [ 'uemail' => $email ] ;
-        $row = $database->execute($query, $values);
+		$query = "SELECT email, password FROM users WHERE email=:uemail";
+		$values = [ 'uemail' => $email ];
 
-		return $row;
+		return $this->database->execute($query, $values);
     }
     
     public function checkPasswordValid($password, $hash){

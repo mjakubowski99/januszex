@@ -11,6 +11,14 @@
           placeholder="Adres Email"
           formControlName="email"
           class="form-control">
+        <div ngxErrors="email">
+          <div ngxError="email">
+            Wpisz poprawny adres email!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div formGroupName="passwordGroup">
         <div class="p-field">
@@ -22,6 +30,14 @@
             placeholder="Hasło"
             formControlName="password"
             class="form-control">
+          <div ngxErrors="passwordGroup.password">
+            <div ngxError="minlength">
+              Wpisz hasło 8 znakowe!
+            </div>
+            <div ngxError="required" when="touched">
+              Pole wymagane!
+            </div>
+          </div>
         </div>
         <div class="p-field">
           <label for="repeat-password-sign-up"></label>
@@ -32,6 +48,19 @@
             placeholder="Powtórz hasło"
             formControlName="confirmPassword"
             class="form-control">
+          <div ngxErrors="passwordGroup.confirmPassword">
+            <div ngxError="minlength">
+              Wpisz hasło 8 znakowe!
+            </div>
+            <div ngxError="required" when="touched">
+              Pole wymagane!
+            </div>
+          </div>
+          <div ngxErrors="passwordGroup">
+            <div ngxError="passwordMismatch">
+              Hasła muszą być takie same!
+            </div>
+          </div>
         </div>
       </div>
       <div class="p-field">
@@ -43,6 +72,14 @@
           placeholder="Imię"
           formControlName="name"
           class="form-control">
+        <div ngxErrors="name">
+          <div ngxError="pattern">
+            Wpisz poprawne imię!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="surname-sign-up"></label>
@@ -53,6 +90,14 @@
           placeholder="Nazwisko"
           formControlName="surname"
           class="form-control">
+        <div ngxErrors="surname">
+          <div ngxError="pattern">
+            Wpisz poprawne Nazwisko!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="city-sign-up"></label>
@@ -63,6 +108,14 @@
           placeholder="Miasto"
           formControlName="city"
           class="form-control">
+        <div ngxErrors="city">
+          <div ngxError="pattern">
+            Wpisz poprawną nazwę miasta!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="street-sign-up"></label>
@@ -73,6 +126,14 @@
           placeholder="Ulica"
           formControlName="street"
           class="form-control">
+        <div ngxErrors="street">
+          <div ngxError="pattern">
+            Wpisz poprawną nazwę ulicy!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="home-number-sign-up"></label>
@@ -83,6 +144,14 @@
           placeholder="Numer domu"
           formControlName="homeNumber"
           class="form-control">
+        <div ngxErrors="homeNumber">
+          <div ngxError="pattern">
+            Wpisz poprawny numer domu!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="flat-number-sign-up"></label>
@@ -93,6 +162,14 @@
           placeholder="Numer mieszkania"
           formControlName="flatNumber"
           class="form-control">
+        <div ngxErrors="flatNumber">
+          <div ngxError="pattern">
+            Wpisz poprawny numer mieszkania!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="post-office-name-sign-up"></label>
@@ -103,6 +180,14 @@
           placeholder="Miejscowość poczty"
           formControlName="postOfficeName"
           class="form-control">
+        <div ngxErrors="postOfficeName">
+          <div ngxError="pattern">
+            Wpisz poprawną miejscowość poczty!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
       <div class="p-field">
         <label for="post-office-code-sign-up"></label>
@@ -113,9 +198,17 @@
           placeholder="Kod pocztowy"
           formControlName="postOfficeCode"
           class="form-control">
+        <div ngxErrors="postOfficeCode">
+          <div ngxError="pattern">
+            Wpisz poprawny kod pocztowy!
+          </div>
+          <div ngxError="required" when="touched">
+            Pole wymagane!
+          </div>
+        </div>
       </div>
-      <button pButton type="submit" label="Zarejestruj się"
-              [disabled]="registrationForm.invalid"></button>
+      <button pButton type="submit" label="Zarejestruj się"></button>
+      <button pButton type="button" label="Następne formularze" routerLink="./registration/confirmEmail"></button>
     </div>
   </form>
 </div>

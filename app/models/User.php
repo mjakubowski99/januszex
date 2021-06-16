@@ -1,12 +1,11 @@
 <?php
 
+namespace app\models;
+
 class User extends Model{
 
-    public function get(){
-
-    }
-
-    public function create($data){
-        
+    public static function table(): string
+    {
+        return 'users';
     }
 }

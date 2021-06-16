@@ -1,0 +1,9 @@
+<div class="p-d-flex p-flex-row p-justify-between">
+  <ng-container *ngFor="let option of options">
+    <div [routerLink]="option.routeLink" routerLinkActive="active" class="pointer">
+      <h3>{{option.name}}</h3>
+    </div>
+  </ng-container>
+</div>
+
+<router-outlet></router-outlet>

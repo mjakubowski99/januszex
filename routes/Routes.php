@@ -2,7 +2,14 @@
 
 require_once '../app/kernel/Router.php';
 
+require_once 'groups/AuthRoutesTrait.php';
+require_once 'groups/UserRoutesTrait.php';
+require_once 'groups/AdminRoutesTrait.php';
+require_once 'groups/ProductRoutesTrait.php';
+
 class Routes{
+
+    use AuthRoutesTrait, UserRoutesTrait, AdminRoutesTrait, ProductRoutesTrait;
 
     protected $router;
 
@@ -17,14 +24,16 @@ class Routes{
 
         $router->add('GET', 'home', 'HomeController', 'index');
         $router->add('POST', 'store', 'HomeController', 'store');
-        
-        $router->add('GET', 'login', 'LoginController', 'index');
-        $router->add('POST', 'login', 'LoginController', 'store');
 
-        $router->add('GET', 'register', 'RegisterController', 'index');
-        $router->add('POST', 'register', 'RegisterController', 'store');
+        $this->authRoutes($router);
+        $this->userRoutes($router);
+        $this->adminRoutes($router);
+        $this->productRoutes($router);
 
-        $router->add('GET', 'test/{test}', 'LoginController', 'test');
+        $router->add('GET', 'init/order', 'PaymentController', 'index');
+        $router->add('POST', 'payu/create/order', 'PaymentController', 'create');
+        $router->add('POST', 'order/notify', 'PaymentController', 'notify');
+        $router->add('GET', 'order/retrieve', 'OrderController', 'retrieve');
 
         $this->router = $router;
     }

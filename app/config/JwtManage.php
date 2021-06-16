@@ -1,20 +1,34 @@
 <?php 
 
-use Firebase\JWT\JWT;
+namespace app\config;
 
-require_once('../vendor/autoload.php');
-require_once '../app/config/DotEnv.php';
+use Firebase\JWT\JWT;
+use app\config\DotEnv;
+use DateTimeImmutable;
+use app\database\Database;
+
+require_once(__DIR__.'/../../vendor/autoload.php');
 
 class JwtManage{
 
     private $matches;
 
-    public function __construct(){
-        ( new DotEnv('../.env') )->load();
+    private $role;
+
+    public function __construct($role){
+        ( new DotEnv(__DIR__.'/../../.env') )->load();
+        $this->role = $role;
+    }
+
+    private function getSecret(){
+        if( $this->role === 'admin' )
+            return getenv("JWT_ADMIN_SECRET");
+        if( $this->role === 'user' )
+            return getenv("JWT_SECRET");
     }
 
     public function createToken($email){
-        $secret = getenv("JWT_SECRET");
+        $secret = $this->getSecret();
         $issuedAt = new DateTimeImmutable();
         $expire = $issuedAt->modify('+2 hours')->getTimestamp();
         $serverName = getenv("SERVER_DOMAIN");
@@ -24,6 +38,7 @@ class JwtManage{
             'iss'  => $serverName,       // Issuer
             'nbf'  => $issuedAt->getTimestamp(),         // Not before
             'exp'  => $expire,           // Expire
+            'role' => $this->role,
             'email' => $email,  
         ];
 
@@ -34,6 +49,33 @@ class JwtManage{
         );
     }
 
+    public function getEmailForToken(){
+        if( !$this->tokenExistInHeader() )
+            return null;;
+        if( !$this->ableToExtractToken() )
+            return null;
+
+        $jwt = $this->matches[1];
+        $secret = $this->getSecret();
+        $token = JWT::decode($jwt, $secret, ['HS512']);
+
+        if( $this->tokenHasValidSignatureAndNotExpired($token) )
+           return $token->email;
+        else
+           return null;
+    }
+
+    public function tokenOnBlacklist($token){
+        $database = new Database();
+        $query = "SELECT id FROM jwt_blacklist WHERE token=:token";
+        $values = ['token' => $token];
+
+        $row = $database->execute($query, $values);
+        if( !$row )
+            return false;
+        return true;
+    }
+
     public function tokenIsValid(){
         if( !$this->tokenExistInHeader() )
             return false;
@@ -41,7 +83,10 @@ class JwtManage{
             return false;
         
         $jwt = $this->matches[1];
-        $secret = getenv("JWT_SECRET");
+        //if( $this->tokenOnBlacklist($jwt) )
+        //    return false;
+
+        $secret = $this->getSecret();
         $token = JWT::decode($jwt, $secret, ['HS512']); //some token was extracted
 
         return $this->tokenHasValidSignatureAndNotExpired($token);

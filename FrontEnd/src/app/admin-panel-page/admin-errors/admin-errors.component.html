@@ -1,0 +1,33 @@
+<div>
+  <div *ngIf="errors.length <= 0">
+    <h1>Jeszcze nie ma błędów! wkrótce się pojawią</h1>
+  </div>
+  <div class="card" *ngIf="errors.length > 0">
+    <h1>Błędy</h1>
+    <p-table [value]="errors">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="errorId">error ID
+            <p-sortIcon field="errorId"></p-sortIcon>
+          </th>
+          <th pSortableColumn="userId">user ID
+            <p-sortIcon field="userId"></p-sortIcon>
+          </th>
+          <th pSortableColumn="errorMessage">Wiadomość
+            <p-sortIcon field="errorMessage"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-errors>
+          <tr>
+            <td>{{errors.errorId}}</td>
+            <td>
+              <span *ngIf="!errors.userId">Brak</span>
+              <span *ngIf="!!errors.userId">{{errors.userId}}</span>
+            </td>
+            <td>{{errors.errorMessage}}</td>
+          </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

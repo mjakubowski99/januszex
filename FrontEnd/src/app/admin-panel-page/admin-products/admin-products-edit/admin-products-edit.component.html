@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="p-field">
+    <label for="id"></label>
+    <input
+      id="id"
+      type="text"
+      pInputText
+      placeholder="NumerId"
+      [(ngModel)]="this.inputProductId">
+  </div>
+  <button pButton type="submit" label="Edytuj zamówienie z tym adresem ID" style="margin-bottom: 20px"
+          (click)="getProduct()"></button>
+  <ng-template [ngIf]="currentProduct">
+    <h1>ID edytowanego produktu {{currentProduct.id}}</h1>
+    <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="name"></label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            placeholder="Nazwa"
+            formControlName="name"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="category"></label>
+          <input
+            id="category"
+            type="text"
+            pInputText
+            placeholder="Kategoria"
+            formControlName="category"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="subcategory"></label>
+          <input
+            id="subcategory"
+            type="text"
+            pInputText
+            placeholder="Subkategoria"
+            formControlName="subcategory"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="price"></label>
+          <input
+            id="price"
+            type="number"
+            pInputText
+            placeholder="Cena"
+            formControlName="price"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="photoPath"></label>
+          <input
+            id="photoPath"
+            type="text"
+            pInputText
+            placeholder="Url obrazka"
+            formControlName="photoPath"
+            class="form-control">
+          <img src="{{this.editProductForm.value.photoPath}}" alt="Test obrazka" style="width: 50%;">
+        </div>
+        <div class="p-field">
+          <label for="quantity"></label>
+          <input
+            id="quantity"
+            type="number"
+            pInputText
+            placeholder="Ilość"
+            formControlName="quantity"
+            class="form-control">
+        </div>
+        <div class="p-field">
+          <label for="description"></label>
+          <textarea
+            pInputTextarea
+            id="description"
+            type="text"
+            pInputText
+            placeholder="Opis"
+            formControlName="description"
+            class="form-control"></textarea>
+        </div>
+        <button pButton type="submit" label="Edytuj"></button>
+      </div>
+    </form>
+  </ng-template>
+</div>

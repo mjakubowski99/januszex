@@ -1,5 +1,7 @@
 <?php
 
+namespace app\filters;
+
 class Sanitize{
     
     public function sanitize($data){

@@ -1,0 +1,34 @@
+<div class="card">
+  <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" layout="grid">
+    <ng-template pTemplate="header">
+      <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+        <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                  <i class="pi pi-search"></i>
+                  <input type="search" pInputText placeholder="Wyszukaj po nazwie"
+                         (input)="dv.filter($event.target['value'])">
+              </span>
+      </div>
+    </ng-template>
+    <ng-template let-product pTemplate="gridItem">
+      <div class="p-col-12 p-md-4 pointer" routerLink="../edit/{{product.id}}">
+        <div class="product-grid-item card" style="padding: 2px">
+          <div class="product-grid-item-top">
+              <i class="pi pi-tag product-category-icon"></i>
+              <span class="product-category">{{product.category}}</span>
+          </div>
+          <div class="product-grid-item-content">
+            <img
+              src="{{product.photoPath}}"
+              alt="Obraz przedmiotu">
+            <div class="product-name">{{product.name}}</div>
+            <div class="product-description">{{product.description}}</div>
+          </div>
+          <div class="p-d-flex p-jc-between">
+            <div class="product-price">Cena: {{product.price | number:'1.2-2'}}zł</div>
+            <div class="product-price">Ilość: {{product.quantity}}</div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>

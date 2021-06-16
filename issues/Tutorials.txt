@@ -50,4 +50,10 @@
                 DocumentRoot "C:\xampp\htdocs\januszex\public
             </VirtualHost>
 
+4.Problem z Jwt lub PHPMailer?
+
+Zrób composer install
+
+
+
 

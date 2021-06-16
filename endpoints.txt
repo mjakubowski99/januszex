@@ -1,0 +1,85 @@
+registerVerify => method: POST, you must send token data named token and also JWT token
+    Send:
+        input named token
+    Response:
+         if you not send token: 401 code
+         if your token is not valid: { 'message': 'Some error message' }
+         if your token is valid: { 'message': 'Some success message' }
+         if some database error occur: { 'message': 'Some database error' }
+
+resendVerification => method: POST, you must by logged( jwt token ) you send post data, email will be get from token
+    Send:
+        Only token is sended here from which email will be get
+    Response:
+        If you not provide token: 401 code
+        If your user for this email was verified or email wasn't delivered or database error: { 'message': 'Some error message' }
+        If everything was successful: { 'message': 'Some success message' }
+
+changePassword => method: POST, you must add token to request
+    Send:
+        inputs named actual-password, new-password, repeat-new-password
+    Response:
+        if you not send token: 401 code
+        if data is not valid json: { 'message': 'Some messsage' }
+        if data is valid: { 'message': 'Some success message' }
+
+
+resetPassword => method: POST, you CAN'T be logged( don't send token )
+    Send:
+        input named email
+    Response:
+        -If you send valid token: { 'message': 'You cannot be logged to change password' }
+        -If email you provide doesn't exist for any user: { 'message': 'This user not exist' }
+        -If email exist and successful sended and updated in database: { 'message': 'Success' }
+        -If email exist but somehow wasn't seneded properly or update you will get message about database
+        error: { 'message': 'Some error message' }
+
+userOrders => method: GET, you must send token
+    Response:
+        -if you not send token: 401 code
+        -if user doesn't have orders: { 'message': 'Some error message' }
+        -if user have orders: [
+            { order1 info },
+            { order2 info },
+        ]
+        -If database error you will get message { 'message': 'Some error message' }
+
+userAddress => method: GET, you must send token
+    Response:
+        -if you not send token: 401 code
+        -if user doesn't have address: { 'message': 'Some error message' }
+        -if user have address: { some address data }
+        -If database error you will get message { 'message': 'Some error message' }
+
+changeAddress => method: POST, you must send token
+    Send:
+        inputs named city, street, home_number, flat_number, postoffice_name, postoffice_code
+    Response:
+        -if you not send token: 401 code
+        -if data not valid: { 'message': 'Some validation error message' }
+        -if data valid { 'message': 'Success' }
+        -If database error you will get message { 'message': 'Some error message' }
+
+payu/create/order => method: POST, you must send token
+    Send array:
+        products: [
+            {"id": 1, "quantity": 3},
+            {"id": 2, "quantity": 4},
+        ]
+    Api will get your email address from token
+
+    Response:
+        -if data validation fails:
+            [
+                "status" => "error",
+                "message" =>  "Some error message"
+            ]
+        -if order failed to create for some reason, it could be extId already exists, or some other reason
+         which not allow you to create payu order
+
+         Example error:
+            [
+                {"message":"ERROR_ORDER_NOT_UNIQUE - Order with given extOrderId already exists"}
+            ]
+
+order/retrieve => method GET you must send order_id in query params

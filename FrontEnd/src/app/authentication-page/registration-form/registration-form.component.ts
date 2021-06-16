@@ -12,19 +12,22 @@ export class RegistrationFormComponent implements OnInit {
   registrationForm: FormGroup;
 
   constructor(private authenticationService: AuthenticationService) {
+    const lettersAndWhitespaceRegEx = RegExp(/^[\s\p{L}]*$/u);
+    const lettersDashAndWhitespaceRegEx = RegExp(/^[-\s\p{L}]*$/u);
+    const lettersNumbersDashAndWhitespaceRegEx = RegExp(/^[-\d\s\p{L}]*$/u);
     this.registrationForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       passwordGroup: new FormGroup({
         password: new FormControl('', [Validators.required, Validators.minLength(8)]),
         confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
       }, this.passwordMatchValidator()),
-      name: new FormControl('', Validators.required),
-      surname: new FormControl('', Validators.required),
-      city: new FormControl('', Validators.required),
-      street: new FormControl('', Validators.required),
-      homeNumber: new FormControl('', Validators.required),
-      flatNumber: new FormControl(''),
-      postOfficeName: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.pattern(lettersAndWhitespaceRegEx)]),
+      surname: new FormControl('', [Validators.required, Validators.pattern(lettersDashAndWhitespaceRegEx)]),
+      city: new FormControl('', [Validators.required, Validators.pattern(lettersNumbersDashAndWhitespaceRegEx)]),
+      street: new FormControl('', [Validators.required, Validators.pattern(lettersNumbersDashAndWhitespaceRegEx)]),
+      homeNumber: new FormControl('', [Validators.required, Validators.pattern(/^[1-9][\d\p{L}]*$/u)]),
+      flatNumber: new FormControl('', [Validators.required, Validators.pattern(/^[1-9][\d]*$/u)]),
+      postOfficeName: new FormControl('', [Validators.required, Validators.pattern(lettersNumbersDashAndWhitespaceRegEx)]),
       postOfficeCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{2}-[0-9]{3}')]),
     });
   }
@@ -33,6 +36,10 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    if (this.registrationForm.invalid) {
+      this.registrationForm.markAllAsTouched();
+      return;
+    }
     const registrationFormData: RegistrationFormData = {
       email: this.registrationForm.value.email,
       password: this.registrationForm.value.passwordGroup.password,
