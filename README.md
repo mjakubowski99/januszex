@@ -30,6 +30,7 @@ Team Members and JQL filters with their work:
     Oskar Wal - tester
     https://projekt-zespolowy-mjakubowski.atlassian.net/browse/PROJ99-77?filter=-4&jql=assignee%20in%20(5f7a2ba4b61f66006f22c6dd)%20order%20by%20created%20DESC
 
+# How to install?
 
 Clone project:
 ```
