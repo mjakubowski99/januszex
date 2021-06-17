@@ -24,7 +24,7 @@ class ProductController extends Controller{
     }
 
     public function show($data){
-        if( Auth::isLogged() ){
+        if( !Auth::isLogged() ){
             ResponseStatus::code(404);
         }
         $id = $data[0]; //get first parameter from route, you can do var_dump( $data ) to see list parameters
