@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-categories-list',
@@ -7,23 +8,31 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CategoriesListComponent implements OnInit {
 
-  categories: { categoryName: string, iconClass: string, routerLink: string }[] = [
-    {categoryName: 'Obudowy', iconClass: 'case-icon', routerLink: '#'},
-    {categoryName: 'Chłodzenia', iconClass: 'cooling-fan-icon', routerLink: '#'},
-    {categoryName: 'Procesory', iconClass: 'cpu-processor-icon', routerLink: '#'},
+  categories: { categoryName: string, iconClass: string}[] = [
+    {categoryName: 'Obudowa', iconClass: 'case-icon'},
+    {categoryName: 'Chłodzenie', iconClass: 'cooling-fan-icon'},
+    {categoryName: 'Procesor', iconClass: 'cpu-processor-icon'},
     // {categoryName: 'Stacje dysków', iconClass: 'dvd-icon', routerLink: '#'},
-    {categoryName: 'Karty graficzne', iconClass: 'graphics-card-icon', routerLink: '#'},
-    {categoryName: 'Dyski twarde', iconClass: 'hard-drive-icon', routerLink: '#'},
-    {categoryName: 'Monitory', iconClass: 'monitor-icon', routerLink: '#'},
-    {categoryName: 'Płyty główne', iconClass: 'motherboard-icon', routerLink: '#'},
-    {categoryName: 'Zasilacze', iconClass: 'psu-icon', routerLink: '#'},
-    {categoryName: 'Pamięć Ram', iconClass: 'ram-icon', routerLink: '#'},
+    {categoryName: 'Karta graficzna', iconClass: 'graphics-card-icon'},
+    {categoryName: 'Dysk twardy', iconClass: 'hard-drive-icon'},
+    {categoryName: 'Monitor', iconClass: 'monitor-icon'},
+    {categoryName: 'Płyta główna', iconClass: 'motherboard-icon'},
+    {categoryName: 'Zasilacz', iconClass: 'psu-icon'},
+    {categoryName: 'Pamięć Ram', iconClass: 'ram-icon'},
   ];
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
+  public onClick(categoryName: string): void {
+    this.router.navigate(['/products'], {
+      queryParams: {
+        category: categoryName
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
 }

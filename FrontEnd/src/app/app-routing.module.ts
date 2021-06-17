@@ -23,11 +23,17 @@ import {AdminProductsEditComponent} from './admin-panel-page/admin-products/admi
 import {AdminProductsAddComponent} from './admin-panel-page/admin-products/admin-products-add/admin-products-add.component';
 import {AdminProductsListComponent} from './admin-panel-page/admin-products/admin-products-list/admin-products-list.component';
 import {AdminOrderDetailsComponent} from './admin-panel-page/admin-order-details/admin-order-details.component';
+import {ProductDetailComponent} from './products/product-detail/product-detail.component';
+import {ProductsListComponent} from './products/products-list/products-list.component';
+import {AuthGuard} from './guards/auth.guard';
+import {OrderCheckerComponent} from './order-checker/order-checker.component';
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
+  {path: 'orderCheck', component: OrderCheckerComponent},
   {
-    path: 'authentication', children: [
+    path: 'authentication', canDeactivate: [AuthGuard],
+    canActivate: [AuthGuard], children: [
       {path: '', component: AuthenticationPageComponent},
       {
         path: 'registration', children: [
@@ -44,8 +50,15 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'products', children: [
+      {path: '', component: ProductsListComponent},
+      {path: ':id', component: ProductDetailComponent}
+    ]
+  },
+  {
     path: 'account', component: AccountPanelPageComponent, children: [
-      {path: 'addressData',
+      {
+        path: 'addressData',
         component: AccountAddressDataComponent,
         resolve: {
           accountGetAddressData: AccountGetAddressDataResolver
@@ -58,7 +71,7 @@ const routes: Routes = [
           accountGetOrders: AccountGetOrdersResolver
         }
       },
-      {path: 'orderDetails', component: AccountOrderDetailsComponent},
+      {path: 'orderDetails/:id', component: AccountOrderDetailsComponent},
       {path: 'changePassword', component: AccountChangePasswordFormComponent},
       {path: '', redirectTo: 'addressData', pathMatch: 'full'}
     ]
@@ -80,7 +93,7 @@ const routes: Routes = [
     ]
   },
   {path: 'cart', component: CartComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path: '', redirectTo: 'authentication', pathMatch: 'full'}
 ];
 
 @NgModule({

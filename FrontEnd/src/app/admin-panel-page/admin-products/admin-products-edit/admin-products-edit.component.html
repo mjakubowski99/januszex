@@ -6,10 +6,11 @@
       type="text"
       pInputText
       placeholder="NumerId"
-      [(ngModel)]="this.inputProductId">
+      [(ngModel)]="this.inputProductId"
+    >
   </div>
   <button pButton type="submit" label="Edytuj zamówienie z tym adresem ID" style="margin-bottom: 20px"
-          (click)="getProduct()"></button>
+          (click)="getProduct(this.inputProductId)"></button>
   <ng-template [ngIf]="currentProduct">
     <h1>ID edytowanego produktu {{currentProduct.id}}</h1>
     <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">

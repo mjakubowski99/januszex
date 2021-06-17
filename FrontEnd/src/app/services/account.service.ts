@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {CustomMessageService} from './custom-message.service';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {ChangePasswordFormData} from '../models/change-password-form-data';
 import {Converter} from './converter';
 import {environment} from '../../environments/environment';
@@ -51,5 +51,20 @@ export class AccountService {
         console.log(resData);
       })
     );
+  }
+
+  public getOrderDetails(orderId: number): Observable<any>  {
+    const formData = new FormData();
+    formData.append('orderId', orderId.toString());
+    return this.http.post(`${environment.api}account/orderdetails`, formData);
+  }
+  public getLastOrder(): Observable<any>{
+    return this.http.get(`${environment.api}last_order/retrieve`);
+  }
+
+  public updatePaymentStatus(payuOrderId: string): Observable<any>{
+    let param = new HttpParams();
+    param = param.append('order_id', payuOrderId);
+    return this.http.get(`${environment.api}order/retrieve`, {params: param});
   }
 }

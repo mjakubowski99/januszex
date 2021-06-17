@@ -3,7 +3,7 @@
     *ngFor="let category of categories"
     class="p-d-flex p-flex-column p-ai-center category-list-item ">
     <a
-      href="{{category.routerLink}}">
+      (click)="onClick(category.categoryName)">
       <i class="category-icon {{category.iconClass}}"></i>
     </a>
     <h4 class="category-name">{{category.categoryName}}</h4>

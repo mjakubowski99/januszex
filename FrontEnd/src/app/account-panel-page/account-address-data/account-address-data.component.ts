@@ -31,7 +31,7 @@ export class AccountAddressDataComponent implements OnInit {
       postOfficeName: new FormControl('', [Validators.required, Validators.pattern(lettersNumbersDashAndWhitespaceRegEx)]),
       postOfficeCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{2}-[0-9]{3}')]),
     });
-    this.getAddress();
+    this.getInitAddress();
   }
 
   public onSubmit(): void {
@@ -53,6 +53,22 @@ export class AccountAddressDataComponent implements OnInit {
   }
 
   private getAddress(): void {
+    this.accountService.getAddressData().subscribe(resData => {
+      this.currentAddressData = {
+        name: resData.name,
+        surname: resData.surname,
+        city: resData.city,
+        street: resData.street,
+        homeNumber: resData.home_number,
+        flatNumber: resData.flat_number,
+        postOfficeName: resData.postoffice_name,
+        postOfficeCode: resData.postoffice_code
+      };
+      this.updateForm();
+    });
+  }
+
+  private getInitAddress(): void {
     const resData = this.route.snapshot.data.accountGetAddressData;
 
     this.currentAddressData = {
@@ -65,5 +81,21 @@ export class AccountAddressDataComponent implements OnInit {
       postOfficeName: resData.postoffice_name,
       postOfficeCode: resData.postoffice_code
     };
+    this.updateForm();
+  }
+
+  private updateForm(): void {
+    this.newAddressDataForm.patchValue({
+      // name: this.currentAddressData.name,
+      // surname: this.currentAddressData.surname,
+      name: 'NieDziala',
+      surname: 'NieDziala',
+      city: this.currentAddressData.city,
+      street: this.currentAddressData.street,
+      homeNumber: this.currentAddressData.homeNumber,
+      flatNumber: this.currentAddressData.flatNumber,
+      postOfficeName: this.currentAddressData.postOfficeName,
+      postOfficeCode: this.currentAddressData.postOfficeCode
+    });
   }
 }

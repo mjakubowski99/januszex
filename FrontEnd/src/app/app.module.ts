@@ -50,14 +50,19 @@ import {TableModule} from 'primeng/table';
 import {MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {DropdownModule} from 'primeng/dropdown';
+import {CheckboxModule} from 'primeng/checkbox';
 
-import { AdminProductsListComponent } from './admin-panel-page/admin-products/admin-products-list/admin-products-list.component';
-import { AdminProductsEditComponent } from './admin-panel-page/admin-products/admin-products-edit/admin-products-edit.component';
-import { AdminProductsAddComponent } from './admin-panel-page/admin-products/admin-products-add/admin-products-add.component';
+import {AdminProductsListComponent} from './admin-panel-page/admin-products/admin-products-list/admin-products-list.component';
+import {AdminProductsEditComponent} from './admin-panel-page/admin-products/admin-products-edit/admin-products-edit.component';
+import {AdminProductsAddComponent} from './admin-panel-page/admin-products/admin-products-add/admin-products-add.component';
 import {MenubarModule} from 'primeng/menubar';
 import {DataViewModule} from 'primeng/dataview';
 import {InputTextareaModule} from 'primeng/inputtextarea';
-import { AdminOrderDetailsComponent } from './admin-panel-page/admin-order-details/admin-order-details.component';
+import {AdminOrderDetailsComponent} from './admin-panel-page/admin-order-details/admin-order-details.component';
+import {ProductDetailComponent} from './products/product-detail/product-detail.component';
+import {ProductsListComponent} from './products/products-list/products-list.component';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { OrderCheckerComponent } from './order-checker/order-checker.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +95,10 @@ import { AdminOrderDetailsComponent } from './admin-panel-page/admin-order-detai
     AdminProductsListComponent,
     AdminProductsEditComponent,
     AdminProductsAddComponent,
-    AdminOrderDetailsComponent
+    AdminOrderDetailsComponent,
+    ProductDetailComponent,
+    ProductsListComponent,
+    OrderCheckerComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +115,9 @@ import { AdminOrderDetailsComponent } from './admin-panel-page/admin-order-detai
     DropdownModule,
     MenubarModule,
     DataViewModule,
-    InputTextareaModule
+    InputTextareaModule,
+    InputNumberModule,
+    CheckboxModule
   ],
   providers: [
     {

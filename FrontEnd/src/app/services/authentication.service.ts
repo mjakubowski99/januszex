@@ -57,27 +57,49 @@ export class AuthenticationService {
         const token = resData.jwt_token;
         const decodedToken = jwtDecode<any>(token);
         console.log(decodedToken);
-        this.handleAuthentication(decodedToken.email, token, new Date(decodedToken.exp * 1000));
-
+        this.handleAuthentication(decodedToken.email, decodedToken.role, token, new Date(decodedToken.exp * 1000));
         this.router.navigate(['/home']);
+      })
+    );
+  }
+
+  public adminLogin(name: string, password: string, secret: string): Observable<any> {
+    const formData = Converter.objectToFormData({name, password, secret});
+
+    return this.http.post(`${environment.api}admin/login`, formData).pipe(
+      tap(resData => {
+        console.log(resData);
+        if (!resData.jwt_token) {
+          this.messageService.pushErrorMessage('Błąd', resData.message);
+          return;
+        }
+        const token = resData.jwt_token;
+        const decodedToken = jwtDecode<any>(token);
+        console.log(decodedToken);
+        this.handleAuthentication(decodedToken.email, decodedToken.role, token, new Date(decodedToken.exp * 1000));
       })
     );
   }
 
   private handleAuthentication(
     email: string,
+    role: string,
     token: string,
     expirationDate: Date
   ): void {
-    const user = new UserData(email, token, expirationDate);
+    const user = new UserData(email, role, token, expirationDate);
     this.user$.next(user);
     this.autoLogout(expirationDate.getTime() - new Date().getTime());
     localStorage.setItem('userData', JSON.stringify(user));
+    if (this.user$.value.isAdmin()) {
+      this.router.navigate(['/admin']);
+    }
   }
 
   autoLogin(): void {
     const userData: {
       email: string;
+      role: string,
       _token: string;
       _tokenExpirationDate: string;
     } = JSON.parse(localStorage.getItem('userData'));
@@ -88,6 +110,7 @@ export class AuthenticationService {
 
     const loadedUser = new UserData(
       userData.email,
+      userData.role,
       userData._token,
       new Date(userData._tokenExpirationDate)
     );
@@ -97,6 +120,9 @@ export class AuthenticationService {
       this.user$.next(loadedUser);
       const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
+      if (this.user$.value.isAdmin()) {
+        this.router.navigate(['/admin']);
+      }
     } else {
       console.log('dane użytkownika w localStorage nie są już ważne');
     }
@@ -112,6 +138,8 @@ export class AuthenticationService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+
+    this.router.navigate(['/authentication']);
   }
 
   private autoLogout(expirationDuration: number): void {
@@ -154,4 +182,5 @@ export class AuthenticationService {
       })
     );
   }
+
 }

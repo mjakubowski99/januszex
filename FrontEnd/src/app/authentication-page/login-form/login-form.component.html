@@ -25,13 +25,23 @@
           pInputText
           placeholder="Hasło"
           formControlName="password"
-          class="form-control"
-          ngModel="silnehasło123">
+          class="form-control">
         <div ngxErrors="password">
           <div ngxError="minlength">
             Wpisz hasło 8 znakowe!
           </div>
         </div>
+      </div>
+      <p-checkbox formControlName="isAdminLogin" [binary]="true" class="checkbox" label="Logowanie admina"></p-checkbox>
+      <div class="p-field" *ngIf="loginForm.controls.isAdminLogin.value">
+        <label for="admin-password"></label>
+        <input
+          id="admin-password"
+          type="password"
+          pInputText
+          placeholder="Hasło admina"
+          formControlName="adminPassword"
+          class="form-control">
       </div>
       <button
         pButton

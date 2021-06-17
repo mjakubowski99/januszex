@@ -1,0 +1,31 @@
+<div class="product-detail content" *ngIf="currentProduct">
+  <div class="p-d-flex p-jc-between p-flex-wrap">
+    <img src="{{currentProduct.photoPath}}" class="product-image">
+    <div>
+      <h1>Nazwa: {{currentProduct.name}}</h1>
+      <h4>Kategoria: {{currentProduct.category}}</h4>
+      <h5>Podkategoria: {{currentProduct.subcategory}}</h5>
+    </div>
+    <div>
+      <h1>Cena: {{currentProduct.price | number:'1.2-2'}}zł</h1>
+      <h4>Dostępna ilość: {{currentProduct.quantity}}</h4>
+      <div class="p-d-flex p-flex-column">
+        <div>
+          <h3>Ilość:</h3>
+          <p-inputNumber #inputNumber ngModel="1" mode="decimal" [showButtons]="true" buttonLayout="vertical"
+                         spinnerMode="vertical"
+                         decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary"
+                         incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [size]="1" [min]="1"
+                         [max]="currentProduct.quantity"></p-inputNumber>
+        </div>
+        <br>
+        <p-button label="Dodaj do koszyka" (onClick)="onAddToCart(inputNumber.value)"
+                  [disabled]="!inputNumber.value"></p-button>
+        <br>
+        <p-button label="Kup" (onClick)="onBuy(inputNumber.value)" [disabled]="!inputNumber.value"></p-button>
+      </div>
+    </div>
+  </div>
+  <h6>Opis</h6>
+  <div>{{currentProduct.description}}</div>
+</div>

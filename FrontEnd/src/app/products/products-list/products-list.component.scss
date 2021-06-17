@@ -1,0 +1,54 @@
+:host ::ng-deep {
+
+  .product-name {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .product-grid-item {
+    margin: .5em;
+    border: 1px solid #dee2e6;
+
+    img {
+      width: 75%;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      margin: 2rem 0;
+    }
+
+    .product-grid-item-content {
+      text-align: center;
+    }
+    &:hover,
+    &:focus {
+      background-color: #B6BFCEFF;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  :host ::ng-deep .product-list-item {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 75%;
+      margin: 2rem 0;
+    }
+  }
+}
+
+
+
+
+.home-page {
+  background-color: var(--surface-e);
+  padding: 5px;
+  border-radius: 5px;
+}
+.category-list {
+  margin: 5px 5px 5px 5px;
+}
+
+.category-icon {
+  margin: 10px 20px 5px 20px;
+}

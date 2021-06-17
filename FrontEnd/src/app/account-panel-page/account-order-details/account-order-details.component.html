@@ -1,1 +1,51 @@
-<p>account-order-details works!</p>
+<div *ngIf="currentOrder">
+  <div class="p-d-flex p-jc-between">
+    <div>
+      <h1>Szczegóły</h1>
+      <h4>ID zamówienia: {{currentOrder.ID}}</h4>
+      <h4>Data zamówienia: {{currentOrder.orderData | date:'medium'}}</h4>
+      <h4>Id użytkownika: {{currentOrder.userId}}</h4>
+      <h4>Kwota całkowita: {{currentOrder.fullAmount | number:'1.2-2'}}zł</h4>
+    </div>
+    <div>
+      <h1>Dane wysyłkowe</h1>
+      <h4>Imię: {{currentOrder.address.name}}</h4>
+      <h4>Nazwisko: {{currentOrder.address.surname}}</h4>
+      <h4>Miasto: {{currentOrder.address.city}}</h4>
+      <h4>Ulica: {{currentOrder.address.street}}</h4>
+      <h4>Numer domu: {{currentOrder.address.homeNumber}}</h4>
+      <h4>Numer mieszkania: {{currentOrder.address.flatNumber ? currentOrder.address.flatNumber : ''}}</h4>
+      <h4>Kod pocztowy: {{currentOrder.address.postofficeCode}}</h4>
+      <!--<h4>Miejscowość poczty: {{currentOrder.address.postOfficeName}}</h4>-->
+    </div>
+  </div>
+  <div>
+    <h1>Przedmioty</h1>
+    <p-table [value]="currentOrder.products">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="productId">Numer ID produktu
+            <p-sortIcon field="productId"></p-sortIcon>
+          </th>
+          <th pSortableColumn="productName">Numer produktu
+            <p-sortIcon field="productName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="quantity">Ilość
+            <p-sortIcon field="quantity"></p-sortIcon>
+          </th>
+          <th pSortableColumn="price">Kwota
+            <p-sortIcon field="price"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr routerLink="/home">
+          <td>{{product.productId}}</td>
+          <td>{{product.productName}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.price | number:'1.2-2'}}zł}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

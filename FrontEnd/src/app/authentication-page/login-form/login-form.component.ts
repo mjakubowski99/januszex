@@ -14,7 +14,9 @@ export class LoginFormComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      isAdminLogin: new FormControl(false),
+      adminPassword: new FormControl(''),
     });
   }
 
@@ -22,13 +24,18 @@ export class LoginFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    const loginFormData: LoginFormData = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
-    };
-
-    this.authenticationService.login(loginFormData).subscribe((response) => {
-      console.log(response);
-    });
+    if (this.loginForm.value.isAdminLogin) {
+      this.authenticationService.adminLogin(this.loginForm.value.email, this.loginForm.value.password, this.loginForm.value.adminPassword).subscribe((response) => {
+        console.log(response);
+      });
+    } else {
+      const loginFormData: LoginFormData = {
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      };
+      this.authenticationService.login(loginFormData).subscribe((response) => {
+        console.log(response);
+      });
+    }
   }
 }

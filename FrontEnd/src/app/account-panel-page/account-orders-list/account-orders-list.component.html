@@ -14,7 +14,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-orders>
-        <tr>
+        <tr [routerLink]="['/account', 'orderDetails', orders.orderId]">
           <td>{{orders.orderId}}</td>
           <td>{{orders.date | date:'medium'}}</td>
           <td>{{orders.price | number:'1.2-2'}}zł</td>

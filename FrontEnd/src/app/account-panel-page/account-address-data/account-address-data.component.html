@@ -1,8 +1,8 @@
 <div class="p-d-flex p-jc-between">
   <div *ngIf="!!currentAddressData">
     <h1>Aktualny dane adresowe</h1>
-    <h4>Imię: {{currentAddressData.name}}</h4>
-    <h4>Nazwisko: {{currentAddressData.surname}}</h4>
+<!--    <h4>Imię: {{currentAddressData.name}}</h4>-->
+<!--    <h4>Nazwisko: {{currentAddressData.surname}}</h4>-->
     <h4>Miasto: {{currentAddressData.city}}</h4>
     <h4>Ulica: {{currentAddressData.street}}</h4>
     <h4>Numer domu: {{currentAddressData.homeNumber}}</h4>
@@ -14,26 +14,26 @@
     <h1>Ustaw nowe dane adresowe</h1>
     <form [formGroup]="newAddressDataForm" (ngSubmit)="onSubmit()">
       <div class="p-fluid">
-        <div class="p-field">
-          <label for="name"></label>
-          <input
-            id="name"
-            type="text"
-            pInputText
-            placeholder="Imię"
-            formControlName="name"
-            class="form-control">
-        </div>
-        <div class="p-field">
-          <label for="surname"></label>
-          <input
-            id="surname"
-            type="text"
-            pInputText
-            placeholder="Nazwisko"
-            formControlName="surname"
-            class="form-control">
-        </div>
+<!--        <div class="p-field">-->
+<!--          <label for="name"></label>-->
+<!--          <input-->
+<!--            id="name"-->
+<!--            type="text"-->
+<!--            pInputText-->
+<!--            placeholder="Imię"-->
+<!--            formControlName="name"-->
+<!--            class="form-control">-->
+<!--        </div>-->
+<!--        <div class="p-field">-->
+<!--          <label for="surname"></label>-->
+<!--          <input-->
+<!--            id="surname"-->
+<!--            type="text"-->
+<!--            pInputText-->
+<!--            placeholder="Nazwisko"-->
+<!--            formControlName="surname"-->
+<!--            class="form-control">-->
+<!--        </div>-->
         <div class="p-field">
           <label for="city"></label>
           <input

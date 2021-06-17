@@ -1,0 +1,22 @@
+<div class="home-page">
+  <h1 class="p-d-flex p-jc-center">Kategorie</h1>
+  <app-categories-list></app-categories-list>
+  <hr>
+  <p-dataView
+    [value]="productsAfterFilter"
+    [paginator]="true"
+    [rows]="9"
+    layout="grid">
+    <ng-template let-product pTemplate="gridItem">
+      <div class="p-col-12 p-md-4" routerLink="{{product.id}}">
+        <div class="product-grid-item">
+          <div class="product-grid-item-content">
+            <div class="product-name">{{product.name}}</div>
+            <div class="product-description">{{product.category}}</div>
+            <img src="{{product.photoPath}}" alt="{{product.name}}">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>

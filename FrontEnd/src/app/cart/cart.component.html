@@ -1,1 +1,26 @@
-<p>cart works!</p>
+<h1>Koszyk:</h1>
+
+<h3 *ngIf="cartItems.length === 0">Koszyk pusty</h3>
+
+<div *ngIf="cartItems.length !== 0" class="p-d-flex p-flex-column">
+  <div class="cart-container" *ngFor="let cartItem of cartItems">
+    <div class="cart-item">
+      <div class="p-d-flex p-jc-between p-align-center">
+        <p class="product-name">Nazwa produktu: {{cartItem.product.name}}</p>
+        <div class="p-d-flex p-align-center">
+          <div>
+            <p>Ilość: {{cartItem.quantity}}
+            <p>Cena: {{cartItem.product.price }} zł</p>
+            <p>Łączna cena: {{cartItem.product.price * cartItem.quantity }} zł</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-d-flex p-justify-center">
+        <button pButton class="p-button-danger" label="Usuń" (click)="onDeleteItem(cartItem.product)"></button>
+      </div>
+    </div>
+  </div>
+  <p>Łączna cena: {{fullAmount()}}</p>
+  <button pButton label="Kup teraz" (click)="onBuyNow()"></button>
+</div>
+

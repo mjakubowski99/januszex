@@ -38,10 +38,6 @@ export class AdminService {
     return this.http.post(`${environment.api}admin/products`, option);
   }
 
-  getProduct(id: number): Observable<any> {
-    return this.http.get(`${environment.api}products/${id}`);
-  }
-
   addProduct(productFormData: ProductFormData): Observable<any> {
     const formData = Converter.objectToFormData(productFormData);
     formData.append('option', 'Add');

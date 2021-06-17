@@ -1,0 +1,13 @@
+<h1 *ngIf="!isChecked">Oczekiwanie na potwierdzenie...</h1>
+
+<div *ngIf="isChecked">
+
+  <h1 *ngIf="isPaymentSuccessful">
+    Zamówienie zostało poprawnie opłacone!
+  </h1>
+
+  <h1 *ngIf="!isPaymentSuccessful">
+    Zamówienie zostało błędnie opłacone!
+  </h1>
+
+</div>

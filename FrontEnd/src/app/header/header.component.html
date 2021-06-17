@@ -9,7 +9,7 @@
 
     <div class="search-container">
       <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="p-input-icon-right">
-        <i class="pi pi-search" type="submit"></i>
+        <i class="pi pi-search" (click)="onSubmit()"></i>
         <label for="search-input" hidden></label>
         <input
           id="search-input"
@@ -21,14 +21,14 @@
     </div>
 
     <div class="p-d-flex">
-      <a routerLink="admin" routerLinkActive="active" *ngIf="true">
+      <ng-container *ngIf="isAuthenticated">
+      <a routerLink="admin" routerLinkActive="active" *ngIf="user.isAdmin()">
         <span class="pi pi-user-plus icon"></span>
       </a>
-      <a routerLink="cart" routerLinkActive="active">
+      <a routerLink="cart" routerLinkActive="active" *ngIf="user.isUser()">
         <span class="pi pi-shopping-cart icon"></span>
       </a>
-      <ng-container *ngIf="isAuthenticated">
-        <a routerLink="account" routerLinkActive="active">
+        <a routerLink="account" routerLinkActive="active" *ngIf="user.isUser()">
           <span class="pi pi-user icon"></span>
         </a>
         <a (click)="onLogout()">
