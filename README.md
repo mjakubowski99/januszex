@@ -42,6 +42,13 @@ Install api dependencies:
 ```
 composer install
 ```  
+You must run mysql databaase to make things work  
+
+Next run scripts to create database and fill with example data:
+```
+php creator/DatabaseCreator.php
+php creator/SampleDatabaseData.php
+```
 
 Install frontend:  
 
