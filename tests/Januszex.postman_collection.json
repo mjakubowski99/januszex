@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "2d03feaa-0c92-41bb-8725-9ca8f4fd3571",
+		"name": "Januszex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Prawidlowy login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"poprawne logowanie\", function(){\r",
+							"    pm.expect(responseData.jwt_token);\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nieprawidlowy login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"nieprwaidlowy login\", function(){\r",
+							"    pm.expect(responseData.message).to.contain(\"Niepoprawna nazwa uzytkownika lub has\\u0142o\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "testtest.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nieprawidlowe haslo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"nieprwaidlowe haslo\", function(){\r",
+							"    pm.expect(responseData.message).to.contain(\"Niepoprawna nazwa uzytkownika lub has\\u0142o\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Proba dostania sie na /admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"nieprwaidlowe haslo\", function(){\r",
+							"    pm.expect(responseData.message).to.contain(\"Error! We doesn't support this type of request for this route!\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/admin",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/products",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

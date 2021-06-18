@@ -1,0 +1,1896 @@
+{
+	"info": {
+		"_postman_id": "e3149711-af6e-4446-963c-698b10953fa5",
+		"name": "Januszex - Rejestracja",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "zalozone juz konto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"konto jest juz zalozone\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Na podany adres e-mail zostało zalozone już konto. Sprobuj opcji odzyskiwania hasła\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "rejestracja powiodla sie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"konto prawidlowo utworzone\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Rejestracja powiodla sie. Sprawdz podany adres e-mail w celu aktywacji konta\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test4@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "blad w imieniu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"informacja o nieprawidlowym imieniu\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Nie mozesz podawac innych znakow niz litery w imieniu\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test8@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test31",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "blad w nazwisko",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"informacja o nieprawidlowym nazwisku\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Nie mozesz podawac innych znakow niz litery w nazwisku\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test8@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test12",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "numer domu za dlugi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadmosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Numer domu jest za dlugi\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1aaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "numer mieszkania",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadmosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Numer mieszkania jest za dlugi\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "131321312",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Kod pocztowy jest nieprawidlowy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadmosc odnosnie formatu\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Kod pocztowy jest nieprawidlowy, prawidlowy format to dd-ddd\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111s",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "hasla sie nie zgadzaja",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie niezgodnosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Hasla si\\u0119 nie zgadzaja\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test222@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "@@test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Haslo jest za krotkie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Haslo jest za krotkie\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "t",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "t",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Nazwisko jest za dlugie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Nazwisko jest za dlugie\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2225@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1a",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Imie jest za dlugie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Imie jest za dlugie\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Nazwa miasta jest za dluga",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Nazwa miasta jest za dluga\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Numer domu jest za dlugi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Numer domu jest za dlugi\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2444444@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "111111111111111111111111111111111111111111111111",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Numer mieszkania jest za dlugi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Numer mieszkania jest za dlugi\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2444444@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "11111111111111111111111111111111",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "Nazwa poczty jest za dluga",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie dlugosci\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Nazwa poczty jest za dluga\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test244444455@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test11111111111111111111dsaaaaaaaaaaaaaaaaaaaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "numer domu w zlym formacie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie formatu\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Podales numer domu w zlym formacie\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test244444455@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "hhhhh",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		},
+		{
+			"name": "numer mieszkania w zlym formacie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status 200\", function(){pm.response.to.have.status(200);})\r",
+							"\r",
+							"\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.test(\"wiadomosc odnosnie formatu\", function(){\r",
+							"    pm.expect(responseData.error_message).to.contain(\"Podales numer mieszkania w zlym formacie\");\r",
+							"}\r",
+							");\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test244444455@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "test@test.pl",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "home_number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "flat_number",
+							"value": "aa",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_name",
+							"value": "tes",
+							"type": "text"
+						},
+						{
+							"key": "postoffice_code",
+							"value": "11-111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://januszexapi.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"januszexapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Testy api"
+			},
+			"response": []
+		}
+	]
+}
