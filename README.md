@@ -32,6 +32,8 @@ Team Members and JQL filters with their work:
 
 # How to install?
 
+Install backed:  
+
 Clone project:
 ```
 git clone https://github.com/mjakubowski99/januszex
@@ -41,7 +43,9 @@ Install api dependencies:
 composer install
 ```  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+Install frontend:  
+
+Angular CLI version 11.2.2.
 
 ## Development server
 
