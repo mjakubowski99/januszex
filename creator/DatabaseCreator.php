@@ -109,7 +109,7 @@ class DatabaseCreator{
                                 address_id BIGINT NOT NULL, #FK
                                 order_date datetime,
                                 full_amount float NOT NULL,
-                                status ENUM('Nieoplacone', 'W trakcie', 'Dostarczone'),
+                                status varchar(100),
                                 PRIMARY KEY (ID),
                                 CONSTRAINT FK_UserOrder FOREIGN KEY (user_id)
                                 REFERENCES users(ID),
@@ -321,5 +321,3 @@ class DatabaseCreator{
 
 $creator = new DatabaseCreator();
 $creator->createAllTables();
-//$creator->createAddressTable();
-//$creator->createUsersTable();

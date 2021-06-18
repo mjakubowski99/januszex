@@ -116,6 +116,8 @@ class SampleDatabaseData{
         $this->fillUserTable();
         $this->fillErrorsTable();
         $this->fillProductTable();
-
     }
 }
+
+$sample = new SampleDatabaseData();
+$sample->fillAllTables();
