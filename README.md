@@ -32,7 +32,7 @@ Team Members and JQL filters with their work:
 
 # How to install?
 
-Install backed:  
+## Install backed:  
 
 Clone project:
 ```
@@ -50,7 +50,7 @@ php creator/DatabaseCreator.php
 php creator/SampleDatabaseData.php
 ```
 
-Install frontend:  
+## Install frontend:  
 
 Angular CLI version 11.2.2.
 
